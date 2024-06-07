@@ -1,0 +1,27 @@
+[user]
+[credential]
+[init]
+    defaultBranch = main
+[pull]
+    rebase = true
+[core]
+    quotepath = false
+    editor = code --wait
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[Include]
+    path = ~/.themes.gitconfig
+[delta]
+    navigate = true
+    side-by-side = true
+    features = mantis-shrimp
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

@@ -1,0 +1,13 @@
+[
+  {
+    "bindings": {
+      "alt-j": "workspace::ToggleZoom"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-j": "workspace::ToggleBottomDock"
+    }
+  }
+]
