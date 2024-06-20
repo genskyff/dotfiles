@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list_ = "bat delta fastfetch fzf git gitui gsudo lsd neovim ripgrep starship tokei zoxide"
+$scoop_list_ = "bat bun clangd delta fastfetch fzf git gitui gsudo lsd neovim nilesoft-shell pandoc ripgrep starship tokei zoxide"
 $scoop_list = $scoop_list_ -split " "
 
 $nvim_config_url = "https://github.com/genskyff/nvim.git"
