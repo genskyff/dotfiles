@@ -33,12 +33,12 @@ fi
 brew_list="bat curl dust fastfetch fd fish fzf gitui lsd neovim ripgrep starship tokei zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom curl dust fastfetch fd fish fzf git git-delta gitui libunwind lsd neovim net-tools ntp openbsd-netcat openssh ripgrep socat starship tokei unzip zellij zoxide"
+pacman_list="base-devel bat bind bottom curl dust fastfetch fd fish fzf git git-delta gitui libunwind lsd neovim net-tools ntp openbsd-netcat openssh ripgrep socat starship tokei traceroute unzip zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth ttf-maple"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential curl fd-find fish git htop iptables libunwind8 lsd neofetch net-tools netcat-openbsd ntp openssh-client openssh-server ripgrep socat tmux unzip virt-what"
+apt_list="bat bind9-dnsutils build-essential curl fd-find fish git htop iptables libunwind8 lsd neofetch net-tools netcat-openbsd ntp openssh-client openssh-server ripgrep socat tmux traceroute unzip virt-what"
 apt_sid_list="fzf neovim zoxide"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
