@@ -78,7 +78,7 @@ elif [[ "$current_os" == "arch" ]]; then
 
         if [[ "$current_user" != "root" ]]; then
             if [[ ! -x "$(command -v yay)" ]]; then
-                info "\n${light_magenta}yay${info_color} not found. Installing..."
+                info "${light_magenta}yay${info_color} not found. Installing..."
 
                 if [[ -d "yay-bin" ]]; then
                     if [[ ! $(ls -A "yay-bin") ]]; then
@@ -163,24 +163,23 @@ zshrc_content='[[ $- != *i* ]] && return\n[[ -x "$(command -v fish)" ]] && exec 
 
 if [[ "$current_os" == "darwin" ]]; then
     if [[ ! -f "$zprofile_path" ]] || ! grep -q "$zprofile_content" "$zprofile_path"; then
-        info "Writing the zprofile..."
+        info "Writing to .zprofile..."
         echo "$zprofile_content" >>"$zprofile_path"
-        info "Writing the zshrc..."
+        info "Writing to .zshrc..."
         echo -e "$zshrc_content" >>"$zshrc_path"
     fi
 else
     if [[ "$default_shell" != "$(command -v fish)" ]]; then
-        info "Current default shell: ${light_magenta}${default_shell##*/}${info_color}"
         warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
         read answer
         answer=${answer:-y}
         if [[ "$answer" == [yY] ]]; then
-            chsh -s "$(command -v fish)" "$current_user"
+            chsh -s "$(command -v fish)"
         fi
     fi
 fi
 
-warn -n "\nCopy config files to overwrite existing configs? (y/N): "
+warn -n "Copy config files to overwrite existing configs? (y/N): "
 read answer
 answer=${answer:-n}
 
@@ -206,7 +205,7 @@ if [[ -d "$nvim_config_path" ]]; then
 fi
 
 if $is_exist_nvim_config; then
-    warn -n "\nExisting nvim config. Backup and use the new one? (y/N): "
+    warn -n "Existing nvim config. Backup and use the new one? (y/N): "
     read answer
     answer=${answer:-n}
 
@@ -222,6 +221,6 @@ else
     rm -rf $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
 fi
 
-info "\nCloning the neovim config repository..."
+info "Cloning the neovim config repository..."
 git clone "$nvim_config_url" "$nvim_config_path"
 ok "\nAll done"
