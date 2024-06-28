@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list_ = "bat bun clangd delta fastfetch fzf git gitui gsudo lsd neovim nilesoft-shell pandoc ripgrep starship tokei zoxide"
-$scoop_list = $scoop_list_ -split " "
+$scoop_list = "bat bun clangd delta fastfetch fzf git gitui gsudo lsd neovim nilesoft-shell pandoc ripgrep starship tokei zoxide"
+$scoop_list = $scoop_list -split " "
 
 $nvim_config_url = "https://github.com/genskyff/nvim.git"
 $nvim_config_path = Join-Path -Path $env:LOCALAPPDATA -ChildPath "nvim"
@@ -26,12 +26,12 @@ scoop update
 scoop install $scoop_list
 
 warn -n "Copy config files to overwrite existing configs? (y/N): "
-$copy_config = Read-Host
+$answer = Read-Host
 
-if ($copy_config -eq 'Y' -or $copy_config -eq 'y') {
+if ($answer -eq 'Y' -or $answer -eq 'y') {
     info "Copying config files..."
-    Copy-Item -Path $common_path -Destination ~\ -Recurse -Force
-    Copy-Item -Path $windows_path -Destination ~\ -Recurse -Force
+    Copy-Item -Path $common_path -Destination $HOME -Recurse -Force
+    Copy-Item -Path $windows_path -Destination $HOME -Recurse -Force
 }
 
 $is_exist_nvim_config = $false
@@ -45,10 +45,10 @@ if (Test-Path $nvim_config_path) {
 }
 
 if ($is_exist_nvim_config) {
-    warn -n "Existing nvim config, backup and use the new one? (y/N): "
-    $use_new_nvim_config = Read-Host
+    warn -n "Existing nvim config. Backup and use the new one? (y/N): "
+    $answer = Read-Host
 
-    if ($use_new_nvim_config -eq 'Y' -or $use_new_nvim_config -eq 'y') {
+    if ($answer -eq 'Y' -or $answer -eq 'y') {
         info "Backup the existing neovim config..."
 
         if (Test-Path $nvim_config_bak_path) {
