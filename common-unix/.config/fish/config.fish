@@ -4,6 +4,8 @@ fzf --fish | source
 starship init fish | source
 zoxide init fish | source
 
+set -gx EDITOR nvim
+
 alias cat=bat
 alias ff=fastfetch
 

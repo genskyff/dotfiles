@@ -2,6 +2,8 @@ status is-interactive; or return
 
 zoxide init fish | source
 
+set -gx EDITOR nvim
+
 alias cat=batcat
 alias nf=neofetch
 alias fd=fdfind
