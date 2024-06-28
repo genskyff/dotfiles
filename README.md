@@ -21,23 +21,3 @@
         ```shell
         ./setup.sh
         ```
-
-3.   Reload config.
-
-     -   PowerShell
-
-         ```shell
-         . $profile
-         ```
-
-     -   Bash
-
-         ```shell
-         . ~/.bashrc
-         ```
-
-     -   Zsh
-
-         ```shell
-         . ~/.zshrc
-         ```
