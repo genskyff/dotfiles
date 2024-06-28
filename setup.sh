@@ -6,27 +6,27 @@ script_path=$(realpath $(dirname "$0"))
 . "$script_path/lib/color.sh"
 
 if [[ $(uname -s) =~ ^[Dd]arwin ]]; then
-  current_os="darwin"
+    current_os="darwin"
 elif grep -qiE "ID=[\"]?arch[\"]?|ID_LIKE=[\"]?arch[\"]?" /etc/os-release; then
-  current_os="arch"
+    current_os="arch"
 elif grep -qiE "ID=[\"]?debian[\"]?" /etc/os-release; then
-  current_os="debian"
+    current_os="debian"
 else
-  error -n "Error: this script is only for "
-  error "${bold_color}macOS${error_color}, ${bold_color}Arch${error_color} and ${bold_color}Debian${error_color}"
-  exit 1
+    error -n "Error: this script is only for "
+    error "${light_magenta}macOS${error_color}, ${light_magenta}Arch${error_color} and ${light_magenta}Debian${error_color}"
+    exit 1
 fi
 
 if [[ "$(id -u)" -eq 0 ]]; then
-  is_superuser_privilege=true
+    is_superuser_privilege=true
 else
-  is_superuser_privilege=false
+    is_superuser_privilege=false
 fi
 
 if [[ -n "$SUDO_USER" ]]; then
-  current_user="$SUDO_USER"
+    current_user="$SUDO_USER"
 else
-  current_user="${USER:-$(whoami)}"
+    current_user="${USER:-$(whoami)}"
 fi
 
 # macOS
@@ -45,184 +45,181 @@ nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim
 
 if [[ "$current_os" == "darwin" ]]; then
-  if $is_superuser_privilege; then
-    error "Error: this script cannot be run with superuser privileges"
-    exit 1
-  else
-    if ! [[ -x "$(command -v brew)" ]]; then
-      info "${bold_color}Homebrew${info_color} not found. Installing it..."
-      curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-      ok "${bold_color}Homebrew${ok_color} has been installed"
-    fi
-
-    info "Updating the packages..."
-    brew update
-
-    info "\nInstalling packages..."
-    brew install $brew_list
-    brew cleanup
-  fi
-elif [[ "$current_os" == "arch" ]]; then
-  info "Updating the packages..."
-  if $is_superuser_privilege; then
-    pacman -Syu --noconfirm
-  else
-    sudo pacman -Syu --noconfirm
-  fi
-
-  info "\nInstalling packages..."
-  if $is_superuser_privilege; then
-    pacman -S --needed --noconfirm $pacman_list
-  else
-    sudo pacman -S --needed --noconfirm $pacman_list
-
-    if [[ "$current_user" != "root" ]]; then
-      if ! [[ -x "$(command -v yay)" ]]; then
-        info "\n${bold_color}yay${info_color} not found. Installing it..."
-
-        if [[ -d "yay-bin" ]]; then
-          if ! [[ $(ls -A "yay-bin") ]]; then
-            rm -rf yay-bin
-            git clone "$yay_url"
-          fi
-        else
-          git clone "$yay_url"
+    if $is_superuser_privilege; then
+        error "Error: this script cannot be run with superuser privileges"
+        exit 1
+    else
+        if [[ ! -x "$(command -v brew)" ]]; then
+            info "${light_magenta}Homebrew${info_color} not found. Installing..."
+            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+            ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
-        cd yay-bin
-        makepkg -si --noconfirm
-        cd ..
-        rm -rf yay-bin
-        ok "${bold_color}yay${ok_color} has been installed"
-      fi
+        info "Updating the packages..."
+        brew update
 
-      info "\nInstalling packages from AUR..."
-      yay -S --needed --noconfirm $aur_list
+        info "\nInstalling packages..."
+        brew install $brew_list
+        brew cleanup
     fi
-  fi
+elif [[ "$current_os" == "arch" ]]; then
+    info "Updating the packages..."
+    if $is_superuser_privilege; then
+        pacman -Syu --noconfirm
+    else
+        sudo pacman -Syu --noconfirm
+    fi
+
+    info "\nInstalling packages..."
+    if $is_superuser_privilege; then
+        pacman -S --needed --noconfirm $pacman_list
+    else
+        sudo pacman -S --needed --noconfirm $pacman_list
+
+        if [[ "$current_user" != "root" ]]; then
+            if [[ ! -x "$(command -v yay)" ]]; then
+                info "\n${light_magenta}yay${info_color} not found. Installing..."
+
+                if [[ -d "yay-bin" ]]; then
+                    if [[ ! $(ls -A "yay-bin") ]]; then
+                        rm -rf yay-bin
+                        git clone "$yay_url"
+                    fi
+                else
+                    git clone "$yay_url"
+                fi
+
+                cd yay-bin
+                makepkg -si --noconfirm
+                cd ..
+                rm -rf yay-bin
+                ok "${light_magenta}yay${ok_color} has been installed"
+            fi
+
+            info "\nInstalling packages from AUR..."
+            yay -S --needed --noconfirm $aur_list
+        fi
+    fi
 elif [[ "$current_os" == "debian" ]]; then
-  info "Adding the unstable repository..."
+    info "Adding the unstable repository..."
 
-  source_file_path=/etc/apt/sources.list
-  sid_line="deb http://deb.debian.org/debian sid main"
+    source_file_path=/etc/apt/sources.list
+    sid_line="deb http://deb.debian.org/debian sid main"
 
-  preferences_file_path=/etc/apt/preferences.d/sid
-  preferences_line="Package: *\nPin: release a=unstable\nPin-Priority: 100"
+    preferences_file_path=/etc/apt/preferences.d/sid
+    preferences_line="Package: *\nPin: release a=unstable\nPin-Priority: 100"
 
-  if [[ ! -f /etc/apt/sources.list ]] || ! grep -qR "^[^#]*sid main" "$source_file_path" /etc/apt/sources.list.d/; then
-    if $is_superuser_privilege; then
-      echo "$sid_line" | tee -a "$source_file_path" > /dev/null
-    else
-      echo "$sid_line" | sudo tee -a "$source_file_path" > /dev/null
+    if [[ ! -f /etc/apt/sources.list ]] || ! grep -qR "^[^#]*sid main" "$source_file_path" /etc/apt/sources.list.d/; then
+        if $is_superuser_privilege; then
+            echo "$sid_line" | tee -a "$source_file_path" >/dev/null
+        else
+            echo "$sid_line" | sudo tee -a "$source_file_path" >/dev/null
+        fi
     fi
-  fi
 
-  if [[ ! -f "$preferences_file_path" ]] || ! grep -q "^[^#]*Pin: release a=unstable" "$preferences_file_path"; then
-    if $is_superuser_privilege; then
-      echo -e "$preferences_line" | tee -a "$preferences_file_path" > /dev/null
-    else
-      echo -e "$preferences_line" | sudo tee -a "$preferences_file_path" > /dev/null
+    if [[ ! -f "$preferences_file_path" ]] || ! grep -q "^[^#]*Pin: release a=unstable" "$preferences_file_path"; then
+        if $is_superuser_privilege; then
+            echo -e "$preferences_line" | tee -a "$preferences_file_path" >/dev/null
+        else
+            echo -e "$preferences_line" | sudo tee -a "$preferences_file_path" >/dev/null
+        fi
     fi
-  fi
 
-  info "\nUpdating the packages..."
-  if $is_superuser_privilege; then
-    apt update
-    apt upgrade -y
-  else
-    sudo apt update
-    sudo apt upgrade -y
-  fi
+    info "\nUpdating the packages..."
+    if $is_superuser_privilege; then
+        apt update
+        apt upgrade -y
+    else
+        sudo apt update
+        sudo apt upgrade -y
+    fi
 
-  info "\nInstalling packages..."
-  if $is_superuser_privilege; then
-    apt install -y $apt_list
-    apt install -t sid -y $apt_sid_list
-  else
-    sudo apt install -y $apt_list
-    sudo apt install -t sid -y $apt_sid_list
-  fi
+    info "\nInstalling packages..."
+    if $is_superuser_privilege; then
+        apt install -y $apt_list
+        apt install -t sid -y $apt_sid_list
+    else
+        sudo apt install -y $apt_list
+        sudo apt install -t sid -y $apt_sid_list
+    fi
 fi
 
 if $is_superuser_privilege && [[ "$current_user" != "root" ]]; then
-  ok "\nAll done"
-  exit
+    ok "\nAll done"
+    exit
 fi
 
 info "\nSetting up the user shell config..."
 if [[ "$current_os" == "darwin" ]]; then
-  default_shell=$(dscl . -read "/Users/$current_user" UserShell | awk '{print $2}')
+    default_shell=$(dscl . -read "/Users/$current_user" UserShell | awk '{print $2}')
 else
-  default_shell=$(getent passwd "$current_user" | cut -d: -f7)
+    default_shell=$(getent passwd "$current_user" | cut -d: -f7)
 fi
-
-bash_profile_path=$HOME/.bash_profile
-bash_profile_content="[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc"
-bashrc_path=$HOME/.bashrc
 
 zprofile_path=$HOME/.zprofile
 zprofile_content="[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc"
 zshrc_path=$HOME/.zshrc
+zshrc_content='[[ $- != *i* ]] && return\n[[ -x "$(command -v fish)" ]] && exec fish'
 
-rc_file_content='[[ $- != *i* ]] && return\n[[ -x "$(command -v fish)" ]] && exec fish'
-
-info "Current default shell: ${bold_color}${default_shell##*/}${info_color}"
-if [[ "$default_shell" =~ .*/(da|ba)?sh$ ]]; then
-  if [[ ! -f "$bash_profile_path" ]] || ! grep -q "$bash_profile_content" "$bash_profile_path"; then
-    info "Writing the bash profile..."
-    echo "$bash_profile_content" >> "$bash_profile_path"
-    info "Writing the bashrc..."
-    echo -e "$rc_file_content" >> "$bashrc_path"
-  fi
-elif [[ "$default_shell" =~ .*/zsh$ ]]; then
-  if [[ ! -f "$zprofile_path" ]] || ! grep -q "$zprofile_content" "$zprofile_path"; then
-    info "Writing the zprofile..."
-    echo "$zprofile_content" >> "$zprofile_path"
-    info "Writing the zshrc..."
-    echo -e "$rc_file_content" >> "$zshrc_path"
-  fi
+if [[ "$current_os" == "darwin" ]]; then
+    if [[ ! -f "$zprofile_path" ]] || ! grep -q "$zprofile_content" "$zprofile_path"; then
+        info "Writing the zprofile..."
+        echo "$zprofile_content" >>"$zprofile_path"
+        info "Writing the zshrc..."
+        echo -e "$zshrc_content" >>"$zshrc_path"
+    fi
+else
+    if [[ "$default_shell" != "$(command -v fish)" ]]; then
+        info "Current default shell: ${light_magenta}${default_shell##*/}${info_color}"
+        warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
+        read answer
+        answer=${answer:-y}
+        if [[ "$answer" == [yY] ]]; then
+            chsh -s "$(command -v fish)" "$current_user"
+        fi
+    fi
 fi
 
 warn -n "\nCopy config files to overwrite existing configs? (y/N): "
-read copy_config
-copy_config=${copy_config:-n}
+read answer
+answer=${answer:-n}
 
-if [[ "$copy_config" == [yY] ]]; then
-  info "Copying config files..."
-  cp -a "$script_path"/common/. $HOME/
-  cp -a "$script_path"/common-unix/. $HOME/
+if [[ "$answer" == [yY] ]]; then
+    info "Copying config files..."
+    cp -a "$script_path"/common/. $HOME/
+    cp -a "$script_path"/common-unix/. $HOME/
 
-  if [[ "$current_os" == "drawin" ]]; then
-    cp -a "$script_path"/macos/. $HOME/
-  elif [[ "$current_os" == "debian" ]]; then
-    cp -a "$script_path"/debian/. $HOME/
-  fi
+    if [[ "$current_os" == "drawin" ]]; then
+        cp -a "$script_path"/macos/. $HOME/
+    elif [[ "$current_os" == "debian" ]]; then
+        cp -a "$script_path"/debian/. $HOME/
+    fi
 fi
 
 is_exist_nvim_config=false
 if [[ -d "$nvim_config_path" ]]; then
-  if [[ $(ls -A "$nvim_config_path") ]]; then
-    is_exist_nvim_config=true
-  else
-    rm -rf "$nvim_config_path"
-  fi
+    if [[ $(ls -A "$nvim_config_path") ]]; then
+        is_exist_nvim_config=true
+    else
+        rm -rf "$nvim_config_path"
+    fi
 fi
 
 if $is_exist_nvim_config; then
-  warn -n "\nExisting nvim config, backup and use the new one? (y/N): "
-  read use_new_nvim_config
-  use_new_nvim_config=${use_new_nvim_config:-n}
+    warn -n "\nExisting nvim config. Backup and use the new one? (y/N): "
+    read answer
+    answer=${answer:-n}
 
-  if [[ "$use_new_nvim_config" == [yY] ]]; then
-    info "Backup the existing neovim config..."
-    rm -rf $HOME/.config/nvim.bak
-    mv "$nvim_config_path" $HOME/.config/nvim.bak
-  else
-    ok "\nAll done"
-    exit
-  fi
+    if [[ "$answer" == [yY] ]]; then
+        info "Backup the existing neovim config..."
+        rm -rf $HOME/.config/nvim.bak
+        mv "$nvim_config_path" $HOME/.config/nvim.bak
+    else
+        ok "\nAll done"
+        exit
+    fi
 else
-  rm -rf $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
+    rm -rf $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
 fi
 
 info "\nCloning the neovim config repository..."
