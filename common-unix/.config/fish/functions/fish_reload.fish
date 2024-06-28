@@ -1,3 +1,6 @@
 function fish_reload
     . ~/.config/fish/config.fish
+    for file in ~/.config/fish/conf.d/*.fish
+        . $file
+    end
 end
