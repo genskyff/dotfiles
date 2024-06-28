@@ -24,16 +24,8 @@ function warn($msg, [switch]$n) {
 
 function info($msg, [switch]$n) {
     if ($n) {
-        Write-Host $msg -ForegroundColor Cyan -NoNewline
+        Write-Host $msg -ForegroundColor Blue -NoNewline
     } else {
-        Write-Host $msg -ForegroundColor Cyan
-    }
-}
-
-function bold($msg, [switch]$n) {
-    if ($n) {
-        Write-Host $msg -ForegroundColor Magenta -NoNewline
-    } else {
-        Write-Host $msg -ForegroundColor Magenta
+        Write-Host $msg -ForegroundColor Blue
     }
 }
