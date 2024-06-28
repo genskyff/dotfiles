@@ -151,9 +151,9 @@ fi
 
 info "\nSetting up the user shell config..."
 if [[ "$current_os" == "darwin" ]]; then
-    default_shell=$(dscl . -read "/Users/$current_user" UserShell | awk '{print $2}')
+    default_shell=$(basename $(dscl . -read "/Users/$current_user" UserShell | awk '{print $2}'))
 else
-    default_shell=$(getent passwd "$current_user" | cut -d: -f7)
+    default_shell=$(basename $(getent passwd "$current_user" | cut -d: -f7))
 fi
 
 zprofile_path=$HOME/.zprofile
@@ -169,12 +169,12 @@ if [[ "$current_os" == "darwin" ]]; then
         echo -e "$zshrc_content" >>"$zshrc_path"
     fi
 else
-    if [[ "$default_shell" != "$(command -v fish)" ]]; then
+    if [[ "$default_shell" != "$(basename $(command -v fish))" ]]; then
         warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
         read answer
         answer=${answer:-y}
         if [[ "$answer" == [yY] ]]; then
-            chsh -s "$(command -v fish)"
+            chsh -s "$(command -v fish | sed 's/sbin/bin/')" "$current_user"
         fi
     fi
 fi
