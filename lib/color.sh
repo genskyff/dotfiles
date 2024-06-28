@@ -36,9 +36,9 @@ function print_with_color() {
     fi
 
     if $newline; then
-        echo -e "${color}${text}${reset_color}"
+        echo -e "${color}${text}${reset}"
     else
-        echo -en "${color}${text}${reset_color}"
+        echo -en "${color}${text}${reset}"
     fi
 }
 
