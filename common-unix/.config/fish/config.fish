@@ -26,3 +26,5 @@ alias gs="git status"
 alias gd="git diff"
 alias gl="git log --oneline --graph"
 alias gp="git pull"
+
+eval (zellij setup --generate-auto-start fish | string collect)
