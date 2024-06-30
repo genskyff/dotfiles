@@ -22,7 +22,6 @@ function dp --description "List containers"
         set msg "Running: $(count $running_containers)"
     end
     set msg_length (string length -- $msg)
-    set seps (string repeat -n $msg_length "-")
-    echo $seps >&2
+    test $total -gt 0; and set seps (string repeat -n $msg_length "-"); and echo $seps >&2
     echo $msg >&2
 end
