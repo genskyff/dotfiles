@@ -5,8 +5,7 @@ zoxide init fish | source
 set -gx EDITOR nvim
 
 alias cat=batcat
-alias nf=neofetch
-alias fd=fdfind
+alias ff=fastfetch
 
 alias vi=nvim
 alias vim=nvim

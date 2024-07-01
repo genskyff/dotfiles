@@ -1,6 +1,3 @@
-$PSDefaultParameterValues["*:Encoding"] = "utf8"
-$OutputEncoding = [System.Text.Encoding]::UTF8
-
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
