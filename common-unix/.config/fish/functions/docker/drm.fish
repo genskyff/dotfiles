@@ -1,6 +1,7 @@
-function dl --description "Logs of container"
+function drm --description "Remove container"
+    _docker_check; or return 1
     set container_name (dp -a | fzf | awk '{print $1}')
     if string length -- $container_name &>/dev/null
-        docker logs $container_name $argv
+        docker rm -f $container_name
     end
 end
