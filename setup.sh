@@ -165,8 +165,11 @@ if [[ "$current_os" == "darwin" ]]; then
     if [[ ! -f "$zprofile_path" ]] || ! grep -q "$zprofile_content" "$zprofile_path"; then
         info "Writing to .zprofile..."
         echo "$zprofile_content" >>"$zprofile_path"
+    fi
+
+    if [[ ! -f "$zshrc_path" ]] || ! grep -q "$zshrc_content" "$zshrc_path"; then
         info "Writing to .zshrc..."
-        echo -e "$zshrc_content" >>"$zshrc_path"
+        echo "$zshrc_content" >>"$zshrc_path"
     fi
 else
     if [[ "$default_shell" != "$(basename $(command -v fish))" ]]; then

@@ -8,6 +8,7 @@ set -gx EDITOR nvim
 
 alias cat=bat
 alias ff=fastfetch
+alias zj=zellij
 
 alias vi=nvim
 alias vim=nvim
@@ -26,5 +27,3 @@ alias gs="git status"
 alias gd="git diff"
 alias gl="git log --oneline --graph"
 alias gp="git pull"
-
-eval (zellij setup --generate-auto-start fish | string collect)
