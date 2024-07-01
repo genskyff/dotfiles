@@ -12,7 +12,7 @@ function dp --description "List containers"
     sudo docker ps --format "{{.Names}} {{.Status}}" $argv | while read -l container_name container_status
         if string match -qr "Exited*" $container_status
             set exited_containers $exited_containers "$container_name (Exited)"
-        else
+        else if string match -qr "Up*" $container_status
             set running_containers $running_containers $container_name
         end
     end
