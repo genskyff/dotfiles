@@ -4,12 +4,12 @@ function dp --description "List containers"
         return 1
     end
 
-    set error_msg (command sudo docker version 2>&1 1>/dev/null)
+    set error_msg (command docker version 2>&1 1>/dev/null)
     test (string length -- "$error_msg") -gt 0
     and echo "$(set_color red)Error$(set_color normal): $error_msg" >&2
     and return 1
 
-    sudo docker ps --format "{{.Names}} {{.Status}}" $argv | while read -l container_name container_status
+    docker ps --format "{{.Names}} {{.Status}}" $argv | while read -l container_name container_status
         if string match -qr "Exited*" $container_status
             set exited_containers $exited_containers "$container_name (Exited)"
         else if string match -qr "Up*" $container_status
