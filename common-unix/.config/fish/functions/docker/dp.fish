@@ -1,6 +1,14 @@
-function dp --description "List containers"
+function dp --description "List containers with status"
     _docker_check; or return 1
-    docker ps --format "{{.Names}} {{.Status}}" $argv | while read -l container_name container_status
+
+    set result (docker ps --format "{{.Names}} {{.Status}}" $argv)
+    if test $status -ne 0
+        echo -n "$result"
+        return 1
+    end
+
+    for container in $result
+        echo $container | read -l container_name container_status
         if string match -qr "Exited*" $container_status
             set exited_containers $exited_containers "$container_name (Exited)"
         else if string match -qr "Up*" $container_status
@@ -17,12 +25,12 @@ function dp --description "List containers"
     end
 
     set total (math (count $running_containers) + (count $exited_containers))
-    if contains -- "-a" $argv; contains -- "--all" $argv
-        set msg "Total: $total Running: $(count $running_containers) Exited: $(count $exited_containers)"
+    if contains -- "-a" $argv; or contains -- "--all" $argv
+        set message "Total: $total Running: $(count $running_containers) Exited: $(count $exited_containers)"
     else
-        set msg "Running: $(count $running_containers)"
+        set message "Running: $(count $running_containers)"
     end
-    set msg_length (string length -- "$msg")
-    test $total -gt 0; and set seps (string repeat -n $msg_length "-"); and echo $seps >&2
-    echo "$msg" >&2
+    set message_length (string length -- "$message")
+    test $total -gt 0; and set separator (string repeat -n $message_length "-"); and echo $separator
+    echo "$message"
 end
