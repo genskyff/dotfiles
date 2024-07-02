@@ -5,6 +5,7 @@ starship init fish | source
 zoxide init fish | source
 
 set -gx EDITOR nvim
+set -U fish_greeting
 set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 
 alias cat=bat

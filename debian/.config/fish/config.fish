@@ -3,6 +3,7 @@ status is-interactive; or return
 zoxide init fish | source
 
 set -gx EDITOR nvim
+set -U fish_greeting
 set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 
 alias cat=batcat
