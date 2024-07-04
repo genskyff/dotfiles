@@ -17,20 +17,20 @@ function dp --description "List containers with status"
     end
 
     for container in $running_containers
-        echo $container
+        echo -e "$(set_color green)$container$(set_color normal)"
     end
 
     for container in $exited_containers
-        echo $container
+        echo -e "$(set_color red)$container$(set_color normal)"
     end
 
     set total (math (count $running_containers) + (count $exited_containers))
     if contains -- "-a" $argv; or contains -- "--all" $argv
-        set message "Total: $total Running: $(count $running_containers) Exited: $(count $exited_containers)"
+        set message "$(set_color blue)Total: $total $(set_color green)Running: $(count $running_containers) $(set_color red)Exited: $(count $exited_containers)$(set_color normal)"
     else
-        set message "Running: $(count $running_containers)"
+        set message "$(set_color green)Running: $(count $running_containers)$(set_color normal)"
     end
     set message_length (string length -- "$message")
     test $total -gt 0; and set separator (string repeat -n $message_length "-"); and echo $separator
-    echo "$message"
+    echo -e "$message"
 end
