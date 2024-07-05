@@ -14,10 +14,10 @@ $windows_path = Join-Path -Path $PSScriptRoot -ChildPath "windows\*"
 Import-Module ./lib/color.ps1 -Force
 
 if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
-    info "Scoop not found. Installing..."
+    info "'Scoop' not found. Installing..."
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
     Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-    ok "Scoop has been installed"
+    ok "'Scoop' has been installed"
 }
 
 info "Installing packages..."

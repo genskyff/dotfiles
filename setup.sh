@@ -78,7 +78,7 @@ elif [[ "$current_os" == "arch" ]]; then
 
         if [[ "$current_user" != "root" ]]; then
             if [[ ! -x "$(command -v yay)" ]]; then
-                info "${light_magenta}yay${info_color} not found. Installing..."
+                info "${light_magenta}'yay'${info_color} not found. Installing..."
 
                 if [[ -d "yay-bin" ]]; then
                     if [[ ! $(ls -A "yay-bin") ]]; then
@@ -93,7 +93,7 @@ elif [[ "$current_os" == "arch" ]]; then
                 makepkg -si --noconfirm
                 cd ..
                 rm -rf yay-bin
-                ok "${light_magenta}yay${ok_color} has been installed"
+                ok "${light_magenta}'yay'${ok_color} has been installed"
             fi
 
             info "\nInstalling packages from AUR..."
