@@ -7,6 +7,7 @@ set -U fish_greeting
 set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 
 alias cat=batcat
+alias fd=fdfind
 alias ff=fastfetch
 
 alias vi=nvim

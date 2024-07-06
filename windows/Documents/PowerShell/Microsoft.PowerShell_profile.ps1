@@ -81,9 +81,11 @@ function Git-Pull {
 }
 
 Set-Alias -Name open -Value Open-Folder -Force
+
 Set-Alias -Name cat -Value bat -Force
 Set-Alias -Name ff -Value fastfetch -Force
 Set-Alias -Name sudo -Value gsudo -Force
+Set-Alias -Name yz -Value yazi -Force
 
 Set-Alias -Name vi -Value nvim -Force
 Set-Alias -Name vim -Value nvim -Force

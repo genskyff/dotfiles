@@ -10,6 +10,7 @@ set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 
 alias cat=bat
 alias ff=fastfetch
+alias yz=yazi
 alias zj=zellij
 
 alias vi=nvim
