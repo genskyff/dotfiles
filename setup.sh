@@ -30,10 +30,10 @@ else
 fi
 
 # macOS
-brew_list="bat bottom curl dust fastfetch fd fish fzf git-delta gitui lsd neovim ripgrep starship tokei wget yazi zellij zoxide"
+brew_list="bat bottom curl dust fastfetch fd fish fzf git-delta lazygit lsd neovim ripgrep starship tokei wget yazi zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom curl dust fastfetch fd fish fzf git git-delta gitui libunwind lsd neovim net-tools openbsd-netcat openssh ripgrep socat starship tokei traceroute unzip wget yazi zellij zoxide"
+pacman_list="base-devel bat bind bottom curl dust fastfetch fd fish fzf git git-delta lazygit libunwind lsd neovim net-tools openbsd-netcat openssh ripgrep socat starship tokei traceroute unzip wget yazi zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth ttf-maple"
 
