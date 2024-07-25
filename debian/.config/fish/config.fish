@@ -6,6 +6,7 @@ set -gx EDITOR nvim
 set -U fish_greeting
 set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 
+alias cls=clear
 alias cat=batcat
 alias fd=fdfind
 alias ff=fastfetch

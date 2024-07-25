@@ -8,7 +8,7 @@ set -gx EDITOR nvim
 set -U fish_greeting
 set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 
-alias cl=clear
+alias cls=clear
 alias cat=bat
 alias ff=fastfetch
 alias lg=lazygit
