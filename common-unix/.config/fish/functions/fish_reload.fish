@@ -1,6 +1,8 @@
 function fish_reload --description "Reload fish configuration"
-    . ~/.config/fish/config.fish
-    for file in ~/.config/fish/conf.d/*.fish
+    set config_path $HOME/.config/fish
+    set files $config_path/config.fish $config_path/conf.d/*.fish
+
+    for file in $files
         . $file
     end
 end
