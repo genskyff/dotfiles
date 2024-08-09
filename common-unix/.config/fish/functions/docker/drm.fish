@@ -2,10 +2,8 @@
 
 function drm --description "Remove container"
     _docker_check; or return 1
-    set container_name (_container_list -a \
-        | fzf --query "$argv[1]" --multi --bind "ctrl-a:select-all,ctrl-d:deselect-all,tab:toggle" \
-        | awk '{print $1}')
-    if string length -- $container_name &>/dev/null
-        docker rm -f $container_name
-    end
+    _container_list -a \
+        | fzf --with-nth "2.." --query "$argv" --multi \
+            --preview "fish $HOME/.config/fish/functions/docker/fzf_preview.fish {1}" \
+            --bind "ctrl-a:select-all,ctrl-d:deselect-all,tab:toggle,enter:become(docker rm -f {2})"
 end
