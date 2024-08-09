@@ -8,7 +8,18 @@ set -gx EDITOR nvim
 set -gx fish_greeting
 set -gx fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 set -gx FZF_DEFAULT_OPTS "--ansi --height=40% --layout=reverse --info=inline --border \
-    --preview 'test -f {} && bat --color=always {} || echo -e {}' \
+    --preview '
+        if test -f {};
+            if file -b {} | grep -qE \"(text|empty)\";
+                bat --color=always {};
+            else;
+                file {};
+            end;
+        else if test -d {};
+            lsd --tree --depth 1 {};
+        else;
+            echo -e {};
+        end'
     --preview-window=border-none"
 
 alias cls=clear
