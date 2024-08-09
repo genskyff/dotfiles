@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function drm --description "Remove container"
     _docker_check; or return 1
     set container_name (_container_list -a \

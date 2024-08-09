@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function de --description "Execute command in container"
     _docker_check; or return 1
     set container_name (_container_list | fzf | awk '{print $1}')
