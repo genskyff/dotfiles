@@ -1,9 +1,10 @@
 function fish_edit --description "Edit fish configuration"
     set config_path $HOME/.config/fish
     set files $config_path/config.fish $config_path/conf.d/*.fish
-    set selected (string join \n $files | string replace -r "^$config_path/" "" | fzf --exact --query="$argv[1]" -1)
+    set nth (math (string split '/' -- $config_path | count) + 1)
+    set selected (string join \n $files | fzf --with-nth="$nth.." --delimiter='/' --query="$argv[1]" -1)
 
     if string length -- $selected &>/dev/null
-        nvim "$config_path/$selected"
+        nvim $selected
     end
 end
