@@ -10,10 +10,10 @@ function _container_list --description "List containers"
     end
 
     for container in $exited_containers
-        echo $container
+        echo -e "$(set_color red)$container$(set_color normal)"
     end
 
     for container in $running_containers
-        echo $container
+        echo -e "$(set_color green)$container$(set_color normal)"
     end
 end
