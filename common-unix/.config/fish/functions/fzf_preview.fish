@@ -1,15 +1,15 @@
 #!/usr/bin/env fish
 
-if test -f "$argv[1]"
-    if file -b "$argv[1]" | grep -qE "(text|empty)"
+if test -f $argv
+    if file -b $argv | grep -qE "(text|empty)"
         command -v bat 2>&1 1>/dev/null
-        and bat --color=always "$argv[1]"
-        or batcat --color=always "$argv[1]"
+        and bat --color=always $argv
+        or batcat --color=always $argv
     else
-        file "$argv[1]"
+        file $argv
     end
-else if test -d "$argv[1]"
-    lsd --tree --depth 1 "$argv[1]"
+else if test -d $argv
+    lsd --tree --depth 1 $argv
 else
-    echo -e "$argv[1]"
+    echo -e $argv
 end

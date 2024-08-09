@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-docker ps -a --filter id="$argv[1]" \
+docker ps -a --filter id=$argv \
     --format \
 'ID:      {{.ID}}
 Image:   {{.Image}}
