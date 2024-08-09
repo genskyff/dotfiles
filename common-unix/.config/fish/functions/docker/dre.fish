@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function dre --description "Restart container"
     _docker_check; or return 1
     set container_name (_container_list -a \

@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function _container_list --description "List containers"
     _docker_check; or return 1
 

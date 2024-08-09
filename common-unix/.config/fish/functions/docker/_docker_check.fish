@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function _docker_check --description "Check if docker is installed and running"
     if not command -q docker; or command -v docker | string match -qr "^/mnt"
         echo -e "$(set_color red)Error$(set_color normal): 'docker' command not found" >&2

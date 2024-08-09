@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function dp --description "List containers with status"
     _docker_check; or return 1
 

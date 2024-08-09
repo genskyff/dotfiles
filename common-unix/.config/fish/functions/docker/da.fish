@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 function da --description "Attach to container"
     _docker_check; or return 1
     set container_name (_container_list | fzf --query="$argv[1]" -1 | awk '{print $1}')
