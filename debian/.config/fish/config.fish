@@ -6,12 +6,7 @@ set -gx EDITOR nvim
 set -gx fish_greeting
 set -gx fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 set -gx FZF_DEFAULT_OPTS "--ansi --height=40% --layout=reverse --info=inline --border \
-    --preview '
-        if test -f {}
-            batcat --color=always {}
-        else
-            echo -e {}
-        end'
+    --preview 'test -f {} && batcat --color=always {} || echo -e {}' \
     --preview-window=border-none"
 
 alias cls=clear
