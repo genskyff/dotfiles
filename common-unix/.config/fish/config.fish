@@ -12,7 +12,8 @@ set -gx fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
 set -gx FZF_DEFAULT_OPTS "--ansi --height 50% --layout reverse --info inline --border \
     --preview 'fish $HOME/.config/fish/functions/fzf_preview.fish {}' \
     --preview-window 'border-left,60%' \
-    --bind 'ctrl-/:toggle-preview'"
+    --bind 'ctrl-/:toggle-preview' \
+    --bind 'alt-/:change-preview-window(90%|60%)'"
 
 alias cls=clear
 alias cat=bat
