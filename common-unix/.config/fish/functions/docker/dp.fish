@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function dp --description "List containers with status"
+function dp --description "List containers with fzf"
     _docker_check; or return 1
 
     set all_containers (_container_list -a)
