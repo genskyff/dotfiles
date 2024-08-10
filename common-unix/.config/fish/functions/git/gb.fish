@@ -14,5 +14,5 @@ function gb --description "git branch with fzf"
     string join \n $branches \
         | fzf --preview "git log {-1} --oneline --graph --date="format:%y/%m/%d" --color=always \
                 --format='%C(auto)%cd %h%d <%<(6,trunc)%an> %s'" \
-            --bind "enter:become(git checkout {-1})" $header
+            --bind "enter:become(git switch {-1})" $header
 end
