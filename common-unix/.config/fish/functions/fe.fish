@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function fish_edit --description "Edit fish configuration"
+function fe --description "Edit fish configuration"
     set config_path $HOME/.config/fish
     set files $config_path/config.fish $config_path/conf.d/*.fish
     set nth (math (string split / -- $config_path | count) + 1)
