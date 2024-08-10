@@ -4,12 +4,12 @@ function rf --description 'find files with ripgrep and fzf'
     rm -f /tmp/rg-fzf-{r,f}
     set rg_prefix "rg --column --line-number --no-heading --color=always --smart-case"
     test -n "$EDITOR"; or set EDITOR nvim
-    fzf --disabled --query "$argv" \
+    fzf --height 100% --disabled --query "$argv" \
         --prompt "ripgrep> " \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
         --preview "bat --color=always {1} --highlight-line {2}" \
-        --preview-window "+{2}+3/3,~3" \
+        --preview-window "up,border-none,+{2}+3/3,~3" \
         --header "Ctrl-T: Switch between ripgrep/fzf" \
         --bind "start:reload:$rg_prefix {q}" \
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
