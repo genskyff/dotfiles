@@ -7,8 +7,7 @@ starship init fish | source
 zoxide init fish | source
 
 set -gx EDITOR nvim
-set -U fish_greeting
-set fish_function_path $HOME/.config/fish/functions/*/ $fish_function_path
+set -gx fish_greeting
 set -gx FZF_DEFAULT_OPTS "--ansi --height 60% --reverse --info inline --border \
     --preview 'fish $HOME/.config/fish/functions/fzf_preview.fish {}' \
     --preview-window 'border-left,60%' \
@@ -17,6 +16,9 @@ set -gx FZF_DEFAULT_OPTS "--ansi --height 60% --reverse --info inline --border \
     --bind 'alt-.:toggle-preview-wrap' \
     --bind 'ctrl-/:toggle-preview' \
     --bind 'alt-f:preview-page-down,alt-b:preview-page-up'"
+
+set fish_function_path (path resolve $HOME/.config/fish/functions/**/) $fish_function_path
+set fish_function_path (string join \n $fish_function_path | awk '!seen[$0]++')
 
 alias cls=clear
 alias cat=bat
