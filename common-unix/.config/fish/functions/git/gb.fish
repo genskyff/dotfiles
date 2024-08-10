@@ -4,7 +4,9 @@ function gb --description "git branch with fzf"
     _git_check; or return 1
 
     set branches (git branch)
-    if not test (git branch --show-current)
+    set current_ref $(git rev-parse --abbrev-ref HEAD)
+    set header
+    if test $current_ref = "HEAD"
         set header --header $branches[1]
         set branches $branches[2..-1]
     end
