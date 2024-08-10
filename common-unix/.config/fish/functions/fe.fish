@@ -7,5 +7,6 @@ function fe --description "Edit fish configuration"
     test -n "$EDITOR"; or set EDITOR nvim
     string join \n $files \
         | fzf --with-nth "$nth.." --delimiter / --query "$argv" \
+            --bind "start:toggle-preview" \
             --bind "enter:become($EDITOR {})"
 end

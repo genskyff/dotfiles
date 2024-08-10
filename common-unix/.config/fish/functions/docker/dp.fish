@@ -13,5 +13,6 @@ function dp --description "List containers with fzf"
     string join \n $all_containers \
         | fzf --with-nth "2.." \
             --preview "fish $HOME/.config/fish/functions/docker/fzf_preview.fish {1}" \
-            --header "$message"
+            --header "$message" \
+            --bind "start:toggle-preview"
 end
