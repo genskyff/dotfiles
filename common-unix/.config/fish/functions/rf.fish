@@ -3,12 +3,13 @@
 function rf --description 'find with ripgrep and fzf'
     rm -f /tmp/rg-fzf-{r,f}
     set rg_prefix "rg --column --line-number --no-heading --color=always --smart-case"
-    test -n "$EDITOR"; or set EDITOR nvim
+    test -n $EDITOR; or set EDITOR nvim
+    command -qv bat; and set bat bat; or set bat batcat
     fzf --height 100% --disabled --query "$argv" \
         --prompt "ripgrep> " \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
-        --preview "bat --color=always {1} --highlight-line {2}" \
+        --preview "$bat --color=always {1} --highlight-line {2}" \
         --preview-window "up,border-none,+{2}+3/3,~3" \
         --header "Ctrl-T: Switch between ripgrep/fzf" \
         --bind "start:toggle-preview+reload:$rg_prefix {q}" \
