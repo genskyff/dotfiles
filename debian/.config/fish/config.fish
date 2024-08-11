@@ -8,7 +8,7 @@ set -gx EDITOR nvim
 set -gx fish_greeting
 
 set -gx FZF_DEFAULT_COMMAND "fdfind -tf -td -tl -L -H --color always -E .git"
-set -gx FZF_DEFAULT_OPTS "--ansi --height 60% --reverse --info inline --border \
+set -gx FZF_DEFAULT_OPTS "--ansi --height 60% --reverse --info inline --border --no-separator \
     --preview 'fish $HOME/.config/fish/functions/_fzf_preview.fish {}' \
     --preview-window 'hidden,border-left,60%' \
     --bind 'alt-/:change-preview-window(90%|60%)' \

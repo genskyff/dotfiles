@@ -16,7 +16,7 @@ function rf --description 'find with ripgrep and fzf'
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
         --preview "$bat --color always {1} --highlight-line {2}" \
-        --preview-window "up,border-none,+{2}+3/3,~3" \
+        --preview-window "up,border-bottom,+{2}+3/3,~3" \
         --bind "start:toggle-preview+reload:$rg_prefix {q}" \
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
         --bind "alt-t:transform:fish -c '$toggle'" \
