@@ -30,6 +30,7 @@ alias ff=fastfetch
 alias lg=lazygit
 alias yz=yazi
 alias zj=zellij
+alias sg=ast-grep
 
 alias vi=nvim
 alias vim=nvim
