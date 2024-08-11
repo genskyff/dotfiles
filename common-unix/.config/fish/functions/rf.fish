@@ -1,7 +1,6 @@
 #!/usr/bin/env fish
 
 function rf --description 'find with ripgrep and fzf'
-    rm -f /tmp/rg-fzf-{r,f}
     set rg_prefix "rg --line-number --no-heading --color=always --smart-case"
     set toggle '
         if string match -q "*ripgrep*" "$FZF_PROMPT"
@@ -22,4 +21,5 @@ function rf --description 'find with ripgrep and fzf'
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
         --bind "alt-t:transform:fish -c '$toggle'" \
         --bind "enter:become($EDITOR {1} +{2})"
+    rm -f /tmp/rg-fzf-{r,f}
 end
