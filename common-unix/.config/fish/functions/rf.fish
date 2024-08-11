@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function rf --description 'find files with ripgrep and fzf'
+function rf --description 'find with ripgrep and fzf'
     rm -f /tmp/rg-fzf-{r,f}
     set rg_prefix "rg --column --line-number --no-heading --color=always --smart-case"
     test -n "$EDITOR"; or set EDITOR nvim
