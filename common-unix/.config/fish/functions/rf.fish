@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 function rf --description 'find with ripgrep and fzf'
-    set rg_prefix "rg --line-number --no-heading --color always --smart-case"
+    set rg_prefix "rg --hidden -L --line-number --no-heading --color always --smart-case --glob '!.git'"
     set toggle '
         if string match -q "*ripgrep*" "$FZF_PROMPT"
             echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"
