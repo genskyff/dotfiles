@@ -9,9 +9,10 @@ zoxide init fish | source
 set -gx EDITOR nvim
 set -gx fish_greeting
 
-set -gx FZF_CTRL_T_COMMAND "fd -tf -td -tl -L -H --color always -E .git"
-set -gx FZF_ALT_C_COMMAND "fd -td -L -H --color always -E .git"
-set -gx FZF_DEFAULT_COMMAND "fd -tf -td -tl -L -H --color always -E .git"
+set exclude "-E Applications -E Library"
+set -gx FZF_CTRL_T_COMMAND "fd -tf -td -tl -L --color always $exclude"
+set -gx FZF_ALT_C_COMMAND "fd -td -L --color always $exclude"
+set -gx FZF_DEFAULT_COMMAND "fd -tf -td -tl -L --color always $exclude"
 set -gx FZF_DEFAULT_OPTS "--ansi --height 60% --highlight-line --reverse --info inline --border --no-separator \
     --preview 'fish $HOME/.config/fish/functions/_fzf_preview.fish {}' \
     --preview-window 'hidden,border-left,60%' \
