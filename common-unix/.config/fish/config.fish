@@ -29,7 +29,6 @@ alias cls=clear
 alias cat=bat
 alias ff=fastfetch
 alias lg=lazygit
-alias yz=yazi
 alias zj=zellij
 
 alias vi=nvim
