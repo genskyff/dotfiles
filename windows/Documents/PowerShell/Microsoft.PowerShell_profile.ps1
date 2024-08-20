@@ -92,9 +92,6 @@ Set-Alias -Name ff -Value fastfetch -Force
 Set-Alias -Name lg -Value lazygit -Force
 Set-Alias -Name sudo -Value gsudo -Force
 
-Set-Alias -Name vi -Value nvim -Force
-Set-Alias -Name vim -Value nvim -Force
-
 Set-Alias -Name ls -Value Lsd-Invoke -Force
 Set-Alias -Name ll -Value Ls-Long -Force
 Set-Alias -Name la -Value Ls-All -Force
