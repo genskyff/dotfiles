@@ -8,5 +8,5 @@ function ffe --description "Edit fish function"
     string join \n $files \
         | fzf --with-nth "$nth.." --delimiter / --query "$argv" \
             --bind "start:toggle-preview" \
-            --bind "enter:become($EDITOR {})"
+            --bind "enter:become(fish -c '$EDITOR {}')"
 end

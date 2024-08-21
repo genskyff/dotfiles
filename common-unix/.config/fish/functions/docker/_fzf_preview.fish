@@ -1,4 +1,4 @@
-#!|usr|bin|env fish
+#!/usr/bin/env fish
 
 docker ps -a --filter id=$argv \
     --format "{{.ID}}|{{.Image}}|{{.Command}}|{{.CreatedAt}}|{{.Status}}|{{.Ports}}|{{.Names}}" \

@@ -21,6 +21,6 @@ function rf --description "find with ripgrep and fzf"
         --bind "start:toggle-preview+reload:$rg_prefix {q}" \
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
         --bind "alt-t:transform:fish -c '$toggle'" \
-        --bind "enter:become($EDITOR {1} +{2})"
+        --bind "enter:become(fish -c '$EDITOR {1} +{2}')"
     rm -f /tmp/rg-fzf-{r,f}
 end

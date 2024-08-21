@@ -6,5 +6,5 @@ function drm --description "Remove container"
         fzf --with-nth "2.." --query "$argv" --multi \
             --preview "fish $HOME/.config/fish/functions/docker/_fzf_preview.fish {1}" \
             --bind "start:toggle-preview" \
-            --bind "ctrl-a:select-all,ctrl-d:deselect-all,tab:toggle,enter:become(docker rm -f {+2})"
+            --bind "ctrl-a:select-all,ctrl-d:deselect-all,tab:toggle,enter:become(fish -c 'docker rm -f {+2}')"
 end
