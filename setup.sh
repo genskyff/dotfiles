@@ -30,16 +30,16 @@ else
 fi
 
 # macOS
-brew_list="bat bottom curl dust fastfetch fd fish fzf git-delta lazygit lsd neovim ripgrep starship tokei wget zellij zoxide"
+brew_list="bat bottom clang-format curl dust fastfetch fd fish fzf git-delta lazygit lsd neovim ripgrep starship tokei wget xmake zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom curl dust fastfetch fd fish fzf git git-delta lazygit less libunwind lsd neovim net-tools openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget zellij zoxide"
+pacman_list="base-devel bat bind bottom clang curl dust fastfetch fd fish fzf git git-delta lazygit less libunwind lsd neovim net-tools openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth ttf-maple"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential curl fd-find fish git iptables less libunwind8 lsd net-tools netcat-openbsd openssh-client openssh-server ripgrep socat sudo tmux traceroute unzip wget"
-apt_sid_list="btm fastfetch fzf git-credential-oauth git-delta neovim zoxide"
+apt_list="bat bind9-dnsutils build-essential clang-format clangd curl fd-find fish git iptables less libunwind8 lsd net-tools netcat-openbsd openssh-client openssh-server ripgrep socat sudo tmux traceroute unzip wget"
+apt_sid_list="btm fastfetch fzf git-credential-oauth git-delta neovim xmake zoxide"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim
