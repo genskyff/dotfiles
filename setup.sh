@@ -38,8 +38,8 @@ yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth ttf-maple"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential clang-format clangd curl fd-find fish git iptables less libunwind8 lsd net-tools netcat-openbsd openssh-client openssh-server ripgrep socat sudo tmux traceroute unzip wget"
-apt_sid_list="btm fastfetch fzf git-credential-oauth git-delta neovim xmake zoxide"
+apt_list="bat bind9-dnsutils build-essential clang-format clangd curl fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server ripgrep socat sudo tmux traceroute unzip wget"
+apt_sid_list="btm fastfetch fzf git-credential-oauth git-delta lsd neovim xmake zoxide"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim
