@@ -9,7 +9,9 @@ zoxide init fish | source
 set -gx EDITOR nvim
 set -gx fish_greeting
 
-set exclude "-E Applications -E Library"
+set exclude ""
+test (uname) = "Darwin"
+and set exclude "-E Applications -E Library"
 set -gx FZF_CTRL_T_COMMAND "fd -tf -td -tl -L --color always $exclude"
 set -gx FZF_ALT_C_COMMAND "fd -td -L --color always $exclude"
 set -gx FZF_DEFAULT_COMMAND "fd -tf -td -tl -L --color always $exclude"
