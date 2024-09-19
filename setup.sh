@@ -5,7 +5,7 @@ set -e
 script_path=$(realpath $(dirname "$0"))
 . "$script_path/lib/color.sh"
 
-if [[ $(uname -s) =~ ^[Dd]arwin ]]; then
+if [[ $(uname) = Darwin ]]; then
     current_os="darwin"
 elif grep -qiE "ID=[\"]?arch[\"]?|ID_LIKE=[\"]?arch[\"]?" /etc/os-release; then
     current_os="arch"
@@ -103,26 +103,18 @@ elif [[ "$current_os" == "arch" ]]; then
 elif [[ "$current_os" == "debian" ]]; then
     info "Adding the unstable repository..."
 
-    source_file_path=/etc/apt/sources.list
-    sid_line="deb http://deb.debian.org/debian sid main"
+    source_file_path=/etc/apt/sources.list.d/sid.list
+    sid_line="deb http://deb.debian.org/debian sid main\ndeb-src http://deb.debian.org/debian sid main"
 
     preferences_file_path=/etc/apt/preferences.d/sid
-    preferences_line="Package: *\nPin: release a=unstable\nPin-Priority: 100"
+    preferences_line="Package: *\nPin: release a=sid\nPin-Priority: 50"
 
-    if [[ ! -f /etc/apt/sources.list ]] || ! grep -qR "^[^#]*sid main" "$source_file_path" /etc/apt/sources.list.d/; then
-        if $is_superuser_privilege; then
-            echo "$sid_line" | tee -a "$source_file_path" >/dev/null
-        else
-            echo "$sid_line" | sudo tee -a "$source_file_path" >/dev/null
-        fi
-    fi
-
-    if [[ ! -f "$preferences_file_path" ]] || ! grep -q "^[^#]*Pin: release a=unstable" "$preferences_file_path"; then
-        if $is_superuser_privilege; then
-            echo -e "$preferences_line" | tee -a "$preferences_file_path" >/dev/null
-        else
-            echo -e "$preferences_line" | sudo tee -a "$preferences_file_path" >/dev/null
-        fi
+    if $is_superuser_privilege; then
+        echo -e "$sid_line" | tee "$source_file_path" >/dev/null
+        echo -e "$preferences_line" | tee "$preferences_file_path" >/dev/null
+    else
+        echo -e "$sid_line" | sudo tee "$source_file_path" >/dev/null
+        echo -e "$preferences_line" | sudo tee "$preferences_file_path" >/dev/null
     fi
 
     info "\nUpdating the packages..."
