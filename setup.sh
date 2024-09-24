@@ -35,7 +35,7 @@ brew_list="bat bottom clang-format curl dust fastfetch fd fish fzf git-delta laz
 # Arch
 pacman_list="base-devel bat bind bottom clang curl dust fastfetch fd fish fzf git git-delta lazygit less libunwind lsd neovim net-tools openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
-aur_list="git-credential-oauth ttf-maple"
+aur_list="git-credential-oauth rustup ttf-maple"
 
 # Debian
 apt_list="bat bind9-dnsutils build-essential clang-format clangd curl fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server ripgrep socat sudo tmux traceroute unzip wget"
