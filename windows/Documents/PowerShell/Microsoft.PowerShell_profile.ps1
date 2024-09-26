@@ -4,11 +4,29 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Import-Module PSReadLine -Force
 Import-Module gsudoModule -Force
 
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineKeyHandler -key Enter -Function ValidateAndAcceptLine
-Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+
+Set-PSReadLineKeyHandler -Chord Ctrl+p -Function PreviousHistory
+Set-PSReadLineKeyHandler -Chord Ctrl+n -Function NextHistory
+
+Set-PSReadLineKeyHandler -Chord Ctrl+f -Function ForwardChar
+Set-PSReadLineKeyHandler -Chord Ctrl+b -Function BackwardChar
+Set-PSReadLineKeyHandler -Chord Alt+f -Function ForwardWord
+Set-PSReadLineKeyHandler -Chord Alt+b -Function BackwardWord
+Set-PSReadLineKeyHandler -Chord Ctrl+a -Function BeginningOfLine
+Set-PSReadLineKeyHandler -Chord Ctrl+e -Function EndOfLine
+
+Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteChar
+Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteChar
+Set-PSReadLineKeyHandler -Chord Alt+d -Function DeleteWord
+Set-PSReadLineKeyHandler -Chord Alt+w -Function BackwardDeleteWord
+Set-PSReadLineKeyHandler -Chord Ctrl+k -Function ForwardDeleteLine
+Set-PSReadLineKeyHandler -Chord Ctrl+u -Function BackwardDeleteLine
 
 function Open-Folder {
     param($Path = ".")
