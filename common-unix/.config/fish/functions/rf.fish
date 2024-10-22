@@ -13,6 +13,7 @@ function rf --description "find with ripgrep and fzf"
     test -n $EDITOR; or set EDITOR nvim
     command -qv bat; and set bat bat; or set bat batcat
     fzf --height 100% --disabled --query "$argv" \
+        --header 'Alt-T: Switch between ripgrep/fzf' \
         --prompt "ripgrep> " \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
