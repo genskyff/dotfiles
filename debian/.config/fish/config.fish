@@ -30,6 +30,7 @@ alias cls=clear
 alias cat=batcat
 alias fd=fdfind
 alias ff=fastfetch
+alias bt="btm -b"
 
 alias vi=nvim
 alias vim=nvim
