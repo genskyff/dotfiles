@@ -32,6 +32,7 @@ alias cat=bat
 alias ff=fastfetch
 alias lg=lazygit
 alias zj=zellij
+alias bt="btm -b"
 
 alias vi=nvim
 alias vim=nvim
