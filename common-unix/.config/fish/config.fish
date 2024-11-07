@@ -31,6 +31,7 @@ alias cls=clear
 alias cat=bat
 alias ff=fastfetch
 alias lg=lazygit
+alias lad=lazydocker
 alias zj=zellij
 alias bt="btm -b"
 
