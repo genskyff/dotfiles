@@ -108,6 +108,7 @@ Set-Alias -Name open -Value Open-Folder -Force
 Set-Alias -Name cat -Value bat -Force
 Set-Alias -Name ff -Value fastfetch -Force
 Set-Alias -Name lg -Value lazygit -Force
+Set-Alias -Name lad -Value lazydocker -Force
 Set-Alias -Name sudo -Value gsudo -Force
 
 Set-Alias -Name ls -Value Lsd-Invoke -Force
