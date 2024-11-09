@@ -5,6 +5,7 @@
 [pull]
     rebase = true
 [core]
+    autocrlf = false
     quotepath = false
     editor = code --wait
     pager = delta
