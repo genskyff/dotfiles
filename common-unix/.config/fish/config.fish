@@ -30,6 +30,7 @@ set fish_function_path (string join \n $fish_function_path | awk '!seen[$0]++')
 alias cls=clear
 alias cat=bat
 alias ff=fastfetch
+alias of=onefetch
 alias lg=lazygit
 alias lad=lazydocker
 alias zj=zellij
