@@ -33,6 +33,11 @@ function Open-Folder {
     Invoke-Item $Path
 }
 
+function BatPure {
+    $params = @("-p") + $args
+    bat @params
+}
+
 function Lsd-Invoke {
     $params = @("-N") + $args
     lsd @params
@@ -105,7 +110,7 @@ function Git-Submodule-Update {
 
 Set-Alias -Name open -Value Open-Folder -Force
 
-Set-Alias -Name cat -Value bat -Force
+Set-Alias -Name cat -Value BatPure -Force
 Set-Alias -Name ff -Value fastfetch -Force
 Set-Alias -Name of -Value onefetch -Force
 Set-Alias -Name lg -Value lazygit -Force
