@@ -44,6 +44,7 @@ alias lp="ls --classic"
 alias ltp="lp --tree --depth 1"
 
 alias gs="git status"
+alias gw="git switch"
 alias gd="git diff"
 alias gp="git pull"
 alias gsu="git submodule update"
