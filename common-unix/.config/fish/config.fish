@@ -15,7 +15,7 @@ and set exclude "-E Applications -E Library"
 set -gx FZF_CTRL_T_COMMAND "fd -tf -td -tl -L --color always $exclude"
 set -gx FZF_ALT_C_COMMAND "fd -td -L --color always $exclude"
 set -gx FZF_DEFAULT_COMMAND "fd -tf -td -tl -L --color always $exclude"
-set -gx FZF_DEFAULT_OPTS "--ansi --height 60% --highlight-line --reverse --info inline --border --no-separator \
+set -gx FZF_DEFAULT_OPTS "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator \
     --preview 'fish $HOME/.config/fish/functions/_fzf_preview.fish {}' \
     --preview-window 'hidden,border-left,60%' \
     --bind 'alt-/:change-preview-window(90%|60%)' \
