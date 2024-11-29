@@ -103,6 +103,11 @@ function Git-Pull {
     git @params
 }
 
+function Git-Submodule-Status {
+    $params = @("submodule", "status") + $args
+    git @params
+}
+
 function Git-Submodule-Update {
     $params = @("submodule", "update") + $args
     git @params
@@ -131,4 +136,5 @@ Set-Alias -Name gs -Value Git-Status -Force
 Set-Alias -Name gd -Value Git-Diff -Force
 Set-Alias -Name gl -Value Git-Log -Force
 Set-Alias -Name gp -Value Git-Pull -Force
+Set-Alias -Name gss -Value Git-Submodule-Status -Force
 Set-Alias -Name gsu -Value Git-Submodule-Update -Force
