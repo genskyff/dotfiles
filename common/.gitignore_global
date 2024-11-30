@@ -1,4 +1,10 @@
+# Local
 .DS_Store
-.idea
-.vscode
+
+# Dist
 node_modules
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
