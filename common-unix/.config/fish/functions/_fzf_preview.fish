@@ -2,9 +2,8 @@
 
 if test -f $argv
     if file -b $argv | grep -qE "(text|empty)"
-        command -q bat
-        and bat --color always $argv
-        or batcat --color always $argv
+        command -q bat; and set bat bat; or set bat batcat
+        $bat --color always $argv
     else
         file $argv
     end
