@@ -8,4 +8,6 @@ else if command -q nvim
 end
 
 # LESS
-command -q less; and set -gx LESS -I
+if command -q less
+    set -gx LESS -I
+end

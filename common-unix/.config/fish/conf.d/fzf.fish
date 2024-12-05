@@ -1,8 +1,8 @@
 #!/usr/bin/env fish
 
-status is-interactive; or return
+status is-interactive; or return 0
 
-command -q fzf; or return
+if command -q fzf; or return 0
 fzf --fish | source
 
 if command -q fd
