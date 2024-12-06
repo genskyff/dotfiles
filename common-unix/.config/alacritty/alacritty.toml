@@ -1,5 +1,5 @@
 [general]
-import = ["~/.config/alacritty/snazzy.toml"]
+import = ["./snazzy.toml"]
 
 [window]
 padding = { x = 10, y = 10 }
