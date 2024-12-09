@@ -53,5 +53,4 @@
     zero-style = syntax
     syntax-theme = Nord
     blame-code-style = syntax
-    blame-format = "{author:<8} ({commit:^8}) {timestamp:>8}"
     blame-palette = "#2E3440" "#3B4252" "#434C5E" "#4C566A"
