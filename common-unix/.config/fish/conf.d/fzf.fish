@@ -5,13 +5,14 @@ status is-interactive; or return 0
 command -q fzf; or return 0
 fzf --fish | source
 
+set -l fd
 if command -q fd
-    set -l fd fd
+    set fd fd
 else if command -q fdfind
-    set -l fd fdfind
+    set fd fdfind
 end
 
-if set -q fd
+if set -q fd; and test -n "$fd"
     test (uname) = "Darwin"; and set exclude "-E Applications -E Library"; or set exclude ""
 
     set -gx FZF_CTRL_T_COMMAND "$fd -tf -td -tl -L --color always $exclude"
