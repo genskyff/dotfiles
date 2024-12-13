@@ -6,9 +6,9 @@ command -q fzf; or return 0
 fzf --fish | source
 
 if command -q fd
-    set fd fd
+    set -l fd fd
 else if command -q fdfind
-    set fd fdfind
+    set -l fd fdfind
 end
 
 if set -q fd
