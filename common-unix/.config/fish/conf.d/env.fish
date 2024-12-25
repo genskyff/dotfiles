@@ -9,5 +9,5 @@ end
 
 # LESS
 if command -q less
-    set -gx LESS -I
+    set -gx LESS -iRF
 end
