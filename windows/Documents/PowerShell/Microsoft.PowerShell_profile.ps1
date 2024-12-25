@@ -28,6 +28,10 @@ Set-PSReadLineKeyHandler -Chord Alt+w -Function BackwardDeleteWord
 Set-PSReadLineKeyHandler -Chord Ctrl+k -Function ForwardDeleteLine
 Set-PSReadLineKeyHandler -Chord Ctrl+u -Function BackwardDeleteLine
 
+if (Get-Command less -ErrorAction SilentlyContinue) {
+    $env:LESS = "-iRF"
+}
+
 function Open-Folder {
     param($Path = ".")
     Invoke-Item $Path
