@@ -184,13 +184,7 @@ answer=${answer:-n}
 if [[ "$answer" == [yY] ]]; then
     info "Copying config files..."
     cp -a "$script_path"/common/. $HOME/
-    cp -a "$script_path"/common-unix/. $HOME/
-
-    if [[ "$current_os" == "drawin" ]]; then
-        cp -a "$script_path"/macos/. $HOME/
-    elif [[ "$current_os" == "debian" ]]; then
-        cp -a "$script_path"/debian/. $HOME/
-    fi
+    cp -a "$script_path"/unix/. $HOME/
 fi
 
 is_exist_nvim_config=false
