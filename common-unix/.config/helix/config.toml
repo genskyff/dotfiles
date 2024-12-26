@@ -1,0 +1,20 @@
+theme = "dracula"
+
+[editor]
+line-number = "relative"
+cursorline = true
+cursorcolumn = true
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+
+[keys.insert]
+j = { k = "normal_mode" }
