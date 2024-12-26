@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 # EDITOR
-if command -q code
+if _is_gui; and command -q code
     set -gx EDITOR code
 else if command -q hx
     set -gx EDITOR hx
