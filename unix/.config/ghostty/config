@@ -1,0 +1,6 @@
+font-family = Maple Mono NF CN
+font-size = 15
+theme = Snazzy
+background-opacity = 0.8
+window-save-state = always
+macos-option-as-alt = true
