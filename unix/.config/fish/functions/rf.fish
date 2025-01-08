@@ -11,7 +11,7 @@ function rf --description "find with ripgrep and fzf"
         end'
 
     command -q bat; and set bat bat; or set bat batcat
-    command -q code; and set edit "code -g {1}:{2}"; or set edit "nvim {1} +{2}"
+    test "$EDITOR" = "code"; and set edit "$EDITOR -g {1}:{2}"; or set edit "$EDITOR {1} +{2}"
 
     fzf --height 100% --disabled --query "$argv" \
         --header 'Alt-T: Switch between ripgrep/fzf' \
