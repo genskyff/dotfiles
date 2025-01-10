@@ -13,7 +13,7 @@ else if command -q fdfind
 end
 
 if set -q fd; and test -n "$fd"
-    test (uname) = "Darwin"; and set exclude "-E Applications -E Library"; or set exclude ""
+    test (uname) = Darwin; and set exclude "-E Applications -E Library"; or set exclude ""
 
     set -gx FZF_CTRL_T_COMMAND "$fd -tf -td -tl -L --color always $exclude"
     set -gx FZF_ALT_C_COMMAND "$fd -td -L --color always $exclude"

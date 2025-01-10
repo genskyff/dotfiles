@@ -11,7 +11,7 @@ else if command -q helix
     set -gx EDITOR helix
 else if command -q nvim
     set -gx EDITOR nvim
-else
+else if command -q vim
     set -gx EDITOR vim
 end
 
