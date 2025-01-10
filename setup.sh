@@ -30,16 +30,16 @@ else
 fi
 
 # macOS
-brew_list="bat bottom clang-format curl dust fastfetch fd fish fzf git-delta lazydocker lazygit lsd neovim onefetch ripgrep starship tokei wget xmake zellij zoxide"
+brew_list="bat bottom clang-format curl dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd neovim onefetch ripgrep starship tokei wget xmake zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom clang curl docker docker-compose dust fastfetch fd fish fzf git git-delta lazygit less libunwind lsd neovim net-tools onefetch openbsd-netcat openssh ripgrep rustup socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
+pacman_list="base-devel bat bind bottom clang curl docker docker-compose dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd neovim net-tools onefetch openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth lazydocker-bin"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker docker-compose fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server ripgrep socat sudo tmux traceroute unzip wget"
-apt_sid_list="btm fastfetch fzf git-credential-oauth git-delta lsd neovim xmake zoxide"
+apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker docker-compose fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute unzip wget"
+linux_brew_list="bottom dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tokei xmake zellij zoxide"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim
@@ -55,12 +55,10 @@ if [[ "$current_os" == "darwin" ]]; then
             ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
-        info "Updating the packages..."
-        brew update
-
-        info "\nInstalling packages..."
+        info "Updating and installing packages from Homebrew..."
+        brew upgrade
         brew install $brew_list
-        brew cleanup
+        brew cleanup --prune=all
     fi
 elif [[ "$current_os" == "arch" ]]; then
     info "\nUpdating and installing packages..."
@@ -69,63 +67,50 @@ elif [[ "$current_os" == "arch" ]]; then
     else
         sudo pacman -Syyu --needed --noconfirm --color always $pacman_list
 
-        if [[ "$current_user" != "root" ]]; then
-            if [[ ! -x "$(command -v yay)" ]]; then
-                info "${light_magenta}'yay'${info_color} not found. Installing..."
+        if [[ ! -x "$(command -v yay)" ]]; then
+            info "${light_magenta}'yay'${info_color} not found. Installing..."
 
-                if [[ -d "yay-bin" ]]; then
-                    if [[ ! $(ls -A "yay-bin") ]]; then
-                        rm -rf yay-bin
-                        git clone "$yay_url"
-                    fi
-                else
+            if [[ -d "yay-bin" ]]; then
+                if [[ ! $(ls -A "yay-bin") ]]; then
+                    rm -rf yay-bin
                     git clone "$yay_url"
                 fi
-
-                cd yay-bin
-                makepkg -si --noconfirm
-                cd ..
-                rm -rf yay-bin
-                ok "${light_magenta}'yay'${ok_color} has been installed"
+            else
+                git clone "$yay_url"
             fi
 
-            info "\nInstalling packages from AUR..."
-            yay -Syyu --needed --noconfirm --color always $aur_list
+            cd yay-bin
+            makepkg -si --noconfirm
+            cd ..
+            rm -rf yay-bin
+            ok "${light_magenta}'yay'${ok_color} has been installed"
         fi
+
+        info "\nUpdating and installing packages from AUR..."
+        yay -Syyu --needed --noconfirm --color always $aur_list
     fi
 elif [[ "$current_os" == "debian" ]]; then
-    info "Adding the unstable repository..."
-
-    source_file_path=/etc/apt/sources.list.d/sid.list
-    sid_line="deb http://deb.debian.org/debian sid main\ndeb-src http://deb.debian.org/debian sid main"
-
-    preferences_file_path=/etc/apt/preferences.d/sid
-    preferences_line="Package: *\nPin: release a=sid\nPin-Priority: 50"
-
-    if $is_superuser_privilege; then
-        echo -e "$sid_line" | tee "$source_file_path" >/dev/null
-        echo -e "$preferences_line" | tee "$preferences_file_path" >/dev/null
-    else
-        echo -e "$sid_line" | sudo tee "$source_file_path" >/dev/null
-        echo -e "$preferences_line" | sudo tee "$preferences_file_path" >/dev/null
-    fi
-
-    info "\nUpdating the packages..."
+    info "\nUpdating and installing packages..."
     if $is_superuser_privilege; then
         apt update
         apt upgrade -y
+        apt install -y $apt_list
     else
         sudo apt update
         sudo apt upgrade -y
-    fi
-
-    info "\nInstalling packages..."
-    if $is_superuser_privilege; then
-        apt install -y $apt_list
-        apt install -t sid -y $apt_sid_list
-    else
         sudo apt install -y $apt_list
-        sudo apt install -t sid -y $apt_sid_list
+
+        if [[ ! -x "$(command -v brew)" ]]; then
+            info "${light_magenta}Homebrew${info_color} not found. Installing..."
+            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+            ok "${light_magenta}Homebrew${ok_color} has been installed"
+        fi
+
+        info "\nUpdating and installing packages from Homebrew..."
+        brew upgrade
+        brew install $linux_brew_list
+        brew cleanup --prune=all
     fi
 fi
 
