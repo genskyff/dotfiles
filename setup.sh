@@ -38,7 +38,7 @@ yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth lazydocker-bin"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker docker-compose fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute unzip wget"
+apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker docker-compose fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute vim unzip wget"
 linux_brew_list="bottom dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tokei xmake zellij zoxide"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
@@ -68,7 +68,7 @@ elif [[ "$current_os" == "arch" ]]; then
         sudo pacman -Syyu --needed --noconfirm --color always $pacman_list
 
         if [[ ! -x "$(command -v yay)" ]]; then
-            info "${light_magenta}'yay'${info_color} not found. Installing..."
+            info "${light_magenta}yay${info_color} not found. Installing..."
 
             if [[ -d "yay-bin" ]]; then
                 if [[ ! $(ls -A "yay-bin") ]]; then
