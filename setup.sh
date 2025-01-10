@@ -127,7 +127,7 @@ else
 fi
 
 zprofile_path=$HOME/.zprofile
-zprofile_content="[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc"
+zprofile_content='[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc'
 zshrc_path=$HOME/.zshrc
 zshrc_content='command -v fish >/dev/null && {
     export SHELL=$(which fish)
