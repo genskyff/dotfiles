@@ -1,3 +1,7 @@
+#!/usr/bin/env fish
+
+status is-interactive; or return 0
+
 alias cls=clear
 
 command -q batcat; and alias cat=batcat; or alias cat=bat
