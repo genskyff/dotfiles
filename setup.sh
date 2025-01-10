@@ -51,7 +51,7 @@ if [[ "$current_os" == "darwin" ]]; then
     else
         if [[ ! -x "$(command -v brew)" ]]; then
             info "${light_magenta}Homebrew${info_color} not found. Installing..."
-            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
@@ -102,7 +102,7 @@ elif [[ "$current_os" == "debian" ]]; then
 
         if [[ ! -x "$(command -v brew)" ]]; then
             info "${light_magenta}Homebrew${info_color} not found. Installing..."
-            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
             ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
