@@ -65,16 +65,16 @@ if [[ "$current_os" == "darwin" ]]; then
 elif [[ "$current_os" == "arch" ]]; then
     info "Updating the packages..."
     if $is_superuser_privilege; then
-        pacman -Syu --noconfirm
+        pacman -Syyu --noconfirm --color always
     else
-        sudo pacman -Syu --noconfirm
+        sudo pacman -Syyu --noconfirm --color always
     fi
 
     info "\nInstalling packages..."
     if $is_superuser_privilege; then
-        pacman -S --needed --noconfirm $pacman_list
+        pacman -S --needed --noconfirm --color always $pacman_list
     else
-        sudo pacman -S --needed --noconfirm $pacman_list
+        sudo pacman -S --needed --noconfirm --color always $pacman_list
 
         if [[ "$current_user" != "root" ]]; then
             if [[ ! -x "$(command -v yay)" ]]; then
@@ -97,7 +97,7 @@ elif [[ "$current_os" == "arch" ]]; then
             fi
 
             info "\nInstalling packages from AUR..."
-            yay -S --needed --noconfirm $aur_list
+            yay -Syyu --needed --noconfirm --color always $aur_list
         fi
     fi
 elif [[ "$current_os" == "debian" ]]; then
