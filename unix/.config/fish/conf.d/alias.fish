@@ -12,7 +12,7 @@ command -q helix; and alias hx=helix
 command -q kitten; and set -q KITTY_PID; and alias s="kitten ssh"
 command -q lazydocker; and alias lad=lazydocker
 command -q lazygit; and alias lg=lazygit
-command -q nvim; and alias vim=nvim
+command -q nvim; and alias nv=nvim
 command -q onefetch; and alias of=onefetch
 command -q zellij; and alias zj=zellij
 
