@@ -63,18 +63,11 @@ if [[ "$current_os" == "darwin" ]]; then
         brew cleanup
     fi
 elif [[ "$current_os" == "arch" ]]; then
-    info "Updating the packages..."
+    info "\nUpdating and installing packages..."
     if $is_superuser_privilege; then
-        pacman -Syyu --noconfirm --color always
+        pacman -Syyu --needed --noconfirm --color always $pacman_list
     else
-        sudo pacman -Syyu --noconfirm --color always
-    fi
-
-    info "\nInstalling packages..."
-    if $is_superuser_privilege; then
-        pacman -S --needed --noconfirm --color always $pacman_list
-    else
-        sudo pacman -S --needed --noconfirm --color always $pacman_list
+        sudo pacman -Syyu --needed --noconfirm --color always $pacman_list
 
         if [[ "$current_user" != "root" ]]; then
             if [[ ! -x "$(command -v yay)" ]]; then
