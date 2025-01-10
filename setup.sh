@@ -61,7 +61,7 @@ if [[ "$current_os" == "darwin" ]]; then
         brew cleanup --prune=all
     fi
 elif [[ "$current_os" == "arch" ]]; then
-    info "\nUpdating and installing packages..."
+    info "Updating and installing packages..."
     if $is_superuser_privilege; then
         pacman -Syyu --needed --noconfirm --color always $pacman_list
     else
@@ -90,7 +90,7 @@ elif [[ "$current_os" == "arch" ]]; then
         yay -Syyu --needed --noconfirm --color always $aur_list
     fi
 elif [[ "$current_os" == "debian" ]]; then
-    info "\nUpdating and installing packages..."
+    info "Updating and installing packages..."
     if $is_superuser_privilege; then
         apt update
         apt upgrade -y
