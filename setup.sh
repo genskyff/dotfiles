@@ -11,9 +11,14 @@ elif grep -qiE "ID=[\"]?arch[\"]?|ID_LIKE=[\"]?arch[\"]?" /etc/os-release; then
     current_os="arch"
 elif grep -qiE "ID=[\"]?debian[\"]?" /etc/os-release; then
     current_os="debian"
+elif grep -qiE "ID=[\"]?kali[\"]?" /etc/os-release; then
+    current_os="kali"
 else
-    error -n "Error: this script is only for "
-    error "${light_magenta}macOS${error_color}, ${light_magenta}Arch${error_color} and ${light_magenta}Debian${error_color}"
+    error "Error${reset}: this script is only for"
+    echo "- macOS"
+    echo "- Arch"
+    echo "- Debian"
+    echo "- Kali"
     exit 1
 fi
 
@@ -38,15 +43,19 @@ yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth lazydocker-bin"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker-compose docker.io fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute vim unzip wget"
-linux_brew_list="bottom dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tokei xmake zellij zoxide"
+debian_apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker-compose docker.io fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute vim unzip wget"
+debian_brew_list="bottom dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tokei xmake zellij zoxide"
+
+# Kali
+kali_apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker.io fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat starship sudo tokei traceroute unzip vim wget xmake zoxide"
+kali_brew_list="bottom dust helix lazydocker lazygit onefetch zellij"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim
 
 if [[ "$current_os" == "darwin" ]]; then
     if $is_superuser_privilege; then
-        error "Error: this script cannot be run with superuser privileges"
+        error "Error${reset}: this script cannot be run with superuser privileges"
         exit 1
     else
         if [[ ! -x "$(command -v brew)" ]]; then
@@ -94,11 +103,11 @@ elif [[ "$current_os" == "debian" ]]; then
     if $is_superuser_privilege; then
         apt update
         apt upgrade -y
-        apt install -y $apt_list
+        apt install -y $debian_apt_list
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install -y $apt_list
+        sudo apt install -y $debian_apt_list
 
         if [[ ! -x "$(command -v brew)" ]]; then
             info "${light_magenta}Homebrew${info_color} not found. Installing..."
@@ -109,7 +118,30 @@ elif [[ "$current_os" == "debian" ]]; then
 
         info "\nUpdating and installing packages from Homebrew..."
         brew upgrade
-        brew install $linux_brew_list
+        brew install $debian_brew_list
+        brew cleanup --prune=all
+    fi
+elif [[ "$current_os" == "kali" ]]; then
+    info "Updating and installing packages..."
+    if $is_superuser_privilege; then
+        apt update
+        apt upgrade -y
+        apt install -y $kali_apt_list
+    else
+        sudo apt update
+        sudo apt upgrade -y
+        sudo apt install -y $kali_apt_list
+
+        if [[ ! -x "$(command -v brew)" ]]; then
+            info "${light_magenta}Homebrew${info_color} not found. Installing..."
+            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+            ok "${light_magenta}Homebrew${ok_color} has been installed"
+        fi
+
+        info "\nUpdating and installing packages from Homebrew..."
+        brew upgrade
+        brew install $kali_brew_list
         brew cleanup --prune=all
     fi
 fi
