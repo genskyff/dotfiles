@@ -33,12 +33,12 @@ fi
 brew_list="bat bottom clang-format curl dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd neovim onefetch ripgrep starship tokei wget xmake zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom clang curl docker docker-compose dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd neovim net-tools onefetch openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
+pacman_list="base-devel bat bind bottom clang curl docker docker-buildx docker-compose dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd neovim net-tools onefetch openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="git-credential-oauth lazydocker-bin"
 
 # Debian
-apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker docker-compose fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute vim unzip wget"
+apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker-compose docker.io fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute vim unzip wget"
 linux_brew_list="bottom dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tokei xmake zellij zoxide"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
@@ -83,7 +83,7 @@ elif [[ "$current_os" == "arch" ]]; then
             makepkg -si --noconfirm
             cd ..
             rm -rf yay-bin
-            ok "${light_magenta}'yay'${ok_color} has been installed"
+            ok "${light_magenta}yay${ok_color} has been installed"
         fi
 
         info "\nUpdating and installing packages from AUR..."
@@ -111,6 +111,13 @@ elif [[ "$current_os" == "debian" ]]; then
         brew upgrade
         brew install $linux_brew_list
         brew cleanup --prune=all
+    fi
+fi
+
+if [[ "$current_os" != "darwin" ]] && [[ "$current_user" != "root" ]] then
+    if grep -qiE "^docker" /etc/group; then
+        info "Adding the user to the docker group..."
+        sudo usermod -aG docker "$current_user"
     fi
 fi
 
