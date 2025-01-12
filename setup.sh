@@ -35,7 +35,7 @@ else
 fi
 
 # macOS
-brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mtr neovim onefetch ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
+brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd neovim onefetch ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
 
 # Arch
 pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr neovim net-tools onefetch openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
