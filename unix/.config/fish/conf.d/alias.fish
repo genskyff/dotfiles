@@ -6,6 +6,7 @@ alias cls=clear
 
 command -q batcat; and alias bat=batcat
 command -q btm; and alias bt="btm -b"
+command -q choose; and alias cho=choose
 command -q fastfetch; and alias ff=fastfetch
 command -q fdfind; and alias fd=fdfind
 command -q helix; and alias hx=helix
