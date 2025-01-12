@@ -35,20 +35,20 @@ else
 fi
 
 # macOS
-brew_list="bat bottom clang-format curl dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd neovim onefetch ripgrep starship tokei wget xmake zellij zoxide"
+brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mtr neovim onefetch ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom clang curl docker docker-buildx docker-compose dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd neovim net-tools onefetch openbsd-netcat openssh ripgrep socat starship sudo tokei traceroute unzip wget xmake zellij zoxide"
+pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr neovim net-tools onefetch openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
-aur_list="git-credential-oauth lazydocker-bin"
+aur_list="doggo-bin git-credential-oauth lazydocker-bin tlrc-bin"
 
 # Debian
-debian_apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker-compose docker.io fd-find fish git iptables less libunwind8 net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat sudo traceroute vim unzip wget"
-debian_brew_list="bottom dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tokei xmake zellij zoxide"
+debian_apt_list="bat build-essential clang-format clangd curl docker-compose docker.io duf fd-find fish git iptables less libunwind8 mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat sudo unzip vim wget"
+debian_brew_list="bottom choose-rust doggo dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tlrc tokei xmake zellij zoxide"
 
 # Kali
-kali_apt_list="bat bind9-dnsutils build-essential clang-format clangd curl docker.io fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep socat starship sudo tokei traceroute unzip vim wget xmake zoxide"
-kali_brew_list="bottom dust helix lazydocker lazygit onefetch zellij"
+kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
+kali_brew_list="bottom choose-rust doggo dust helix lazydocker lazygit onefetch tlrc zellij"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim

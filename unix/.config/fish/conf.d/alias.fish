@@ -4,7 +4,7 @@ status is-interactive; or return 0
 
 alias cls=clear
 
-command -q batcat; and alias cat=batcat; or alias cat=bat
+command -q batcat; and alias bat=batcat
 command -q btm; and alias bt="btm -b"
 command -q fastfetch; and alias ff=fastfetch
 command -q fdfind; and alias fd=fdfind
