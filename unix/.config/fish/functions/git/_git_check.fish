@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function _git_check --description "Check if git is installed and a git repository"
+function _git_check --description "Check git status"
     if not command -q git
         echo -e "$(set_color red)Error$(set_color normal): 'git' command not found" >&2
         return 1
