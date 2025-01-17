@@ -21,7 +21,7 @@ if set -q fd; and test -n "$fd"
 end
 
 set -gx FZF_DEFAULT_OPTS "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator \
-    --preview 'fish $HOME/.config/fish/functions/_fzf_preview.fish {}' \
+    --preview 'fish $__fish_config_dir/functions/_fzf_preview.fish {}' \
     --preview-window 'hidden,border-left,60%' \
     --bind 'alt-/:change-preview-window(90%|60%)' \
     --bind 'alt-,:toggle-wrap' \
