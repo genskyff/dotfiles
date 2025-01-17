@@ -1,6 +1,20 @@
 #!/usr/bin/env fish
 
-function rf --description "find with ripgrep and fzf"
+function rf --description "Find with ripgrep and fzf"
+    if command -q bat
+        set bat bat
+    else if command -q batcat
+        set bat batcat
+    else
+        echo -e "$(set_color red)Error$(set_color normal): 'bat' command not found" >&2
+        return 1
+    end
+
+    if not command -q rg
+        echo -e "$(set_color red)Error$(set_color normal): 'rg' command not found" >&2
+        return 1
+    end
+
     set pattern "-g !Applications -g !Library"
     set rg_prefix "rg -L --line-number --no-heading --color always --smart-case $pattern"
     set toggle '
@@ -10,8 +24,7 @@ function rf --description "find with ripgrep and fzf"
             echo "rebind(change)+change-prompt(ripgrep> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r"
         end'
 
-    command -q bat; and set bat bat; or set bat batcat
-    test "$EDITOR" = "code"; and set edit "$EDITOR -g {1}:{2}"; or set edit "$EDITOR {1} +{2}"
+    test "$EDITOR" = code; and set edit "$EDITOR -g {1}:{2}"; or set edit "$EDITOR {1} +{2}"
 
     fzf --height 100% --disabled --query "$argv" \
         --header 'Alt-T: Switch between ripgrep/fzf' \
