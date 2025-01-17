@@ -18,8 +18,8 @@ function rf --description "Find with ripgrep and fzf"
     end
 
     argparse h-hidden -- $argv; or return 1
-    test (uname) = Darwin; and set pattern "-g !Applications -g !Library"
-    set rg_prefix "rg -L --line-number --no-heading --color always --smart-case $_flag_hidden $pattern"
+    test (uname) = Darwin; and set exclude "-g !Applications -g !Library"
+    set rg_prefix "rg -L --line-number --no-heading --color always --smart-case $_flag_hidden $exclude"
     set toggle '
         if string match -q "*ripgrep*" "$FZF_PROMPT"
             echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"
