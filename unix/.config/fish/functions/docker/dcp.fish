@@ -2,6 +2,8 @@
 
 function dcp --description "Copy files from container to host"
     _docker_check; or return 1
+    _fzf_check; or return 1
+
     test (count $argv) = 1; and set argv[2] (pwd)
     _container_list | fzf --with-nth 2 \
         --preview "fish $__fish_config_dir/functions/docker/_fzf_preview.fish {1}" \

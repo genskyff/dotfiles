@@ -2,6 +2,7 @@
 
 function gb --description "git branch with fzf"
     _git_check; or return 1
+    _fzf_check; or return 1
 
     set branches (git branch)
     set current_ref $(git rev-parse --abbrev-ref HEAD)
