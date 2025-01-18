@@ -132,9 +132,9 @@ elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
 
     for pkg in $nix_list; do
         if [[ "$current_user" == "root" ]]; then
-            nix-env -iA nixpkgs.$pkg
+            nix-env -q $pkg >/dev/null 2>&1 && nix-env -iA nixpkgs.$pkg
         else
-            sudo -i nix-env -iA nixpkgs.$pkg
+            sudo -i nix-env -q $pkg >/dev/null 2>&1 && sudo -i nix-env -iA nixpkgs.$pkg
         fi
     done
 fi
