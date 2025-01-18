@@ -44,11 +44,11 @@ aur_list="doggo-bin git-credential-oauth lazydocker-bin tlrc-bin"
 
 # Debian
 debian_apt_list="bat build-essential clang-format clangd curl docker-compose docker.io duf fd-find fish git iptables less libunwind8 mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat sudo unzip vim wget"
-debian_brew_list="bottom choose-rust doggo dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd neovim onefetch starship tlrc tokei xmake zellij zoxide"
+debian_nix_list="bottom choose doggo dust fastfetch fzf git-credential-oauth delta helix lazydocker lazygit lsd neovim onefetch starship tlrc tokei xmake zellij zoxide"
 
 # Kali
 kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
-kali_brew_list="bottom choose-rust doggo dust helix lazydocker lazygit onefetch tlrc zellij"
+kali_nix_list="bottom choose doggo dust helix lazydocker lazygit onefetch tlrc zellij"
 
 nvim_config_url=https://github.com/genskyff/nvim.git
 nvim_config_path=$HOME/.config/nvim
@@ -98,7 +98,7 @@ elif [[ "$current_os" == "arch" ]]; then
         info "\nUpdating and installing packages from AUR..."
         yay -Syyu --needed --noconfirm --color always $aur_list
     fi
-elif [[ "$current_os" == "debian" ]]; then
+elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
     info "Updating and installing packages..."
     if $is_superuser_privilege; then
         apt update
@@ -108,42 +108,28 @@ elif [[ "$current_os" == "debian" ]]; then
         sudo apt update
         sudo apt upgrade -y
         sudo apt install -y $debian_apt_list
-
-        if [[ ! -x "$(command -v brew)" ]]; then
-            info "${light_magenta}Homebrew${info_color} not found. Installing..."
-            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            ok "${light_magenta}Homebrew${ok_color} has been installed"
-        fi
-
-        info "\nUpdating and installing packages from Homebrew..."
-        brew upgrade
-        brew install $debian_brew_list
-        brew cleanup --prune=all
     fi
-elif [[ "$current_os" == "kali" ]]; then
-    info "Updating and installing packages..."
-    if $is_superuser_privilege; then
-        apt update
-        apt upgrade -y
-        apt install -y $kali_apt_list
-    else
-        sudo apt update
-        sudo apt upgrade -y
-        sudo apt install -y $kali_apt_list
 
-        if [[ ! -x "$(command -v brew)" ]]; then
-            info "${light_magenta}Homebrew${info_color} not found. Installing..."
-            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            ok "${light_magenta}Homebrew${ok_color} has been installed"
-        fi
-
-        info "\nUpdating and installing packages from Homebrew..."
-        brew upgrade
-        brew install $kali_brew_list
-        brew cleanup --prune=all
+    if [[ ! -x "$(command -v nix)" ]]; then
+        info "${light_magenta}Nix${info_color} not found. Installing..."
+        curl -fsSL https://nixos.org/nix/install | sh -s -- --daemon --yes
+        ok "${light_magenta}Nix${ok_color} has been installed"
     fi
+
+    info "\nUpdating and installing packages from Nixpkgs..."
+    if [[ "$current_os" == "debian" ]]; then
+        nix_list=$debian_nix_list
+    elif [[ "$current_os" == "kali" ]]; then
+        nix_list=$kali_nix_list
+    fi
+
+    for pkg in $nix_list; do
+        if [[ "$current_user" == "root" ]]; then
+            nix-env -iA nixpkgs.$pkg
+        else
+            sudo -i nix-env -iA nixpkgs.$pkg
+        fi
+    done
 fi
 
 if [[ "$current_os" != "darwin" ]] && [[ "$current_user" != "root" ]] then
