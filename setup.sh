@@ -114,10 +114,11 @@ elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
     fi
 
     nix_daemon_path=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-    if [[ ! -x "$(command -v nix)" ]] && [[ ! -d "/nix" ]]; then
+    if [[ ! -x "$(command -v nix-env)" ]] && [[ ! -d "/nix" ]]; then
         info "${light_magenta}Nix${info_color} not found. Installing..."
         curl -fsSL https://nixos.org/nix/install | sh -s -- --daemon --yes
         ok "${light_magenta}Nix${ok_color} has been installed"
+        eval "$(cat $nix_daemon_path)"
     elif [[ -f "$nix_daemon_path" ]]; then
         eval "$(cat $nix_daemon_path)"
     fi
