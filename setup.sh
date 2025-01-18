@@ -100,14 +100,20 @@ elif [[ "$current_os" == "arch" ]]; then
     fi
 elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
     info "Updating and installing packages..."
+    if [[ "$current_os" == "debian" ]]; then
+        apt_list=$debian_apt_list
+    elif [[ "$current_os" == "kali" ]]; then
+        apt_list=$kali_apt_list
+    fi
+
     if $is_superuser_privilege; then
         apt update
         apt upgrade -y
-        apt install -y $debian_apt_list
+        apt install -y $apt_list
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install -y $debian_apt_list
+        sudo apt install -y $apt_list
     fi
 
     if [[ ! -x "$(command -v nix)" ]]; then
