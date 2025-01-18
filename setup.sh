@@ -148,7 +148,7 @@ fi
 
 if $is_superuser_privilege && [[ "$current_user" != "root" ]]; then
     ok "\nAll done"
-    exec su - "$current_user"
+    exit
 fi
 
 info "\nSetting up the user shell config..."
@@ -220,7 +220,7 @@ if $is_exist_nvim_config; then
         mv "$nvim_config_path" $HOME/.config/nvim.bak
     else
         ok "\nAll done"
-        exec su - "$current_user"
+        exit
     fi
 else
     rm -rf $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
@@ -229,4 +229,3 @@ fi
 info "Cloning the neovim config repository..."
 git clone "$nvim_config_url" "$nvim_config_path"
 ok "\nAll done"
-exec su - "$current_user"
