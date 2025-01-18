@@ -50,9 +50,6 @@ debian_nix_list="bottom choose doggo dust fastfetch fzf git-credential-oauth del
 kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
 kali_nix_list="bottom choose doggo dust helix lazydocker lazygit onefetch tlrc zellij"
 
-nvim_config_url=https://github.com/genskyff/nvim.git
-nvim_config_path=$HOME/.config/nvim
-
 if [[ "$current_os" == "darwin" ]]; then
     if $is_superuser_privilege; then
         error "Error${reset}: this script cannot be run with superuser privileges"
@@ -116,10 +113,13 @@ elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
         sudo apt install -y $apt_list
     fi
 
-    if [[ ! -x "$(command -v nix)" ]]; then
+    nix_daemon_path=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+    if [[ ! -x "$(command -v nix)" ]] && [[ ! -d "/nix" ]]; then
         info "${light_magenta}Nix${info_color} not found. Installing..."
         curl -fsSL https://nixos.org/nix/install | sh -s -- --daemon --yes
         ok "${light_magenta}Nix${ok_color} has been installed"
+    elif [[ -f "$nix_daemon_path" ]]; then
+        eval "$(cat $nix_daemon_path)"
     fi
 
     info "\nUpdating and installing packages from Nixpkgs..."
@@ -157,15 +157,15 @@ else
     default_shell=$(basename $(getent passwd "$current_user" | cut -d: -f7))
 fi
 
-zprofile_path=$HOME/.zprofile
-zprofile_content='[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc'
-zshrc_path=$HOME/.zshrc
-zshrc_content='command -v fish >/dev/null && {
-    export SHELL=$(which fish)
-    [[ $- == *i* ]] && exec fish
-}'
-
 if [[ "$current_os" == "darwin" ]]; then
+    zprofile_path=$HOME/.zprofile
+    zprofile_content='[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc'
+    zshrc_path=$HOME/.zshrc
+    zshrc_content='command -v fish >/dev/null && {
+        export SHELL=$(which fish)
+        [[ $- == *i* ]] && exec fish
+    }'
+
     if [[ ! -f "$zprofile_path" ]] || ! grep -q "$zprofile_content" "$zprofile_path"; then
         info "Writing to .zprofile..."
         echo "$zprofile_content" >>"$zprofile_path"
@@ -195,6 +195,9 @@ if [[ "$answer" == [yY] ]]; then
     cp -a "$script_path"/common/. $HOME/
     cp -a "$script_path"/unix/. $HOME/
 fi
+
+nvim_config_url=https://github.com/genskyff/nvim.git
+nvim_config_path=$HOME/.config/nvim
 
 is_exist_nvim_config=false
 if [[ -d "$nvim_config_path" ]]; then
