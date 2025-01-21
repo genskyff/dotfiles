@@ -2,7 +2,14 @@
 
 function rf --description "Find with ripgrep and fzf"
     _cmd_check fzf rg; or return 1
-    _cmd_check --fn bat; or return 1
+    if _cmd_check --quiet bat
+        set bat bat
+    else if _cmd_check --quiet batcat
+        set bat batcat
+    else
+        echo -e "$(set_color red)Error$(set_color normal): 'bat' command not found" >&2
+        return 1
+    end
 
     argparse hidden -- $argv; or return 1
     test (uname) = Darwin; and set exclude "-g !Applications -g !Library"
@@ -21,7 +28,7 @@ function rf --description "Find with ripgrep and fzf"
         --prompt "ripgrep> " \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
-        --preview "bat --color always {1} --highlight-line {2}" \
+        --preview "$bat --color always {1} --highlight-line {2}" \
         --preview-window "up,border-bottom,+{2}+3/3,~3" \
         --bind "start:toggle-preview+reload:$rg_prefix {q}" \
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
