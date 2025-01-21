@@ -1,11 +1,10 @@
 #!/usr/bin/env fish
 
-function ffe --description "Edit fish function"
+function efc --description "Edit fish configuration"
     _fzf_check; or return 1
 
-    set function_path $__fish_config_dir/functions
-    set files $function_path/**/*.fish
-    set nth (math (string split / -- $function_path | count) + 1)
+    set files $__fish_config_dir/config.fish $__fish_config_dir/conf.d/**/*.fish
+    set nth (math (string split / -- $__fish_config_dir | count) + 1)
     string join \n $files \
         | fzf --with-nth "$nth.." --delimiter / --query "$argv" \
             --bind "start:toggle-preview" \

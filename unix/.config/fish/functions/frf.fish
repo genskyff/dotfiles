@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function rf --description "Find with ripgrep and fzf"
+function frf --description "Find with ripgrep and fzf"
     _fzf_check; or return 1
 
     if command -q bat
