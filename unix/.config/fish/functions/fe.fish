@@ -1,8 +1,7 @@
 #!/usr/bin/env fish
 
 function fe --description "Edit fish configuration"
-    _cmd_check fd; or return 1
-    _cmd_check fzf; or return 1
+    _cmd_check fd fzf; or return 1
 
     set fish_config_path $__fish_config_dir/config.fish
     set fish_confd_path $__fish_config_dir/conf.d

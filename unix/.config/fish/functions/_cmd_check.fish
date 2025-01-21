@@ -1,10 +1,23 @@
 #!/usr/bin/env fish
 
 function _cmd_check --description "Check command status"
-    test -z "$argv[1]"; and return 1
+    argparse -N1 quiet -- $argv
 
-    if not command -q "$argv[1]"
-        echo -e "$(set_color red)Error$(set_color normal): '$argv[1]' command not found" >&2
-        return 1
+    set has_error 0
+    set error_messages
+
+    for cmd in $argv
+        if not command -q "$cmd"
+            set -q _flag_quiet; and set has_error 1; and break
+            or set -a error_messages "$(set_color red)Error$(set_color normal): '$cmd' command not found"
+        end
     end
+
+    if not set -q _flag_quiet; and test (count $error_messages) -gt 0
+        for message in $error_messages
+            echo -e "$message" >&2
+        end
+    end
+
+    return $has_error
 end
