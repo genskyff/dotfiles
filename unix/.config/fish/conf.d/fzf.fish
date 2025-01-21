@@ -5,19 +5,18 @@ status is-interactive; or return 0
 command -q fzf; or return 0
 fzf --fish | source
 
-set -l fd
 if command -q fd
-    set fd fd
+    set -f fd fd
 else if command -q fdfind
-    set fd fdfind
+    set -f fd fdfind
 end
 
-if set -q fd; and test -n "$fd"
+if set -q fd
     test (uname) = Darwin; and set exclude "-E Applications -E Library"
 
-    set -gx FZF_CTRL_T_COMMAND "$fd -tf -td -L --color always $exclude"
-    set -gx FZF_ALT_C_COMMAND "$fd -td -L --color always $exclude"
     set -gx FZF_DEFAULT_COMMAND "$fd -tf -td -L --color always $exclude"
+    set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+    set -gx FZF_ALT_C_COMMAND "$fd -td -L --color always $exclude"
 end
 
 set -gx FZF_DEFAULT_OPTS "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator \
