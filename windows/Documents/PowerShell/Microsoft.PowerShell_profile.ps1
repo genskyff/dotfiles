@@ -88,7 +88,7 @@ function Git-Status {
 }
 
 function Git-Diff {
-    $params = @("diff") + $args
+    $params = @("diff", "-w") + $args
     git @params
 }
 
