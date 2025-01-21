@@ -30,7 +30,7 @@ end
 command -q git; and begin
     alias gs="git status"
     alias gw="git switch"
-    alias gd="git diff"
+    alias gd="git diff -w"
     alias gp="git pull"
     alias gss="git submodule status"
     alias gsu="git submodule update"
