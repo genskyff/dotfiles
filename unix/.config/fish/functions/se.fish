@@ -1,7 +1,8 @@
 #!/usr/bin/env fish
 
 function se --description "Edit ssh configuration"
-    _cmd_check fd fzf; or return 1
+    _cmd_check --fn fd; or return 1
+    _cmd_check fzf; or return 1
 
     set ssh_path $HOME/.ssh
     set ssh_config_path $ssh_path/config
