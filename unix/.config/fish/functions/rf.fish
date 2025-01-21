@@ -30,7 +30,7 @@ function rf --description "Find with ripgrep and fzf"
         --delimiter : \
         --preview "$bat --color always {1} --highlight-line {2}" \
         --preview-window "up,border-bottom,+{2}+3/3,~3" \
-        --bind "start:toggle-preview+reload:$rg_prefix {q}" \
+        --bind "start:toggle-preview+reload:$rg_prefix {q} || true" \
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
         --bind "alt-t:transform:fish -c '$toggle'" \
         --bind "enter:become(fish -c '$edit')"
