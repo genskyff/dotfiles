@@ -10,7 +10,7 @@ function _cmd_check --description "Check command status"
         if not command -q "$cmd"; and not set -q _flag_fn
             set -a error_messages "$(set_color red)Error$(set_color normal): '$cmd' command not found"
         else if not command -q "$cmd"; and set -q _flag_fn; and not functions -q "$cmd"
-            set -a error_messages "$(set_color red)Error$(set_color normal): '$cmd' command not found"
+            set -a error_messages "$(set_color red)Error$(set_color normal): '$cmd' command or function not found"
         end
     end
 
