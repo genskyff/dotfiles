@@ -2,7 +2,7 @@
 
 function dre --description "Restart container"
     _docker_check; or return 1
-    _fzf_check; or return 1
+    _cmd_check fzf; or return 1
 
     _container_list -a |
         fzf --with-nth "2.." --query "$argv" --multi \

@@ -2,7 +2,7 @@
 
 function dp --description "List containers with fzf"
     _docker_check; or return 1
-    _fzf_check; or return 1
+    _cmd_check fzf; or return 1
 
     set all_containers (_container_list -a)
     set total_count (count $all_containers)

@@ -1,10 +1,7 @@
 #!/usr/bin/env fish
 
 function _git_check --description "Check git status"
-    if not command -q git
-        echo -e "$(set_color red)Error$(set_color normal): 'git' command not found" >&2
-        return 1
-    end
+   _cmd_check git; or return 1
 
     set error_message (command git rev-parse --is-inside-work-tree 2>&1 1>/dev/null)
     if test (string length -- "$error_message") -gt 0

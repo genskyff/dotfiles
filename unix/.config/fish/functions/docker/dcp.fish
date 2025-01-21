@@ -2,7 +2,7 @@
 
 function dcp --description "Copy files between container and host"
     _docker_check; or return 1
-    _fzf_check; or return 1
+    _cmd_check fzf; or return 1
 
     argparse -N1 -X2 host -- $argv; or return 1
     if set -q _flag_host
