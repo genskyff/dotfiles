@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function eff --description "Edit fish function"
+function ffe --description "Edit fish function"
     _cmd_check fzf; or return 1
 
     set function_path $__fish_config_dir/functions

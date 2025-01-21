@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function efc --description "Edit fish configuration"
+function fe --description "Edit fish configuration"
     _cmd_check fd; or return 1
     _cmd_check fzf; or return 1
 

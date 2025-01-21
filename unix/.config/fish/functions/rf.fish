@@ -1,7 +1,8 @@
 #!/usr/bin/env fish
 
-function frf --description "Find with ripgrep and fzf"
+function rf --description "Find with ripgrep and fzf"
     _cmd_check fzf; or return 1
+    _cmd_check rg; or return 1
 
     if command -q bat
         set bat bat
@@ -9,11 +10,6 @@ function frf --description "Find with ripgrep and fzf"
         set bat batcat
     else
         echo -e "$(set_color red)Error$(set_color normal): 'bat' command not found" >&2
-        return 1
-    end
-
-    if not command -q rg
-        echo -e "$(set_color red)Error$(set_color normal): 'rg' command not found" >&2
         return 1
     end
 

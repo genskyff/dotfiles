@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-function esc --description "Edit ssh configuration"
+function se --description "Edit ssh configuration"
     _cmd_check fd; or return 1
     _cmd_check fzf; or return 1
 
