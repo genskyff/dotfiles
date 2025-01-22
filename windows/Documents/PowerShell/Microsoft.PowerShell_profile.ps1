@@ -32,6 +32,16 @@ if (Get-Command less -ErrorAction SilentlyContinue) {
     $env:LESS = "-iRF"
 }
 
+if (Get-Command fzf -ErrorAction SilentlyContinue) {
+    $env:FZF_DEFAULT_OPTS = "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
+                            --preview-window 'hidden,border-left,60%'
+                            --bind 'alt-/:change-preview-window(90%|60%)'
+                            --bind 'alt-,:toggle-wrap'
+                            --bind 'alt-.:toggle-preview-wrap'
+                            --bind 'ctrl-/:toggle-preview'
+                            --bind 'alt-f:preview-page-down,alt-b:preview-page-up'"
+}
+
 function Open-Folder {
     param($Path = ".")
     Invoke-Item $Path
@@ -72,11 +82,6 @@ function Ls-Tree-Pure {
     Ls-Tree @params
 }
 
-function Git-Branch {
-    $params = @("branch") + $args
-    git @params
-}
-
 function Git-Switch {
     $params = @("switch") + $args
     git @params
@@ -89,11 +94,6 @@ function Git-Status {
 
 function Git-Diff {
     $params = @("diff", "-w") + $args
-    git @params
-}
-
-function Git-Log {
-    $params = @("log", "--oneline", "--graph") + $args
     git @params
 }
 
@@ -112,6 +112,40 @@ function Git-Submodule-Update {
     git @params
 }
 
+function Git-Branch {
+    $branches = git branch
+    $current_ref = git rev-parse --abbrev-ref HEAD
+    $fzf_args = @(
+        '--preview', 'git log {-1} --oneline --graph --date="format:%y/%m/%d" --color=always --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"',
+        '--bind', 'start:toggle-preview',
+        '--bind', 'enter:become(git switch {-1})'
+    )
+
+    if ($current_ref -eq "HEAD") {
+        $fzf_args += @('--header', $branches[0])
+        $branches = $branches[1..($branches.Length -1)]
+    }
+
+    $branches | fzf @fzf_args
+}
+
+function Git-Log {
+    git log --oneline `
+            --date="format:%y/%m/%d" `
+            --color=always `
+            --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s" `
+    | fzf --preview "git show --color=always {2}" `
+            --bind "enter:become(git checkout {2})"
+}
+
+function Git-Reflog {
+    git reflog --color=always `
+                --date="format:%y/%m/%d %H:%M" `
+                --format="%C(auto)%cd %h%d %gs" `
+    | fzf --preview "git show --color=always {3}" `
+            --bind "enter:become(git checkout {3})"
+}
+
 Set-Alias -Name open -Value Open-Folder -Force
 
 Set-Alias -Name ff -Value fastfetch -Force
@@ -128,11 +162,13 @@ Set-Alias -Name lt -Value Ls-Tree -Force
 Set-Alias -Name lp -Value Ls-Pure -Force
 Set-Alias -Name ltp -Value Ls-Tree-Pure -Force
 
-Set-Alias -Name gb -Value Git-Branch -Force
 Set-Alias -Name gw -Value Git-Switch -Force
 Set-Alias -Name gs -Value Git-Status -Force
 Set-Alias -Name gd -Value Git-Diff -Force
-Set-Alias -Name gl -Value Git-Log -Force
 Set-Alias -Name gp -Value Git-Pull -Force
 Set-Alias -Name gss -Value Git-Submodule-Status -Force
 Set-Alias -Name gsu -Value Git-Submodule-Update -Force
+
+Set-Alias -Name gb -Value Git-Branch -Force
+Set-Alias -Name gl -Value Git-Log -Force
+Set-Alias -Name grl -Value Git-Reflog -Force
