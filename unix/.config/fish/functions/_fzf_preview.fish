@@ -1,14 +1,13 @@
 #!/usr/bin/env fish
 
 if test -f $argv
-    if file -b $argv | grep -qE "(text|empty)"
-        set -l cmd
-        if command -q bat
-            set cmd bat --color always
-        else if command -q batcat
-            set cmd batcat --color always
+    if file -b $argv | grep -qiE "(script|text|empty)"
+        if _cmd_check --quiet bat
+            set -f cmd bat --color always
+        else if _cmd_check --quiet batcat
+            set -f cmd batcat --color always
         else
-            set cmd cat
+            set -f cmd cat
         end
         $cmd $argv
     else
@@ -16,8 +15,8 @@ if test -f $argv
     end
 else if test -d $argv
     command -q lsd
-    and set -l cmd lsd --color always --tree --depth 1
-    or set -l cmd ls --color=always -1
+    and set -f cmd lsd --color always --tree --depth 1
+    or set -f cmd ls --color=always -1
     $cmd $argv
 else
     echo -e $argv
