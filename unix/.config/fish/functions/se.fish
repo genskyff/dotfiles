@@ -19,6 +19,6 @@ function se --description "Edit ssh configuration"
     set nth (math (string split / -- $ssh_path | count) + 1)
     string join \n $files \
         | fzf --with-nth "$nth.." --delimiter / --query "$argv" \
-            --bind "start:toggle-preview" \
+            --preview-window hidden \
             --bind "enter:become(fish -c '$EDITOR {}')"
 end
