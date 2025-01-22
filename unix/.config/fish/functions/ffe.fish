@@ -7,7 +7,7 @@ function ffe --description "Edit fish function"
     set files $function_path/**/*.fish
     set nth (math (string split / -- $function_path | count) + 1)
     string join \n $files \
-        | fzf --with-nth "$nth.." --delimiter / --query "$argv" \
+        | fzf --with-nth "$nth.." -d/ \
             --bind "start:toggle-preview" \
             --bind "enter:become(fish -c '$EDITOR {}')"
 end

@@ -23,11 +23,11 @@ function rf --description "Find with ripgrep and fzf"
 
     test "$EDITOR" = code; and set edit "$EDITOR -g {1}:{2}"; or set edit "$EDITOR {1} +{2}"
 
-    fzf --height 100% --disabled --query "$argv" \
+    fzf -d: \
+        --height 100% --disabled \
         --header 'Alt-T: Switch between ripgrep/fzf' \
         --prompt "ripgrep> " \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
-        --delimiter : \
         --preview "$bat --color always {1} --highlight-line {2}" \
         --preview-window "up,border-bottom,+{2}+3/3,~3" \
         --bind "start:toggle-preview+reload:$rg_prefix {q} || true" \

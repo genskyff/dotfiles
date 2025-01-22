@@ -18,7 +18,7 @@ function se --description "Edit ssh configuration"
     test -d $ssh_confd_path; and set -a files ($fd . $ssh_confd_path -tf -L)
     set nth (math (string split / -- $ssh_path | count) + 1)
     string join \n $files \
-        | fzf --with-nth "$nth.." --delimiter / --query "$argv" \
+        | fzf --with-nth "$nth.." -d/ \
             --preview-window hidden \
             --bind "enter:become(fish -c '$EDITOR {}')"
 end
