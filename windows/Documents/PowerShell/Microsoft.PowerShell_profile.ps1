@@ -113,6 +113,7 @@ function Git-Submodule-Update {
 }
 
 function Git-Branch {
+    if (!(git rev-parse --is-inside-work-tree)) { return }
     $branches = git branch
     $current_ref = git rev-parse --abbrev-ref HEAD
     $fzf_args = @(
@@ -130,6 +131,7 @@ function Git-Branch {
 }
 
 function Git-Log {
+    if (!(git rev-parse --is-inside-work-tree)) { return }
     git log --oneline `
             --date="format:%y/%m/%d" `
             --color=always `
@@ -139,6 +141,7 @@ function Git-Log {
 }
 
 function Git-Reflog {
+    if (!(git rev-parse --is-inside-work-tree)) { return }
     git reflog --color=always `
                 --date="format:%y/%m/%d %H:%M" `
                 --format="%C(auto)%cd %h%d %gs" `
