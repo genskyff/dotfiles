@@ -1,9 +1,5 @@
-#!/usr/bin/env fish
-
-status is-interactive; or return 0
-
 # EDITOR
-if _is_gui; and command -q code
+if command -q code; and _is_gui
     set -gx EDITOR code
 else if command -q hx
     set -gx EDITOR hx
