@@ -17,12 +17,12 @@ command -q zellij; and abbr -a zj zellij
 
 command -q lsd; and begin
     abbr -a ls lsd -N
-    abbr -a ll ls -l
-    abbr -a la ls -A
-    abbr -a lla ll -A
-    abbr -a lt ls --tree --depth 1
-    abbr -a lp ls --classic
-    abbr -a ltp lp --tree --depth 1
+    abbr -a ll lsd -Nl
+    abbr -a la lsd -NA
+    abbr -a lla lsd -NlA
+    abbr -a lt lsd -N --tree --depth 1
+    abbr -a lp lsd -N --classic
+    abbr -a ltp lsd -N --classic --tree --depth 1
 end
 
 command -q git; and begin
