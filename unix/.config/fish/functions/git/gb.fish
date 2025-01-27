@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function gb --description "git branch with fzf"
     _git_check; or return 1
     _cmd_check fzf; or return 1

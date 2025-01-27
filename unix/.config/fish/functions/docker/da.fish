@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function da --description "Attach to container"
     _docker_check; or return 1
     _cmd_check fzf; or return 1

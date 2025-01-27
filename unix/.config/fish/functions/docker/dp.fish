@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function dp --description "List containers with fzf"
     _docker_check; or return 1
     _cmd_check fzf; or return 1

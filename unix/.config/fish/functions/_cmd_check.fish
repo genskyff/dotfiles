@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function _cmd_check --description "Check command status"
     argparse -N1 quiet -- $argv
 

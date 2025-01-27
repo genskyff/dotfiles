@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function _git_check --description "Check git status"
    _cmd_check git; or return 1
 

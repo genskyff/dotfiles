@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function se --description "Edit ssh configuration"
     _cmd_check fzf; or return 1
     if _cmd_check --quiet fd

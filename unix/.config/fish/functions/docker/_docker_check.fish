@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function _docker_check --description "Check docker status"
     if not command -q docker; or command -s docker | string match -qr "^/mnt"
         echo -e "$(set_color red)Error$(set_color normal): 'docker' command not found" >&2

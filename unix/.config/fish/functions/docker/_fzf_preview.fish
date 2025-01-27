@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 docker ps -a --filter id=$argv \
     --format "{{.ID}}|{{.Image}}|{{.Command}}|{{.CreatedAt}}|{{.Status}}|{{.Ports}}|{{.Names}}" \
     | while read -l line
@@ -12,4 +10,4 @@ docker ps -a --filter id=$argv \
         echo -e (set_color green)"Ports   "(set_color normal)$fields[6]
         echo -e (set_color blue)"Name    "(set_color normal)$fields[7]
         echo ""
-    end
+end
