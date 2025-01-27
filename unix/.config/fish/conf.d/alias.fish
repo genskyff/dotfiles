@@ -1,37 +1,35 @@
-#!/usr/bin/env fish
-
 status is-interactive; or return 0
 
-alias cls=clear
+abbr -a cls clear
 
-command -q batcat; and alias bat=batcat
-command -q btm; and alias bt="btm -b"
-command -q choose; and alias cho=choose
-command -q fastfetch; and alias ff=fastfetch
-command -q fdfind; and alias fd=fdfind
-command -q helix; and alias hx=helix
-command -q kitten; and set -q KITTY_PID; and alias s="kitten ssh"
-command -q lazydocker; and alias lad=lazydocker
-command -q lazygit; and alias lg=lazygit
-command -q nvim; and alias nv=nvim
-command -q onefetch; and alias of=onefetch
-command -q zellij; and alias zj=zellij
+command -q batcat; and abbr -a bat batcat
+command -q btm; and abbr bt btm -b
+command -q choose; and abbr -a cho choose
+command -q fastfetch; and abbr -a ff fastfetch
+command -q fdfind; and abbr -a fd fdfind
+command -q helix; and abbr -a hx helix
+command -q kitten; and set -q KITTY_PID; and abbr -a s kitten ssh
+command -q lazydocker; and abbr -a lad lazydocker
+command -q lazygit; and abbr -a lg lazygit
+command -q nvim; and abbr -a nv nvim
+command -q onefetch; and abbr -a of onefetch
+command -q zellij; and abbr -a zj zellij
 
 command -q lsd; and begin
-    alias ls="lsd -N"
-    alias ll="ls -l"
-    alias la="ls -A"
-    alias lla="ll -A"
-    alias lt="ls --tree --depth 1"
-    alias lp="ls --classic"
-    alias ltp="lp --tree --depth 1"
+    abbr -a ls lsd -N
+    abbr -a ll ls -l
+    abbr -a la ls -A
+    abbr -a lla ll -A
+    abbr -a lt ls --tree --depth 1
+    abbr -a lp ls --classic
+    abbr -a ltp lp --tree --depth 1
 end
 
 command -q git; and begin
-    alias gs="git status"
-    alias gw="git switch"
-    alias gd="git diff -w"
-    alias gp="git pull"
-    alias gss="git submodule status"
-    alias gsu="git submodule update"
+    abbr -a gs git status
+    abbr -a gw git switch
+    abbr -a gd git diff -w
+    abbr -a gp git pull
+    abbr -a gss git submodule status
+    abbr -a gsu git submodule update
 end
