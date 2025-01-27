@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function fe --description "Edit fish configuration"
     _cmd_check fzf; or return 1
 

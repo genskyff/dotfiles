@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function dcp --description "Copy files between container and host"
     _docker_check; or return 1
     _cmd_check fzf; or return 1

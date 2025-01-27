@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 if test -f $argv
     if file -b $argv | grep -qiE "(script|text|empty)"
         if _cmd_check --quiet bat

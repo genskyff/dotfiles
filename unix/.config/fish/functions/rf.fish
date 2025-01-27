@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function rf --description "Find with ripgrep and fzf"
     _cmd_check fzf rg; or return 1
     if _cmd_check --quiet bat

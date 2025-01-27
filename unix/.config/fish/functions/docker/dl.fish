@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function dl --description "Logs of container"
     _docker_check; or return 1
     _cmd_check fzf; or return 1

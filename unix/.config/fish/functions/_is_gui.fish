@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 function _is_gui --description "Check shell environment"
     if set -q SSH_CLIENT; or set -q SSH_CONNECTION; or set -q SSH_TTY
         return 1
