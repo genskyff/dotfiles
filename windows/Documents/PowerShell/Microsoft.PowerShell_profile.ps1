@@ -47,6 +47,11 @@ function Open-Folder {
     Invoke-Item $Path
 }
 
+function Which-Command {
+    param($Command)
+    (Get-Command $Command).Path
+}
+
 function Lsd-Invoke {
     $params = @("-N") + $args
     lsd @params
@@ -150,6 +155,7 @@ function Git-Reflog {
 }
 
 Set-Alias -Name open -Value Open-Folder -Force
+Set-Alias -Name which -Value Which-Command -Force
 
 Set-Alias -Name ff -Value fastfetch -Force
 Set-Alias -Name of -Value onefetch -Force
