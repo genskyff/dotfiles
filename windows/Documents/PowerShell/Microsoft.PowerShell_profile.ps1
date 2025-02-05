@@ -1,5 +1,6 @@
-Invoke-Expression (&starship init powershell)
-Invoke-Expression (& { (zoxide init powershell | Out-String) })
+starship init powershell | Invoke-Expression
+zoxide init powershell | Out-String | Invoke-Expression
+mise activate pwsh | Out-String | Invoke-Expression
 
 Import-Module PSReadLine -Force
 Import-Module gsudoModule -Force
