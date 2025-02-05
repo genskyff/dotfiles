@@ -1,4 +1,7 @@
 command -q mise; or return 0
-status is-interactive; or return 0
 
-mise activate fish | source
+if status is-interactive
+  mise activate fish | source
+else
+  mise activate fish --shims | source
+end
