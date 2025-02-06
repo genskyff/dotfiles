@@ -17,7 +17,7 @@
     side-by-side = true
     features = fixed-theme
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 [diff]
     colorMoved = default
 [filter "lfs"]
