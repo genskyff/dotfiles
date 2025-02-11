@@ -12,7 +12,6 @@ command -q kitten; and set -q KITTY_PID; and abbr -a s kitten ssh
 command -q lazydocker; and abbr -a lad lazydocker
 command -q lazygit; and abbr -a lg lazygit
 command -q nvim; and abbr -a nv nvim
-command -q onefetch; and abbr -a of onefetch
 command -q zellij; and abbr -a zj zellij
 
 command -q lsd; and begin
