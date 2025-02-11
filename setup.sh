@@ -35,20 +35,20 @@ else
 fi
 
 # macOS
-brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mise neovim onefetch ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
+brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mise neovim ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr neovim net-tools onefetch openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
+pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr neovim net-tools openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="doggo-bin git-credential-oauth lazydocker-bin mise-bin tlrc-bin usage-bin"
 
 # Debian
 debian_apt_list="bat build-essential clang-format clangd curl docker-compose docker.io duf fd-find fish git iptables less libunwind8 mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat sudo unzip vim wget"
-debian_nix_list="bottom choose doggo dust fastfetch fzf git-credential-oauth delta helix lazydocker lazygit lsd mise neovim onefetch starship tlrc tokei xmake zellij zoxide"
+debian_nix_list="bottom choose doggo dust fastfetch fzf git-credential-oauth delta helix lazydocker lazygit lsd mise neovim starship tlrc tokei xmake zellij zoxide"
 
 # Kali
 kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
-kali_nix_list="bottom choose doggo dust helix lazydocker lazygit mise onefetch tlrc zellij"
+kali_nix_list="bottom choose doggo dust helix lazydocker lazygit mise tlrc zellij"
 
 if [[ "$current_os" == "darwin" ]]; then
     if $is_superuser_privilege; then
