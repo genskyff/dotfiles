@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list = "7zip bat delta fastfetch fzf git gsudo lazydocker lazygit less llvm lsd mingw-winlibs-ucrt mise nilesoft-shell onefetch pandoc ripgrep starship tlrc tokei wireshark xmake zoxide"
+$scoop_list = "7zip bat delta fastfetch fzf git gsudo lazydocker lazygit less llvm localsend lsd mingw-winlibs-ucrt mise nilesoft-shell pandoc potplayer ripgrep snipaste starship tlrc tokei wireshark xmake zoxide"
 $scoop_list = $scoop_list -split " "
 
 $common_path = Join-Path -Path $PSScriptRoot -ChildPath "common\*"
