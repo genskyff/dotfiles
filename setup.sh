@@ -113,10 +113,12 @@ elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
         sudo apt install -y $apt_list
 
         if [[ ! -x "$(command -v brew)" ]]; then
-            info "${light_magenta}Homebrew${info_color} not found. Installing..."
-            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            if [[ ! -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+                info "${light_magenta}Homebrew${info_color} not found. Installing..."
+                bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                ok "${light_magenta}Homebrew${ok_color} has been installed"
+            fi
             eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
         if [[ "$current_os" == "debian" ]]; then
