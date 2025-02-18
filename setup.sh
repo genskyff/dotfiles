@@ -44,11 +44,11 @@ aur_list="doggo-bin git-credential-oauth lazydocker-bin mise-bin tlrc-bin usage-
 
 # Debian
 debian_apt_list="bat build-essential clang-format clangd curl docker-compose docker.io duf fd-find fish git iptables less libunwind8 mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat sudo unzip vim wget"
-debian_nix_list="bottom choose doggo dust fastfetch fzf git-credential-oauth delta helix lazydocker lazygit lsd mise neovim starship tlrc tokei xmake zellij zoxide"
+debian_brew_list="bottom choose-rust doggo dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd mise neovim starship tlrc tokei xmake zellij zoxide"
 
 # Kali
 kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
-kali_nix_list="bottom choose doggo dust helix lazydocker lazygit mise tlrc zellij"
+kali_brew_list="bottom choose-rust doggo dust helix lazydocker lazygit mise tlrc zellij"
 
 if [[ "$current_os" == "darwin" ]]; then
     if $is_superuser_privilege; then
@@ -111,32 +111,25 @@ elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
         sudo apt update
         sudo apt upgrade -y
         sudo apt install -y $apt_list
-    fi
 
-    nix_daemon_path=/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-    if [[ ! -x "$(command -v nix-env)" ]] && [[ ! -d "/nix" ]]; then
-        info "${light_magenta}Nix${info_color} not found. Installing..."
-        curl -fsSL https://nixos.org/nix/install | sh -s -- --daemon --yes
-        ok "${light_magenta}Nix${ok_color} has been installed"
-        eval "$(cat $nix_daemon_path)"
-    elif [[ -f "$nix_daemon_path" ]]; then
-        eval "$(cat $nix_daemon_path)"
-    fi
-
-    info "\nUpdating and installing packages from Nixpkgs..."
-    if [[ "$current_os" == "debian" ]]; then
-        nix_list=$debian_nix_list
-    elif [[ "$current_os" == "kali" ]]; then
-        nix_list=$kali_nix_list
-    fi
-
-    for pkg in $nix_list; do
-        if [[ "$current_user" == "root" ]]; then
-            nix-env -iA nixpkgs.$pkg
-        else
-            sudo -i nix-env -iA nixpkgs.$pkg
+        if [[ ! -x "$(command -v brew)" ]]; then
+            info "${light_magenta}Homebrew${info_color} not found. Installing..."
+            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+            ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
-    done
+
+        if [[ "$current_os" == "debian" ]]; then
+            linux_brew_list=$debian_brew_list
+        elif [[ "$current_os" == "kali" ]]; then
+            linux_brew_list=$kali_brew_list
+        fi
+
+        info "Updating and installing packages from Homebrew..."
+        brew upgrade
+        brew install $linux_brew_list
+        brew cleanup --prune=all
+    fi
 fi
 
 if [[ "$current_os" != "darwin" ]] && [[ "$current_user" != "root" ]] then
