@@ -1,7 +1,11 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list = "7zip bat delta fastfetch fzf git gsudo lazydocker lazygit less llvm localsend lsd mingw-winlibs-ucrt mise nilesoft-shell pandoc potplayer ripgrep snipaste starship tlrc tokei wireshark xmake zoxide"
+$scoop_list = "7zip bat delta fastfetch fzf gsudo lazydocker lazygit less llvm localsend lsd mingw-winlibs-ucrt mise nilesoft-shell pandoc potplayer ripgrep snipaste starship tlrc tokei xmake zoxide"
 $scoop_list = $scoop_list -split " "
+
+$scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
+$scoop_lemon_list = "piclist"
+$scoop_lemon_list = $scoop_lemon_list -split " " | ForEach-Object { "lemon/$_" }
 
 $common_path = Join-Path -Path $PSScriptRoot -ChildPath "common\*"
 $windows_path = Join-Path -Path $PSScriptRoot -ChildPath "windows\*"
@@ -16,9 +20,14 @@ if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
 }
 
 info "Installing packages..."
+scoop install git
+
 scoop bucket add extras
-scoop update
+scoop bucket add versions
 scoop install $scoop_list
+
+scoop bucket add $scoop_lemon_bucket
+scoop install $scoop_lemon_list
 
 warn -n "Copy config files to overwrite existing configs? (y/N): "
 $answer = Read-Host
