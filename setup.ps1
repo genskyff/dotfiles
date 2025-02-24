@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list = "7zip bat delta fastfetch fzf gsudo lazydocker lazygit less llvm localsend lsd mingw-winlibs-ucrt mise nilesoft-shell pandoc potplayer ripgrep snipaste starship tlrc tokei xmake zoxide"
+$scoop_list = "7zip bat delta deno fastfetch fzf gsudo lazydocker lazygit less llvm localsend lsd mingw-winlibs-ucrt mise msys2 nilesoft-shell pandoc potplayer qbittorrent-enhanced qq-nt ripgrep snipaste starship tlrc tokei typora wechat xmake zoxide"
 $scoop_list = $scoop_list -split " "
 
 $scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
@@ -21,6 +21,7 @@ if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
 
 info "Installing packages..."
 scoop install git
+scoop update
 
 scoop bucket add extras
 scoop bucket add versions
