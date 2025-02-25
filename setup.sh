@@ -35,19 +35,19 @@ else
 fi
 
 # macOS
-brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mise neovim ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
+brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mise ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
 
 # Arch
-pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr neovim net-tools openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
+pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr net-tools openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
 yay_url=https://aur.archlinux.org/yay-bin.git
 aur_list="doggo-bin git-credential-oauth lazydocker-bin mise-bin tlrc-bin usage-bin"
 
 # Debian
 debian_apt_list="bat build-essential clang-format clangd curl docker-compose docker.io duf fd-find fish git iptables less libunwind8 mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat sudo unzip vim wget"
-debian_brew_list="bottom choose-rust doggo dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd mise neovim starship tlrc tokei xmake zellij zoxide"
+debian_brew_list="bottom choose-rust doggo dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd mise starship tlrc tokei xmake zellij zoxide"
 
 # Kali
-kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr neovim net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
+kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
 kali_brew_list="bottom choose-rust doggo dust helix lazydocker lazygit mise tlrc zellij"
 
 if [[ "$current_os" == "darwin" ]]; then
@@ -192,35 +192,4 @@ if [[ "$answer" == [yY] ]]; then
     cp -a "$script_path"/unix/. $HOME/
 fi
 
-nvim_config_url=https://github.com/genskyff/nvim.git
-nvim_config_path=$HOME/.config/nvim
-
-is_exist_nvim_config=false
-if [[ -d "$nvim_config_path" ]]; then
-    if [[ $(ls -A "$nvim_config_path") ]]; then
-        is_exist_nvim_config=true
-    else
-        rm -rf "$nvim_config_path"
-    fi
-fi
-
-if $is_exist_nvim_config; then
-    warn -n "Existing nvim config. Backup and use the new one? (y/N): "
-    read answer
-    answer=${answer:-n}
-
-    if [[ "$answer" == [yY] ]]; then
-        info "Backup the existing neovim config..."
-        rm -rf $HOME/.config/nvim.bak
-        mv "$nvim_config_path" $HOME/.config/nvim.bak
-    else
-        ok "\nAll done"
-        exit
-    fi
-else
-    rm -rf $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim
-fi
-
-info "Cloning the neovim config repository..."
-git clone "$nvim_config_url" "$nvim_config_path"
 ok "\nAll done"
