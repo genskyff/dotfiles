@@ -1,6 +1,10 @@
 font-family = Maple Mono NF CN
 font-size = 15
 theme = Snazzy
+cursor-style = block
 background-opacity = 0.8
-window-save-state = always
+maximize = true
+window-padding-x = 10
+window-padding-y = 10
+shell-integration-features = no-cursor
 macos-option-as-alt = true
