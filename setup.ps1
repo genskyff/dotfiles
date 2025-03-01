@@ -1,7 +1,38 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list = "7zip bat delta deno fastfetch fzf gsudo lazydocker lazygit less llvm localsend lsd mingw-winlibs-ucrt mise msys2 nilesoft-shell pandoc potplayer qbittorrent-enhanced qq-nt ripgrep snipaste starship tlrc tokei typora wechat xmake zoxide"
-$scoop_list = $scoop_list -split " "
+$scoop_list = "
+7zip
+bat
+delta
+deno
+fastfetch
+fzf
+gsudo
+lazydocker
+lazygit
+less
+llvm
+localsend
+lsd
+mingw-winlibs-ucrt
+mise
+msys2
+nilesoft-shell
+pandoc
+potplayer
+qbittorrent-enhanced
+qq-nt
+ripgrep
+snipaste
+starship
+tlrc
+tokei
+typora
+wechat
+xmake
+zoxide
+"
+$scoop_list = $scoop_list.Trim() -split "\n"
 
 $scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
 $scoop_lemon_list = "piclist"
