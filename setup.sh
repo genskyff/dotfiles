@@ -4,6 +4,7 @@ set -e
 
 script_path=$(realpath $(dirname "$0"))
 . "$script_path/lib/color.sh"
+. "$script_path/lib/pkg_list.sh"
 
 if [[ $(uname) = Darwin ]]; then
     current_os="darwin"
@@ -33,22 +34,6 @@ if [[ -n "$SUDO_USER" ]]; then
 else
     current_user="${USER:-$(whoami)}"
 fi
-
-# macOS
-brew_list="bat bottom choose-rust clang-format curl doggo duf dust fastfetch fd fish fzf git-delta helix lazydocker lazygit lsd mise ripgrep sd starship tlrc tokei wget xmake zellij zoxide"
-
-# Arch
-pacman_list="base-devel bat bind bottom choose clang curl docker docker-buildx docker-compose duf dust fastfetch fd fish fzf git git-delta helix lazygit less libunwind lsd mtr net-tools openbsd-netcat openssh ripgrep sd socat starship sudo tokei unzip wget xmake zellij zoxide"
-yay_url=https://aur.archlinux.org/yay-bin.git
-aur_list="doggo-bin git-credential-oauth lazydocker-bin mise-bin tlrc-bin usage-bin"
-
-# Debian
-debian_apt_list="bat build-essential clang-format clangd curl docker-compose docker.io duf fd-find fish git iptables less libunwind8 mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat sudo unzip vim wget"
-debian_brew_list="bottom choose-rust doggo dust fastfetch fzf git-credential-oauth git-delta helix lazydocker lazygit lsd mise starship tlrc tokei xmake zellij zoxide"
-
-# Kali
-kali_apt_list="bat build-essential clang-format clangd curl docker.io duf fastfetch fd-find fish fzf git git-credential-oauth git-delta iptables less libunwind8 lsd mtr net-tools netcat-openbsd openssh-client openssh-server procps ripgrep sd socat starship sudo tokei unzip vim wget xmake zoxide"
-kali_brew_list="bottom choose-rust doggo dust helix lazydocker lazygit mise tlrc zellij"
 
 if [[ "$current_os" == "darwin" ]]; then
     if $is_superuser_privilege; then
