@@ -18,6 +18,7 @@ mingw-winlibs-ucrt
 mise
 msys2
 nilesoft-shell
+nu
 pandoc
 potplayer
 qbittorrent-enhanced
