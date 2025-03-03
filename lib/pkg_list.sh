@@ -19,6 +19,7 @@ lazydocker
 lazygit
 lsd
 mise
+nushell
 ripgrep
 sd
 starship
@@ -52,6 +53,7 @@ lazygit
 less
 lsd
 mtr
+nushell
 openssh
 ripgrep
 sd
