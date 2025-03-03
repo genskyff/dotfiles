@@ -24,10 +24,10 @@ command -q lsd; and begin
 end
 
 command -q git; and begin
-    abbr -a gs git status
-    abbr -a gw git switch
     abbr -a gd git diff -w
     abbr -a gp git pull
+    abbr -a gs git status
+    abbr -a gw git switch
     abbr -a gss git submodule status
     abbr -a gsu git submodule update
 end
