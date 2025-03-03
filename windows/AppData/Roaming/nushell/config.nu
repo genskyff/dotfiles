@@ -9,17 +9,30 @@ if not ($autoload_dir | path exists) {
 }
 
 let mise_config = $nu.data-dir | path join "vendor/autoload/mise.nu"
-let starship_config = $nu.data-dir | path join "vendor/autoload/starship.nu"
-let zoxide_config = $nu.data-dir | path join "vendor/autoload/zoxide.nu"
+if (which mise | is-not-empty) {
+    if not ($mise_config | path exists) {
+        mise activate nu --shims | save -f $mise_config
+    }
+} else {
+    rm -f $mise_config
+}
 
-if not ($mise_config | path exists) {
-    mise activate nu --shims | save -f $mise_config
+let starship_config = $nu.data-dir | path join "vendor/autoload/starship.nu"
+if (which starship | is-not-empty) {
+    if not ($starship_config | path exists) {
+        starship init nu | save -f $starship_config
+    }
+} else {
+    rm -f $starship_config
 }
-if not ($starship_config | path exists) {
-    starship init nu | save -f $starship_config
-}
-if not ($zoxide_config | path exists) {
-    zoxide init nushell | save -f $zoxide_config
+
+let zoxide_config = $nu.data-dir | path join "vendor/autoload/zoxide.nu"
+if (which zoxide | is-not-empty) {
+    if not ($zoxide_config | path exists) {
+        zoxide init nushell | save -f $zoxide_config
+    }
+} else {
+    rm -f $zoxide_config
 }
 
 if (which fzf | is-not-empty) {
@@ -37,7 +50,7 @@ if (which less | is-not-empty) {
 }
 
 def gb [] {
-    if (git rev-parse --is-inside-work-tree) != 'true' { return }
+    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != 'true' { return }
     mut branches = git branch | lines
     let current_ref = git rev-parse --abbrev-ref HEAD
     mut fzf_args = [
@@ -55,25 +68,25 @@ def gb [] {
 }
 
 def gl [] {
-    if (git rev-parse --is-inside-work-tree) != 'true' { return }
+    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != 'true' { return }
     git log --oneline --date="format:%y/%m/%d" --color=always --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"
         | fzf --preview "git show --color=always {2}" --bind "enter:become(git checkout {2})"
 }
 
 def grl [] {
-    if (git rev-parse --is-inside-work-tree) != 'true' { return }
+    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != 'true' { return }
     git reflog --color=always --date="format:%y/%m/%d %H:%M" --format="%C(auto)%cd %h%d %gs"
         | fzf --preview "git show --color=always {3}" --bind "enter:become(git checkout {3})"
 }
 
 alias ff = fastfetch
-alias lg = lazygit
 alias lad = lazydocker
+alias lg = lazygit
 alias sudo = gsudo
 
-alias gw = git switch
-alias gs = git status
 alias gd = git diff -w
 alias gp = git pull
+alias gs = git status
+alias gw = git switch
 alias gss = git submodule status
 alias gsu = git submodule update
