@@ -88,8 +88,13 @@ function Ls-Tree-Pure {
     Ls-Tree @params
 }
 
-function Git-Switch {
-    $params = @("switch") + $args
+function Git-Diff {
+    $params = @("diff", "-w") + $args
+    git @params
+}
+
+function Git-Pull {
+    $params = @("pull") + $args
     git @params
 }
 
@@ -98,13 +103,8 @@ function Git-Status {
     git @params
 }
 
-function Git-Diff {
-    $params = @("diff", "-w") + $args
-    git @params
-}
-
-function Git-Pull {
-    $params = @("pull") + $args
+function Git-Switch {
+    $params = @("switch") + $args
     git @params
 }
 
@@ -159,8 +159,8 @@ Set-Alias -Name open -Value Open-Folder -Force
 Set-Alias -Name which -Value Which-Command -Force
 
 Set-Alias -Name ff -Value fastfetch -Force
-Set-Alias -Name lg -Value lazygit -Force
 Set-Alias -Name lad -Value lazydocker -Force
+Set-Alias -Name lg -Value lazygit -Force
 Set-Alias -Name sudo -Value gsudo -Force
 
 Set-Alias -Name ls -Value Lsd-Invoke -Force
@@ -171,10 +171,10 @@ Set-Alias -Name lt -Value Ls-Tree -Force
 Set-Alias -Name lp -Value Ls-Pure -Force
 Set-Alias -Name ltp -Value Ls-Tree-Pure -Force
 
-Set-Alias -Name gw -Value Git-Switch -Force
-Set-Alias -Name gs -Value Git-Status -Force
 Set-Alias -Name gd -Value Git-Diff -Force
 Set-Alias -Name gp -Value Git-Pull -Force
+Set-Alias -Name gs -Value Git-Status -Force
+Set-Alias -Name gw -Value Git-Switch -Force
 Set-Alias -Name gss -Value Git-Submodule-Status -Force
 Set-Alias -Name gsu -Value Git-Submodule-Update -Force
 
