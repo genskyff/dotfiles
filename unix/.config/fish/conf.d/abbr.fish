@@ -30,4 +30,9 @@ command -q git; and begin
     abbr -a gw git switch
     abbr -a gss git submodule status
     abbr -a gsu git submodule update
+
+    command -q difft; and begin
+        abbr -a gdt git -c diff.external=difft diff
+        abbr -a glt git -c diff.external=difft log --ext-diff -p
+    end
 end

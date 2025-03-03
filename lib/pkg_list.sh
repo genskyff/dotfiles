@@ -6,6 +6,7 @@ bat
 bottom
 choose-rust
 curl
+difftastic
 doggo
 duf
 dust
@@ -37,6 +38,7 @@ bat
 bottom
 choose
 curl
+difftastic
 docker
 docker-buildx
 docker-compose
@@ -101,6 +103,7 @@ wget
 debian_brew_list="
 bottom
 choose-rust
+difftastic
 doggo
 dust
 fastfetch
@@ -152,6 +155,7 @@ zoxide
 kali_brew_list="
 bottom
 choose-rust
+difftastic
 doggo
 dust
 helix

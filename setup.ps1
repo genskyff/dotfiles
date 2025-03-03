@@ -5,6 +5,7 @@ $scoop_list = "
 bat
 delta
 deno
+difftastic
 fastfetch
 fzf
 gsudo

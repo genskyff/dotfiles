@@ -118,6 +118,16 @@ function Git-Submodule-Update {
     git @params
 }
 
+function Git-Difft {
+    $params = @("-c", "diff.external=difft", "diff") + $args
+    git @params
+}
+
+function Git-Logt {
+    $params = @("-c", "diff.external=difft", "log", "--ext-diff", "-p") + $args
+    git @params
+}
+
 function Git-Branch {
     if (!(git rev-parse --is-inside-work-tree)) { return }
     $branches = git branch
@@ -177,6 +187,9 @@ Set-Alias -Name gs -Value Git-Status -Force
 Set-Alias -Name gw -Value Git-Switch -Force
 Set-Alias -Name gss -Value Git-Submodule-Status -Force
 Set-Alias -Name gsu -Value Git-Submodule-Update -Force
+
+Set-Alias -Name gdt -Value Git-Difft -Force
+Set-Alias -Name glt -Value Git-Logt -Force
 
 Set-Alias -Name gb -Value Git-Branch -Force
 Set-Alias -Name gl -Value Git-Log -Force
