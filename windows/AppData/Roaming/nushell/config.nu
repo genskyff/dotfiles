@@ -88,6 +88,7 @@ alias gd = git diff -w
 alias gp = git pull
 alias gs = git status
 alias gw = git switch
+
 alias gss = git submodule status
 alias gsu = git submodule update
 
