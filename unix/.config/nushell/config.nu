@@ -17,14 +17,14 @@ if (which mise | is-not-empty) {
     rm -f $mise_config
 }
 
-let starship_config = $nu.data-dir | path join "vendor/autoload/starship.nu"
-if (which starship | is-not-empty) {
-    if not ($starship_config | path exists) {
-        starship init nu | save -f $starship_config
-    }
-} else {
-    rm -f $starship_config
-}
+# let starship_config = $nu.data-dir | path join "vendor/autoload/starship.nu"
+# if (which starship | is-not-empty) {
+#     if not ($starship_config | path exists) {
+#         starship init nu | save -f $starship_config
+#     }
+# } else {
+#     rm -f $starship_config
+# }
 
 let zoxide_config = $nu.data-dir | path join "vendor/autoload/zoxide.nu"
 if (which zoxide | is-not-empty) {
