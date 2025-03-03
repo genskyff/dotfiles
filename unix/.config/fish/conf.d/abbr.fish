@@ -28,6 +28,7 @@ command -q git; and begin
     abbr -a gp git pull
     abbr -a gs git status
     abbr -a gw git switch
+
     abbr -a gss git submodule status
     abbr -a gsu git submodule update
 
