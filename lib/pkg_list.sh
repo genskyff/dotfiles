@@ -139,7 +139,6 @@ git-delta
 less
 lsd
 mtr
-nftables
 openssh-client
 openssh-server
 ripgrep
