@@ -60,7 +60,7 @@ scoop bucket add extras
 scoop bucket add versions
 scoop install $scoop_list
 
-scoop bucket add $scoop_lemon_bucket
+scoop bucket add lemon $scoop_lemon_bucket
 scoop install $scoop_lemon_list
 
 warn -n "Copy config files to overwrite existing configs? (y/N): "
