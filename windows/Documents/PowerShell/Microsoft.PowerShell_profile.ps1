@@ -25,7 +25,6 @@ Set-PSReadLineKeyHandler -Chord Ctrl+e -Function EndOfLine
 Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteChar
 Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteChar
 Set-PSReadLineKeyHandler -Chord Alt+d -Function DeleteWord
-Set-PSReadLineKeyHandler -Chord Alt+w -Function BackwardDeleteWord
 Set-PSReadLineKeyHandler -Chord Ctrl+k -Function ForwardDeleteLine
 Set-PSReadLineKeyHandler -Chord Ctrl+u -Function BackwardDeleteLine
 
