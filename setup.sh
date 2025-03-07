@@ -169,7 +169,11 @@ else
         read answer
         answer=${answer:-y}
         if [[ "$answer" == [yY] ]]; then
-            chsh -s "$(command -v fish | sed 's/sbin/bin/')" "$current_user"
+            if $is_superuser_privilege; then
+                chsh -s "$(command -v fish | sed 's/sbin/bin/')" "$current_user"
+            else
+                sudo chsh -s "$(command -v fish | sed 's/sbin/bin/')" "$current_user"
+            fi
         fi
     fi
 fi
