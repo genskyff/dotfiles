@@ -1,6 +1,5 @@
 def se [] {
-    let prefix = if ($nu.os-info | get name) == "windows" { "C:" } else { "" }
-    let ssh_dir = $prefix | path join $env.HOMEPATH .ssh
+    let ssh_dir = $nu.home-path | path join .ssh
     let ssh_config = $ssh_dir | path join config
     let ssh_confd_dir = $ssh_dir | path join conf.d
     mut files = []
