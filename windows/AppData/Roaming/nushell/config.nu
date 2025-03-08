@@ -3,14 +3,9 @@ $env.config = {
     show_banner: false
 }
 
-let autoload_dir = $nu.data-dir | path join vendor autoload
-if not ($autoload_dir | path exists) {
-    mkdir $autoload_dir
-}
-
-let utils_dir = $nu.data-dir | path join utils
-if not ($utils_dir | path exists) {
-    mkdir $utils_dir
+let vendor_autoload_dir = $nu.data-dir | path join vendor autoload
+if not ($vendor_autoload_dir | path exists) {
+    mkdir $vendor_autoload_dir
 }
 
 let mise_config = $nu.data-dir | path join vendor autoload mise.nu
@@ -39,64 +34,3 @@ if (which zoxide | is-not-empty) {
 } else {
     rm -f $zoxide_config
 }
-
-if (which fzf | is-not-empty) {
-    $env.FZF_DEFAULT_OPTS = $"--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
-                            --preview 'nu ($utils_dir | path join _fzf_preview.nu) {}'
-                            --preview-window 'hidden,border-left,60%'
-                            --bind 'alt-/:change-preview-window\(90%|60%\)'
-                            --bind 'alt-,:toggle-wrap'
-                            --bind 'alt-.:toggle-preview-wrap'
-                            --bind 'ctrl-/:toggle-preview'
-                            --bind 'alt-f:preview-page-down,alt-b:preview-page-up'"
-}
-
-if (which less | is-not-empty) {
-    $env.LESS = "-iRF"
-}
-
-def gb [] {
-    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != 'true' { return }
-    mut branches = git branch | lines
-    let current_ref = git rev-parse --abbrev-ref HEAD
-    mut fzf_args = [
-        '--preview' 'git log {-1} --oneline --graph --date="format:%y/%m/%d" --color=always --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"'
-        '--bind' 'start:toggle-preview'
-        '--bind' 'enter:become(git switch {-1})'
-    ]
-
-    if $current_ref == "HEAD" {
-        $fzf_args ++= ['--header', $branches.0]
-        $branches = $branches | skip 1
-    }
-
-    $branches | str join "\n" | fzf ...$fzf_args
-}
-
-def gl [] {
-    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != 'true' { return }
-    git log --oneline --date="format:%y/%m/%d" --color=always --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"
-        | fzf --preview "git show --color=always {2}" --bind "enter:become(git checkout {2})"
-}
-
-def grl [] {
-    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != 'true' { return }
-    git reflog --color=always --date="format:%y/%m/%d %H:%M" --format="%C(auto)%cd %h%d %gs"
-        | fzf --preview "git show --color=always {3}" --bind "enter:become(git checkout {3})"
-}
-
-alias ff = fastfetch
-alias lad = lazydocker
-alias lg = lazygit
-alias sudo = gsudo
-
-alias gd = git diff -w
-alias gp = git pull
-alias gs = git status
-alias gw = git switch
-
-alias gss = git submodule status
-alias gsu = git submodule update
-
-alias gdt = git -c diff.external=difft diff
-alias glt = git -c diff.external=difft log --ext-diff -p
