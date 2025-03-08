@@ -3,12 +3,17 @@ $env.config = {
     show_banner: false
 }
 
-let autoload_dir = $nu.data-dir | path join "vendor/autoload"
+let autoload_dir = $nu.data-dir | path join vendor autoload
 if not ($autoload_dir | path exists) {
     mkdir $autoload_dir
 }
 
-let mise_config = $nu.data-dir | path join "vendor/autoload/mise.nu"
+let utils_dir = $nu.data-dir | path join utils
+if not ($utils_dir | path exists) {
+    mkdir $utils_dir
+}
+
+let mise_config = $nu.data-dir | path join vendor autoload mise.nu
 if (which mise | is-not-empty) {
     if not ($mise_config | path exists) {
         mise activate nu --shims | save -f $mise_config
@@ -17,7 +22,7 @@ if (which mise | is-not-empty) {
     rm -f $mise_config
 }
 
-let starship_config = $nu.data-dir | path join "vendor/autoload/starship.nu"
+let starship_config = $nu.data-dir | path join vendor autoload starship.nu
 if (which starship | is-not-empty) {
     if not ($starship_config | path exists) {
         starship init nu | save -f $starship_config
@@ -26,7 +31,7 @@ if (which starship | is-not-empty) {
     rm -f $starship_config
 }
 
-let zoxide_config = $nu.data-dir | path join "vendor/autoload/zoxide.nu"
+let zoxide_config = $nu.data-dir | path join vendor autoload zoxide.nu
 if (which zoxide | is-not-empty) {
     if not ($zoxide_config | path exists) {
         zoxide init nushell | save -f $zoxide_config
@@ -36,9 +41,10 @@ if (which zoxide | is-not-empty) {
 }
 
 if (which fzf | is-not-empty) {
-    $env.FZF_DEFAULT_OPTS = "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
+    $env.FZF_DEFAULT_OPTS = $"--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
+                            --preview 'nu ($utils_dir | path join _fzf_preview.nu) {}'
                             --preview-window 'hidden,border-left,60%'
-                            --bind 'alt-/:change-preview-window(90%|60%)'
+                            --bind 'alt-/:change-preview-window\(90%|60%\)'
                             --bind 'alt-,:toggle-wrap'
                             --bind 'alt-.:toggle-preview-wrap'
                             --bind 'ctrl-/:toggle-preview'
