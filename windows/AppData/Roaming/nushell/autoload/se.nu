@@ -14,6 +14,6 @@ def se [] {
 
     let nth = ($ssh_dir | split row '\' | length) + 1
     let delimiter = if ($nu.os-info | get name) == "windows" { '\' } else { '/' }
-    let utils_dir = $nu.data-dir | path join utils
+    let utils_dir = $nu.default-config-dir | path join utils
     $files | str join "\n" | fzf --with-nth $"($nth).." -d $delimiter --preview-window hidden --bind $"enter:become\(nu ($utils_dir | path join edit.nu) {}\)"
 }

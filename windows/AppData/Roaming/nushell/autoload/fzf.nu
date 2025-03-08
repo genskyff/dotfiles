@@ -1,4 +1,4 @@
-let utils_dir = $nu.data-dir | path join utils
+let utils_dir = $nu.default-config-dir | path join utils
 if (which fzf | is-not-empty) {
     $env.FZF_DEFAULT_OPTS = $"--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
                             --preview 'nu ($utils_dir | path join fzf_preview.nu) {}'
