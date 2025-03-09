@@ -30,7 +30,7 @@ function rf --description "Find with ripgrep and fzf"
         --preview-window "up,border-bottom,+{2}+3/3,~3" \
         --bind "start:toggle-preview+reload:$rg_prefix {q} || true" \
         --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
-        --bind "alt-0:transform:fish -c '$toggle'" \
-        --bind "enter:become(fish -c '$edit')"
+        --bind "alt-0:transform:$toggle" \
+        --bind "enter:become($edit)"
     rm -f /tmp/rf-{r,f}
 end

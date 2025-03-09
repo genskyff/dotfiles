@@ -18,5 +18,5 @@ function se --description "Edit ssh configuration"
     string join \n $files \
         | fzf --with-nth "$nth.." -d/ \
             --preview-window hidden \
-            --bind "enter:become(fish -c '$EDITOR {}')"
+            --bind "enter:become($EDITOR {})"
 end
