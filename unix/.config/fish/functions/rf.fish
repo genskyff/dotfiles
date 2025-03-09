@@ -23,7 +23,7 @@ function rf --description "Find with ripgrep and fzf"
 
     fzf -d: \
         --height 100% --disabled \
-        --header 'Alt-0: Switch between ripgrep/fzf' \
+        --header "Alt-0: Switch between ripgrep/fzf" \
         --prompt "ripgrep> " \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --preview "$bat --color always {1} --highlight-line {2}" \
