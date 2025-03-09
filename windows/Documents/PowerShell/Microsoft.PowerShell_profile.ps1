@@ -132,7 +132,7 @@ function Git-Branch {
     $branches = git branch
     $current_ref = git rev-parse --abbrev-ref HEAD
     $fzf_args = @(
-        '--preview', 'git log {-1} --oneline --graph --date="format:%y/%m/%d" --color=always --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"',
+        '--preview', 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"',
         '--bind', 'start:toggle-preview',
         '--bind', 'enter:become(git switch {-1})'
     )
