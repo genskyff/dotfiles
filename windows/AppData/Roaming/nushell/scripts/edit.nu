@@ -1,9 +1,10 @@
-def main [argv: string] {
-    if (which code | is-not-empty) {
-        code $argv
-    } else if (which hx | is-not-empty) {
-        hx $argv
+def main [...argv: string] {
+    let editor = $env.config.buffer_editor
+    if ($editor == "code") {
+        code ...$argv
+    } else if ($editor == "hx") {
+        hx ...$argv
     } else {
-        start $argv
+        start $argv.0
     }
 }
