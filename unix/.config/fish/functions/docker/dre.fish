@@ -4,7 +4,7 @@ function dre --description "Restart container"
 
     _container_list -a |
         fzf --with-nth "2.." --multi \
-            --preview "$__fish_config_dir/functions/docker/_fzf_preview.fish {1}" \
+            --preview "fish $__fish_config_dir/functions/docker/_fzf_preview.fish {1}" \
             --bind "start:toggle-preview" \
             --bind "ctrl-a:select-all,ctrl-d:deselect-all,tab:toggle,enter:become(docker restart {+2})"
 end
