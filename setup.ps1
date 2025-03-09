@@ -7,6 +7,7 @@ delta
 deno
 difftastic
 fastfetch
+fd
 fzf
 gsudo
 lazydocker
