@@ -14,5 +14,5 @@ def se [] {
 
     let nth = ($ssh_dir | split row '\' | length) + 1
     let scripts_dir = $nu.default-config-dir | path join scripts
-    $files | str join "\n" | fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(nu ($scripts_dir | path join edit.nu) {}\)"
+    $files | str join "\n" | fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(nu ($scripts_dir | path join edit.nu) {})"
 }
