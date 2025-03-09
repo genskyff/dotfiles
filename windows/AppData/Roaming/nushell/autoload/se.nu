@@ -13,6 +13,6 @@ def se [] {
     }
 
     let nth = ($ssh_dir | split row '\' | length) + 1
-    let utils_dir = $nu.default-config-dir | path join utils
-    $files | str join "\n" | fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(nu ($utils_dir | path join edit.nu) {}\)"
+    let scripts_dir = $nu.default-config-dir | path join scripts
+    $files | str join "\n" | fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(nu ($scripts_dir | path join edit.nu) {}\)"
 }
