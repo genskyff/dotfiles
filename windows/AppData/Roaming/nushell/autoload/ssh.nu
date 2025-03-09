@@ -16,7 +16,10 @@ def ssh-config-files [] {
 }
 
 def s [...argv] {
-    let host = (bat -p ...(ssh-config-files) | find "Host " | split column ' ' | get column2 | where $it !~ '.*\..*' | to text | fzf --preview-window hidden)
+    let host = try {
+        (bat -p ...(ssh-config-files | if ($in | is-empty) {''} else {$in}) | find "Host " | split column ' ' | get column2 | where $it !~ '.*\..*')
+    } | to text | fzf --preview-window hidden
+
     if ($host | is-not-empty) {
         ssh $host ...$argv
     }
