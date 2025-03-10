@@ -8,7 +8,6 @@ command -q choose; and abbr -a cho choose
 command -q fastfetch; and abbr -a ff fastfetch
 command -q fdfind; and abbr -a fd fdfind
 command -q helix; and abbr -a hx helix
-command -q kitten; and set -q KITTY_PID; and abbr -a s kitten ssh
 command -q lazydocker; and abbr -a lad lazydocker
 command -q lazygit; and abbr -a lg lazygit
 command -q zellij; and abbr -a zj zellij
