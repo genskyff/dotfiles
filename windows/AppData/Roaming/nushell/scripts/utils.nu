@@ -10,8 +10,8 @@ export def edit [...argv: string] {
 }
 
 export def fzf_preview [argv: string] {
-    let target = echo $argv | path expand
-    let type = echo $target | path type
+    let target = $argv | path expand
+    let type = $target | path type
 
     if $type == "file" {
         bat --color always $target
