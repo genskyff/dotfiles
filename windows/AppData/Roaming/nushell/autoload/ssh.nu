@@ -1,5 +1,5 @@
 module ssh-utils {
-    export def ssh-config-files [] {
+    export def ssh-config-list [] {
         let ssh_path = $nu.home-path | path join .ssh
         let ssh_config_path = $ssh_path | path join config
         let ssh_confd_path = $ssh_path | path join conf.d
@@ -18,8 +18,8 @@ module ssh-utils {
 }
 
 def s [...argv] {
-    use ssh-utils ssh-config-files
-    let host = (ssh-config-files | if ($in | is-empty) {''} else {bat -p ...$in} | lines | find -r '^\s*Host\s+\S+' | find -v '*' | split column -r '\s+' | get column2 | to text | fzf --preview-window hidden)
+    use ssh-utils ssh-config-list
+    let host = (ssh-config-list | if ($in | is-empty) {''} else {bat -p ...$in} | lines | find -r '^\s*Host\s+\S+' | find -v '*' | split column -r '\s+' | get column2 | to text | fzf --preview-window hidden)
 
     if ($host | is-not-empty) {
         ssh $host ...$argv
@@ -27,9 +27,9 @@ def s [...argv] {
 }
 
 def se [] {
-    use ssh-utils ssh-config-files
+    use ssh-utils ssh-config-list
     let ssh_path = $nu.home-path | path join .ssh
     let nth = ($ssh_path | split row '\' | length) + 1
-    ssh-config-files | str join "\n" |
+    ssh-config-list | str join "\n" |
         fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(use utils.nu edit; edit {})"
 }
