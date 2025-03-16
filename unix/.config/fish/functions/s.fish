@@ -7,8 +7,8 @@ function s --description "SSH with fzf"
     test -n "$host"; or return 1
 
     if command -q kitten; and set -q KITTY_PID
-        kitten ssh $host $argv
+        kitten ssh "$host" $argv
     else
-        ssh $host $argv
+        ssh "$host" $argv
     end
 end

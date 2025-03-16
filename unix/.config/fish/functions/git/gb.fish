@@ -5,7 +5,7 @@ function gb --description "git branch with fzf"
     set branches (git branch)
     set current_ref $(git rev-parse --abbrev-ref HEAD)
     set header
-    if test $current_ref = HEAD
+    if test "$current_ref" = HEAD
         set header --header $branches[1]
         set branches $branches[2..-1]
     end

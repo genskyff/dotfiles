@@ -15,6 +15,6 @@ function _ssh_config_list --description "List ssh configuration files"
     test -d $ssh_confd_path; and set -a list ($fd . $ssh_confd_path -tf -L)
 
     for file in $list
-        echo $file
+        echo "$file"
     end
 end
