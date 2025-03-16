@@ -1,9 +1,9 @@
 function _fzf_preview --description "Preview file or directory with fzf"
     if test -f $argv
         if file -b $argv | grep -qiE "(script|text|empty)"
-            if _cmd_check --quiet bat
+            if _cmd_check -q bat
                 set -f cmd bat --color always
-            else if _cmd_check --quiet batcat
+            else if _cmd_check -q batcat
                 set -f cmd batcat --color always
             else
                 set -f cmd cat

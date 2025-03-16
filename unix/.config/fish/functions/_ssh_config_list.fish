@@ -1,7 +1,7 @@
 function _ssh_config_list --description "List ssh configuration files"
-    if _cmd_check --quiet fd
+    if _cmd_check -q fd
         set fd fd
-    else if _cmd_check --quiet fdfind
+    else if _cmd_check -q fdfind
         set fd fdfind
     else
         echo -e "$(set_color red)Error$(set_color normal): 'fd' command not found" >&2

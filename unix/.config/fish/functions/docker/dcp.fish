@@ -2,8 +2,8 @@ function dcp --description "Copy files between container and host"
     _docker_check; or return 1
     _cmd_check fzf; or return 1
 
-    argparse -N1 -X2 host -- $argv; or return 1
-    if set -q _flag_host
+    argparse -N1 -X2 H -- $argv; or return 1
+    if set -q _flag_H
         test (count $argv) = 1; and set argv[2] "\$(docker exec {2} bash -c 'echo \$HOME')"
         set args "$argv[1] {2}:$argv[2]"
     else
