@@ -3,7 +3,7 @@ function s --description "SSH with fzf"
 
     set list (_ssh_config_list)
     set result (test -n "$list"; and cat $list)
-    set host (string join \n $result | grep -E '^\s*Host\s+\S+' | grep -v '*' | awk '{print $2}' | fzf --preview-window hidden)
+    set host (string join \n $result | grep -E '^\s*Host\s+\S+' | grep -v "*" | awk '{print $2}' | fzf --preview-window hidden)
     test -n "$host"; or return 1
 
     if command -q kitten; and set -q KITTY_PID

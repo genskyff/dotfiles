@@ -16,12 +16,12 @@ if set -q fd
     set -gx FZF_ALT_C_COMMAND "$fd -td -L --color always $exclude"
 end
 
-set -gx FZF_DEFAULT_OPTS "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator \
-    --with-shell 'fish -c' \
-    --preview 'fish $__fish_config_dir/functions/_fzf_preview.fish {}' \
-    --preview-window 'hidden,border-left,60%' \
-    --bind 'alt-/:change-preview-window(90%|60%)' \
-    --bind 'alt-,:toggle-wrap' \
-    --bind 'alt-.:toggle-preview-wrap' \
-    --bind 'ctrl-/:toggle-preview' \
-    --bind 'alt-f:preview-page-down,alt-b:preview-page-up'"
+set -gx FZF_DEFAULT_OPTS '--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
+    --with-shell "fish -c"
+    --preview "_fzf_preview {}"
+    --preview-window "hidden,border-left,60%"
+    --bind "alt-/:change-preview-window(90%|60%)"
+    --bind "alt-,:toggle-wrap"
+    --bind "alt-.:toggle-preview-wrap"
+    --bind "ctrl-/:toggle-preview"
+    --bind "alt-f:preview-page-down,alt-b:preview-page-up"'

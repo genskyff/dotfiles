@@ -12,7 +12,7 @@ function dcp --description "Copy files between container and host"
     end
 
     _container_list | fzf --with-nth 2 \
-        --preview "fish $__fish_config_dir/functions/docker/_fzf_preview.fish {1}" \
+        --preview "_docker_fzf_preview {1}" \
         --bind "start:toggle-preview" \
         --bind "enter:become(docker cp --follow-link $args)"
 end

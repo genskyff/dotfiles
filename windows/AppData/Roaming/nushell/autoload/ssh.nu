@@ -19,7 +19,7 @@ module ssh-utils {
 
 def s [...argv] {
     use ssh-utils ssh-config-list
-    let host = (ssh-config-list | if ($in | is-empty) {''} else {bat -p ...$in} | lines | find -r '^\s*Host\s+\S+' | find -v '*' | split column -r '\s+' | get column2 | to text | fzf --preview-window hidden)
+    let host = (ssh-config-list | if ($in | is-empty) {""} else {bat -p ...$in} | lines | find -r '^\s*Host\s+\S+' | find -v "*" | split column -r '\s+' | get column2 | to text | fzf --preview-window hidden)
 
     if ($host | is-not-empty) {
         ssh $host ...$argv
