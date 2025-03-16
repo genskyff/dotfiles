@@ -10,6 +10,7 @@ function rf --description "Find with ripgrep and fzf"
     end
 
     argparse H -- $argv; or return 1
+    set -q _flag_H; and set _flag_H "--hidden"
     test (uname) = Darwin; and set exclude "-g !Applications -g !Library"
     set rg "rg -L --line-number --no-heading --color always --smart-case $_flag_H $exclude"
     set toggle '
