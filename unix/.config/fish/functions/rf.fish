@@ -9,9 +9,9 @@ function rf --description "Find with ripgrep and fzf"
         return 1
     end
 
-    argparse hidden -- $argv; or return 1
+    argparse H -- $argv; or return 1
     test (uname) = Darwin; and set exclude "-g !Applications -g !Library"
-    set rg_prefix "rg -L --line-number --no-heading --color always --smart-case $_flag_hidden $exclude"
+    set rg "rg -L --line-number --no-heading --color always --smart-case $_flag_hidden $exclude"
     set toggle '
         if string match -q "*ripgrep*" "$FZF_PROMPT"
             echo "unbind(change)+change-prompt(fzf> )+enable-search+transform-query:echo \{q} > /tmp/rf-r; cat /tmp/rf-f"
@@ -28,8 +28,8 @@ function rf --description "Find with ripgrep and fzf"
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --preview "$bat --color always {1} --highlight-line {2}" \
         --preview-window "up,border-bottom,+{2}+3/3,~3" \
-        --bind "start:toggle-preview+reload:$rg_prefix {q} || true" \
-        --bind "change:reload:sleep 0.1; $rg_prefix {q} || true" \
+        --bind "start:toggle-preview+reload:$rg {q} || true" \
+        --bind "change:reload:sleep 0.1; $rg {q} || true" \
         --bind "alt-0:transform:$toggle" \
         --bind "enter:become($edit)"
     rm -f /tmp/rf-{r,f}

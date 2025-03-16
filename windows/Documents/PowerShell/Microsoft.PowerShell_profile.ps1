@@ -33,13 +33,13 @@ if (Get-Command less -ErrorAction SilentlyContinue) {
 }
 
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
-    $env:FZF_DEFAULT_OPTS = "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
-                            --preview-window 'hidden,border-left,60%'
-                            --bind 'alt-/:change-preview-window(90%|60%)'
-                            --bind 'alt-,:toggle-wrap'
-                            --bind 'alt-.:toggle-preview-wrap'
-                            --bind 'ctrl-/:toggle-preview'
-                            --bind 'alt-f:preview-page-down,alt-b:preview-page-up'"
+    $env:FZF_DEFAULT_OPTS = '--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
+                            --preview-window "hidden,border-left,60%"
+                            --bind "alt-/:change-preview-window(90%|60%)"
+                            --bind "alt-,:toggle-wrap"
+                            --bind "alt-.:toggle-preview-wrap"
+                            --bind "ctrl-/:toggle-preview"
+                            --bind "alt-f:preview-page-down,alt-b:preview-page-up"'
 }
 
 function Open-Folder {
@@ -132,13 +132,13 @@ function Git-Branch {
     $branches = git branch
     $current_ref = git rev-parse --abbrev-ref HEAD
     $fzf_args = @(
-        '--preview', 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"',
-        '--bind', 'start:toggle-preview',
-        '--bind', 'enter:become(git switch {-1})'
+        "--preview", 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"',
+        "--bind", "start:toggle-preview",
+        "--bind", "enter:become(git switch {-1})"
     )
 
     if ($current_ref -eq "HEAD") {
-        $fzf_args += @('--header', $branches[0])
+        $fzf_args += @("--header", $branches[0])
         $branches = $branches[1..($branches.Length -1)]
     }
 

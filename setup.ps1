@@ -66,7 +66,7 @@ scoop install $scoop_lemon_list
 warn -n "Copy config files to overwrite existing configs? (y/N): "
 $answer = Read-Host
 
-if ($answer -eq 'Y' -or $answer -eq 'y') {
+if ($answer -eq "Y" -or $answer -eq "y") {
     info "Copying config files..."
     Copy-Item -Path $common_path -Destination $HOME -Recurse -Force
     Copy-Item -Path $windows_path -Destination $HOME -Recurse -Force
