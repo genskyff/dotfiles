@@ -1,4 +1,4 @@
-mise activate pwsh | Out-String | Invoke-Expression
+mise activate pwsh --shims | Out-String | Invoke-Expression
 starship init powershell | Out-String | Invoke-Expression
 zoxide init powershell | Out-String | Invoke-Expression
 
