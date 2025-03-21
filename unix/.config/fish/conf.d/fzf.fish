@@ -2,14 +2,11 @@ command -q fzf; or return 0
 
 status is-interactive; and fzf --fish | source
 
-if command -q fd
-    set -f fd fd
-else if command -q fdfind
-    set -f fd fdfind
-end
+command -q fd; and set -l fd fd
+command -q fdfind; and set -l fd fdfind
 
 if set -q fd
-    test (uname) = Darwin; and set exclude "-E Applications -E Library"
+    test (uname) = Darwin; and set -l exclude "-E Applications -E Library"
 
     set -gx FZF_DEFAULT_COMMAND "$fd -tf -td -L --color always $exclude"
     set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
