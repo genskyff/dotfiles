@@ -1,4 +1,12 @@
 module docker-utils {
+    export def docker_check [] {
+        if (which docker | is-empty) {
+            error make -u {msg: "'docker' not found"}
+        } else if (docker version o+e>| str contains error) {
+            error make -u {msg: "docker is not running"}
+        }
+    }
+
     export def --wrapped container-list [...argv] {
         let all_containers = docker ps --format "{{.ID}} {{.Names}} {{.Status}}" ...$argv | lines | split column " " id name status
         let exited_containers = $all_containers | where status =~ Exited* | each { $"(ansi red)($in.id) ($in.name) \(Exited)(ansi reset)" }
@@ -8,7 +16,8 @@ module docker-utils {
 }
 
 def da [] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let fzf_args = [
         "--with-nth", "2",
@@ -22,7 +31,8 @@ def da [] {
 }
 
 def dcp [-H ...rest] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let rest_len = ($rest | length)
     if $rest_len < 1 or $rest_len > 2 {
@@ -54,7 +64,8 @@ def dcp [-H ...rest] {
 }
 
 def de --wrapped [...argv] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let fzf_args = [
         "--with-nth", "2",
@@ -68,7 +79,8 @@ def de --wrapped [...argv] {
 }
 
 def dl [] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let fzf_args = [
         "--with-nth", "2..",
@@ -81,7 +93,8 @@ def dl [] {
 }
 
 def dp [] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let all_containers = container-list -a
     let total_count = $all_containers | lines | length
@@ -99,7 +112,8 @@ def dp [] {
 }
 
 def dre [] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let fzf_args = [
         "--with-nth", "2..", "--multi",
@@ -112,7 +126,8 @@ def dre [] {
 }
 
 def drm [] {
-    use docker-utils container-list
+    use docker-utils *
+    docker_check
 
     let fzf_args = [
         "--with-nth", "2..", "--multi",
