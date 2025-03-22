@@ -1,4 +1,4 @@
-export def edit [...argv: string] {
+export def --wrapped edit [...argv] {
     let editor = $env.config.buffer_editor
     if ($editor == "code") {
         code ...$argv
@@ -9,7 +9,7 @@ export def edit [...argv: string] {
     }
 }
 
-export def fzf_preview [argv: string] {
+export def fzf_preview [argv] {
     let target = $argv | path expand
     let type = $target | path type
 
