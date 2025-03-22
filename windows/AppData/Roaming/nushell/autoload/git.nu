@@ -1,5 +1,16 @@
+module git-utils {
+    export def git-check [] {
+        if (which git | is-empty) {
+            error make -u {msg: "'git' command not found"}
+        } else if (git rev-parse --is-inside-work-tree o+e>| $in) != "true" {
+            error make -u {msg: "Not inside a git repository"}
+        }
+    }
+}
+
 def gb [] {
-    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != "true" { return }
+    use git-utils *
+    git-check
 
     mut branches = git branch | lines
     let current_ref = git rev-parse --abbrev-ref HEAD
@@ -18,14 +29,16 @@ def gb [] {
 }
 
 def gl [] {
-    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != "true" { return }
+    use git-utils *
+    git-check
 
     git log --oneline --date="format:%y/%m/%d" --color=always --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"
         | fzf --preview "git show --color=always {2}" --bind "enter:become(git checkout {2})"
 }
 
 def grl [] {
-    if (which git | is-empty) or (git rev-parse --is-inside-work-tree) != "true" { return }
+    use git-utils *
+    git-check
 
     git reflog --color=always --date="format:%y/%m/%d %H:%M" --format="%C(auto)%cd %h%d %gs"
         | fzf --preview "git show --color=always {3}" --bind "enter:become(git checkout {3})"

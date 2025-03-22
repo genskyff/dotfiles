@@ -18,7 +18,7 @@ module ssh-utils {
 }
 
 def --wrapped s [...argv] {
-    use ssh-utils ssh-config-list
+    use ssh-utils *
 
     let host = (ssh-config-list | if ($in | is-empty) {""} else {bat -p ...$in} | lines | find -r '^\s*Host\s+\S+' | find -v "*" | split column -r '\s+' | get column2 | to text | fzf --preview-window hidden)
 
@@ -28,7 +28,7 @@ def --wrapped s [...argv] {
 }
 
 def se [] {
-    use ssh-utils ssh-config-list
+    use ssh-utils *
 
     let ssh_path = $nu.home-path | path join .ssh
     let nth = ($ssh_path | split row '\' | length) + 1

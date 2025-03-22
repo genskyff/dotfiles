@@ -1,7 +1,7 @@
 module docker-utils {
     export def docker_check [] {
         if (which docker | is-empty) {
-            error make -u {msg: "'docker' not found"}
+            error make -u {msg: "'docker' command not found"}
         } else if (docker version o+e>| str contains error) {
             error make -u {msg: "docker is not running"}
         }
