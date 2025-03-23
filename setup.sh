@@ -152,15 +152,16 @@ if [[ -n "$fish_path" ]] && [[ "$current_os" == "darwin" ]]; then
         echo "$zshrc_content" >>"$zshrc_path"
     fi
 elif [[ -n "$fish_path" ]] && [[ "$default_shell" != "$(basename $fish_path)" ]]; then
-        warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
-        read answer
-        answer=${answer:-y}
-        if [[ "$answer" == [yY] ]]; then
-            if $is_superuser_privilege; then
-                chsh -s "$(echo $fish_path | sed 's/sbin/bin/')" "$current_user"
-            else
-                sudo chsh -s "$(echo $fish_path | sed 's/sbin/bin/')" "$current_user"
-            fi
+    warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
+    read answer
+    answer=${answer:-y}
+    fish_path_fix=$(echo $fish_path | sed 's/sbin/bin/')
+
+    if [[ "$answer" == [yY] ]] && [[ -n "$fish_path_fix" ]]; then
+        if $is_superuser_privilege; then
+            chsh -s "$fish_path_fix" "$current_user"
+        else
+            sudo chsh -s "$fish_path_fix" "$current_user"
         fi
     fi
 fi
