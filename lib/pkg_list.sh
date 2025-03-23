@@ -54,6 +54,7 @@ helix
 lazygit
 less
 lsd
+mise
 mtr
 nushell
 openssh
@@ -63,6 +64,7 @@ starship
 sudo
 tokei
 unzip
+usage
 wget
 zellij
 zoxide
@@ -72,9 +74,7 @@ aur_list="
 doggo-bin
 git-credential-oauth
 lazydocker-bin
-mise-bin
 tlrc-bin
-usage-bin
 "
 
 # Debian
