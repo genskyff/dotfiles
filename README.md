@@ -16,7 +16,7 @@
         .\setup.ps1
         ```
 
-    - macOS / Arch / Debian / Kali
+    - macOS / Arch / Debian
 
         ```shell
         ./setup.sh

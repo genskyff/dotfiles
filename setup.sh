@@ -12,14 +12,11 @@ elif grep -qiE "ID=[\"]?arch[\"]?|ID_LIKE=[\"]?arch[\"]?" /etc/os-release; then
     current_os="arch"
 elif grep -qiE "ID=[\"]?debian[\"]?" /etc/os-release; then
     current_os="debian"
-elif grep -qiE "ID=[\"]?kali[\"]?" /etc/os-release; then
-    current_os="kali"
 else
     error "Error${reset}: this script is only for"
     echo "- macOS"
     echo "- Arch"
     echo "- Debian"
-    echo "- Kali"
     exit 1
 fi
 
@@ -85,13 +82,8 @@ elif [[ "$current_os" == "arch" ]]; then
         info "\nUpdating and installing packages from AUR..."
         yay -Syyu --needed --noconfirm --color always $aur_list
     fi
-elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
+elif [[ "$current_os" == "debian" ]]; then
     info "Updating and installing packages..."
-    if [[ "$current_os" == "debian" ]]; then
-        apt_list=$debian_apt_list
-    elif [[ "$current_os" == "kali" ]]; then
-        apt_list=$kali_apt_list
-    fi
 
     if $is_superuser_privilege; then
         apt update
@@ -100,27 +92,22 @@ elif [[ "$current_os" == "debian" ]] || [[ "$current_os" == "kali" ]]; then
     else
         sudo apt update
         sudo apt upgrade -y
-        sudo apt install -y $apt_list
+        sudo apt install -y $debian_apt_list
 
         if [[ "$current_arch" == "x86_64" ]]; then
             if [[ ! -x "$(command -v brew)" ]]; then
-                if [[ ! -f "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+                linux_brew_path=/home/linuxbrew/.linuxbrew/bin/brew
+                if [[ ! -f "$linux_brew_path" ]]; then
                     info "${light_magenta}Homebrew${info_color} not found. Installing..."
                     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
                     ok "${light_magenta}Homebrew${ok_color} has been installed"
                 fi
-                eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-            fi
-
-            if [[ "$current_os" == "debian" ]]; then
-                linux_brew_list=$debian_brew_list
-            elif [[ "$current_os" == "kali" ]]; then
-                linux_brew_list=$kali_brew_list
+                eval "$($linux_brew_path shellenv)"
             fi
 
             info "Updating and installing packages from Homebrew..."
             brew upgrade
-            brew install $linux_brew_list
+            brew install $debian_brew_list
             brew cleanup --prune=all
         fi
     fi
