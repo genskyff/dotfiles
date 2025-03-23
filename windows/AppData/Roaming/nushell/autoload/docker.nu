@@ -1,5 +1,5 @@
 module docker-utils {
-    export def docker_check [] {
+    export def docker-check [] {
         if (which docker | is-empty) {
             error make -u {msg: "'docker' command not found"}
         } else if (docker version o+e>| str contains error) {
@@ -17,7 +17,7 @@ module docker-utils {
 
 def da [] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let fzf_args = [
         "--with-nth", "2",
@@ -32,7 +32,7 @@ def da [] {
 
 def dcp [-H ...rest] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let rest_len = ($rest | length)
     if $rest_len < 1 or $rest_len > 2 {
@@ -65,7 +65,7 @@ def dcp [-H ...rest] {
 
 def de --wrapped [...argv] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let fzf_args = [
         "--with-nth", "2",
@@ -80,7 +80,7 @@ def de --wrapped [...argv] {
 
 def dl [] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let fzf_args = [
         "--with-nth", "2..",
@@ -94,7 +94,7 @@ def dl [] {
 
 def dp [] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let all_containers = container-list -a
     let total_count = $all_containers | lines | length
@@ -113,7 +113,7 @@ def dp [] {
 
 def dre [] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let fzf_args = [
         "--with-nth", "2..", "--multi",
@@ -127,7 +127,7 @@ def dre [] {
 
 def drm [] {
     use docker-utils *
-    docker_check
+    docker-check
 
     let fzf_args = [
         "--with-nth", "2..", "--multi",
