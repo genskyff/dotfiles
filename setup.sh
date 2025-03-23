@@ -88,7 +88,7 @@ elif [[ "$current_os" == "debian" ]]; then
     if $is_superuser_privilege; then
         apt update
         apt upgrade -y
-        apt install -y $apt_list
+        apt install -y $debian_apt_list
     else
         sudo apt update
         sudo apt upgrade -y
@@ -132,7 +132,8 @@ else
     default_shell=$(basename $(getent passwd "$current_user" | cut -d: -f7))
 fi
 
-if [[ "$current_os" == "darwin" ]]; then
+fish_path=$(command -v fish)
+if [[ -n "$fish_path" ]] && [[ "$current_os" == "darwin" ]]; then
     zprofile_path=$HOME/.zprofile
     zprofile_content='[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc'
     zshrc_path=$HOME/.zshrc
@@ -150,16 +151,15 @@ if [[ "$current_os" == "darwin" ]]; then
         info "Writing to .zshrc..."
         echo "$zshrc_content" >>"$zshrc_path"
     fi
-else
-    if [[ "$default_shell" != "$(basename $(command -v fish))" ]]; then
+elif [[ -n "$fish_path" ]] && [[ "$default_shell" != "$(basename $fish_path)" ]]; then
         warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
         read answer
         answer=${answer:-y}
         if [[ "$answer" == [yY] ]]; then
             if $is_superuser_privilege; then
-                chsh -s "$(command -v fish | sed 's/sbin/bin/')" "$current_user"
+                chsh -s "$(echo $fish_path | sed 's/sbin/bin/')" "$current_user"
             else
-                sudo chsh -s "$(command -v fish | sed 's/sbin/bin/')" "$current_user"
+                sudo chsh -s "$(echo $fish_path | sed 's/sbin/bin/')" "$current_user"
             fi
         fi
     fi
