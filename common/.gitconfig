@@ -7,7 +7,6 @@
 [core]
     autocrlf = false
     quotepath = false
-    editor = code --wait
     pager = delta
     excludesfile = ~/.gitignore_global
 [interactive]
