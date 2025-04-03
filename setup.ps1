@@ -4,7 +4,6 @@ $scoop_list = "
 7zip
 bat
 delta
-deno
 difftastic
 fastfetch
 fzf
