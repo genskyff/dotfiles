@@ -12,4 +12,3 @@ alias gss = git submodule status
 alias gsu = git submodule update
 
 alias gdt = git -c diff.external=difft diff
-alias glt = git -c diff.external=difft log --ext-diff -p
