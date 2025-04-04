@@ -1,6 +1,14 @@
-mise activate pwsh --shims | Out-String | Invoke-Expression
-starship init powershell | Out-String | Invoke-Expression
-zoxide init powershell | Out-String | Invoke-Expression
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+    mise activate pwsh --shims | Out-String | Invoke-Expression
+}
+
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    starship init powershell | Out-String | Invoke-Expression
+}
+
+if (Get-Command zoxide -ErrorAction SilentlyContinue) {
+    zoxide init powershell | Out-String | Invoke-Expression
+}
 
 Import-Module gsudoModule -Force
 Import-Module PSReadLine -Force
