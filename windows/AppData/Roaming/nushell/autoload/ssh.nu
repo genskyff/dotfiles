@@ -22,7 +22,6 @@ def --wrapped s [...argv] {
 
     let host = (ssh-config-list | if ($in | is-empty) {""} else {bat -p ...$in} | lines | find -r '^\s*Host\s+\S+' | find -v "*" | split column -r '\s+' | get column2 | to text | fzf --preview-window hidden)
 
-    print "\e[?2004l"
     if ($host | is-not-empty) {
         ssh $host ...$argv
     }
