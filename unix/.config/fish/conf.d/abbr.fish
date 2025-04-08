@@ -10,6 +10,7 @@ command -q fdfind; and abbr -a fd fdfind
 command -q helix; and abbr -a hx helix
 command -q lazydocker; and abbr -a lad lazydocker
 command -q lazygit; and abbr -a lg lazygit
+command -q yay; and abbr -a ya yay --noconfirm --color always
 command -q zellij; and abbr -a zj zellij
 
 command -q lsd; and begin
