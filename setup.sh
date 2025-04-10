@@ -6,7 +6,7 @@ script_path=$(realpath $(dirname "$0"))
 . "$script_path/lib/color.sh"
 . "$script_path/lib/pkg_list.sh"
 
-if [[ $(uname) = Darwin ]]; then
+if [[ $(uname) = "Darwin" ]]; then
     current_os="darwin"
 elif grep -qiE "ID=[\"]?arch[\"]?|ID_LIKE=[\"]?arch[\"]?" /etc/os-release; then
     current_os="arch"
@@ -20,6 +20,7 @@ else
     exit 1
 fi
 
+current_os_family=$(uname)
 current_arch=$(uname -m)
 
 if [[ "$(id -u)" -eq 0 ]]; then
@@ -113,10 +114,12 @@ elif [[ "$current_os" == "debian" ]]; then
     fi
 fi
 
-if [[ "$current_os" != "darwin" ]] && [[ "$current_user" != "root" ]] then
-    if grep -qiE "^docker" /etc/group; then
-        info "Adding the user to the docker group..."
-        sudo usermod -aG docker "$current_user"
+if [[ "$current_os_family" == "Linux" ]] && [[ "$current_user" != "root" ]] then
+    if ! groups | grep -q docker; then
+        if ! grep -E "^docker" /etc/group | grep -q "$current_user"; then
+            sudo usermod -aG docker "$current_user"
+            info "Added '$current_user' to docker group (requires logout/login)"
+        fi
     fi
 fi
 

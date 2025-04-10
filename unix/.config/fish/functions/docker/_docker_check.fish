@@ -5,7 +5,7 @@ function _docker_check --description "Check docker status"
     end
 
     set error_message (command docker version 2>&1 1>/dev/null)
-    if test -n "$error_message"
+    if test $status -ne 0
         echo -e "$(set_color red)Error$(set_color normal): $error_message" >&2
         return 1
     end
