@@ -1,5 +1,5 @@
 function _git_check --description "Check git status"
-   _cmd_check git; or return 1
+    _cmd_check git; or return 1
 
     set error_message (command git rev-parse --is-inside-work-tree 2>&1 1>/dev/null)
     if test $status -ne 0

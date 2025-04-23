@@ -6,6 +6,6 @@ function se --description "Edit ssh configuration"
     set nth (math (string split / $ssh_path | count) + 1)
     string join \n $list \
         | fzf --with-nth "$nth.." -d/ \
-            --preview-window hidden \
-            --bind "enter:become($EDITOR {})"
+        --preview-window hidden \
+        --bind "enter:become($EDITOR {})"
 end

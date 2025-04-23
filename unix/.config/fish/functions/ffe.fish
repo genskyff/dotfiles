@@ -6,6 +6,6 @@ function ffe --description "Edit fish function"
     set nth (math (string split / $function_path | count) + 1)
     string join \n $files \
         | fzf --with-nth "$nth.." -d/ \
-            --bind "start:toggle-preview" \
-            --bind "enter:become($EDITOR {})"
+        --bind "start:toggle-preview" \
+        --bind "enter:become($EDITOR {})"
 end
