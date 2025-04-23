@@ -11,7 +11,7 @@ function dp --description "List containers with fzf"
 
     string join \n $all_containers \
         | fzf --with-nth "2.." \
-            --preview "_docker_fzf_preview {1}" \
-            --header "$message" \
-            --bind "start:toggle-preview"
+        --preview "_docker_fzf_preview {1}" \
+        --header "$message" \
+        --bind "start:toggle-preview"
 end

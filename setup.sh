@@ -114,7 +114,7 @@ elif [[ "$current_os" == "debian" ]]; then
     fi
 fi
 
-if [[ "$current_os_family" == "Linux" ]] && [[ "$current_user" != "root" ]] then
+if [[ "$current_os_family" == "Linux" ]] && [[ "$current_user" != "root" ]]; then
     if ! groups | grep -q docker; then
         if ! grep -E "^docker" /etc/group | grep -q "$current_user"; then
             sudo usermod -aG docker "$current_user"
