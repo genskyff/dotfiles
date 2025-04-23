@@ -137,7 +137,7 @@ function Git-Branch {
 
     if ($current_ref -eq "HEAD") {
         $fzf_args += @("--header", $branches[0])
-        $branches = $branches[1..($branches.Length -1)]
+        $branches = $branches[1..($branches.Length - 1)]
     }
 
     $branches | fzf @fzf_args
@@ -146,20 +146,20 @@ function Git-Branch {
 function Git-Log {
     if (!(git rev-parse --is-inside-work-tree)) { return }
     git log --oneline `
-            --date="format:%y/%m/%d" `
-            --color=always `
-            --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s" `
+        --date="format:%y/%m/%d" `
+        --color=always `
+        --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s" `
     | fzf --preview "git show --color=always {2}" `
-            --bind "enter:become(git checkout {2})"
+        --bind "enter:become(git checkout {2})"
 }
 
 function Git-Reflog {
     if (!(git rev-parse --is-inside-work-tree)) { return }
     git reflog --color=always `
-                --date="format:%y/%m/%d %H:%M" `
-                --format="%C(auto)%cd %h%d %gs" `
+        --date="format:%y/%m/%d %H:%M" `
+        --format="%C(auto)%cd %h%d %gs" `
     | fzf --preview "git show --color=always {3}" `
-            --bind "enter:become(git checkout {3})"
+        --bind "enter:become(git checkout {3})"
 }
 
 function Git-Difft {
