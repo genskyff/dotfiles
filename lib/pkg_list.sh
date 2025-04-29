@@ -16,6 +16,7 @@ fish
 fzf
 git-delta
 helix
+hyperfine
 lazydocker
 lazygit
 lsd
@@ -51,6 +52,7 @@ fzf
 git
 git-delta
 helix
+hyperfine
 lazygit
 less
 lsd
@@ -88,6 +90,7 @@ duf
 fd-find
 fish
 git
+hyperfine
 less
 mtr
 nftables

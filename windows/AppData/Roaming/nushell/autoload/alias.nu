@@ -1,6 +1,7 @@
 alias ff = fastfetch
 alias lad = lazydocker
 alias lg = lazygit
+alias hf = hyperfine
 alias sudo = gsudo
 
 alias gd = git diff -w
