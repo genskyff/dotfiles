@@ -8,6 +8,7 @@ difftastic
 fastfetch
 fzf
 gsudo
+hyperfine
 lazydocker
 lazygit
 less
