@@ -130,7 +130,7 @@ function Git-Branch {
     $branches = git branch
     $current_ref = git rev-parse --abbrev-ref HEAD
     $fzf_args = @(
-        "--preview", 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"',
+        "--preview", 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%ad %h%d <%<(6,trunc)%an> %s"',
         "--bind", "start:toggle-preview",
         "--bind", "enter:become(git switch {-1})"
     )
@@ -148,7 +148,7 @@ function Git-Log {
     git log --oneline `
         --date="format:%y/%m/%d" `
         --color=always `
-        --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s" `
+        --format="%C(auto)%ad %h%d <%<(6,trunc)%an> %s" `
     | fzf --preview "git show --color=always {2}" `
         --bind "enter:become(git checkout {2})"
 }
@@ -157,7 +157,7 @@ function Git-Reflog {
     if (!(git rev-parse --is-inside-work-tree)) { return }
     git reflog --color=always `
         --date="format:%y/%m/%d %H:%M" `
-        --format="%C(auto)%cd %h%d %gs" `
+        --format="%C(auto)%ad %h%d %gs" `
     | fzf --preview "git show --color=always {3}" `
         --bind "enter:become(git checkout {3})"
 }

@@ -11,7 +11,7 @@ function gb --description "git branch with fzf"
     end
 
     string join \n $branches \
-        | fzf --preview 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%cd %h%d <%<(6,trunc)%an> %s"' \
+        | fzf --preview 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%ad %h%d <%<(6,trunc)%an> %s"' \
         --bind "start:toggle-preview" \
         --bind "enter:become(git switch {-1})" $header
 end
