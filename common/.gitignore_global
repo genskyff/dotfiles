@@ -5,6 +5,5 @@
 node_modules
 
 # IDE
-.vscode/*
-!.vscode/extensions.json
+.vscode
 .idea
