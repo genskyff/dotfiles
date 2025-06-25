@@ -60,6 +60,7 @@ mise
 mtr
 nushell
 openssh
+reflector
 ripgrep
 sd
 starship
