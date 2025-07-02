@@ -5,7 +5,7 @@
 [pull]
     rebase = true
 [core]
-    autocrlf = false
+    autocrlf = input
     quotepath = false
     pager = delta
     excludesfile = ~/.gitignore_global
