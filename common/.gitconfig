@@ -1,5 +1,7 @@
 [user]
 [credential]
+[log]
+    date = iso
 [init]
     defaultBranch = main
 [pull]
