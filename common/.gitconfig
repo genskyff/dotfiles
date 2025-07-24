@@ -6,6 +6,8 @@
     defaultBranch = main
 [pull]
     rebase = true
+[merge]
+    conflictstyle = zdiff3
 [core]
     autocrlf = input
     quotepath = false
@@ -17,8 +19,6 @@
     navigate = true
     side-by-side = true
     features = fixed-theme
-[merge]
-    conflictstyle = zdiff3
 [diff]
     colorMoved = default
 [filter "lfs"]
