@@ -85,6 +85,7 @@ debian_apt_list="
 bat
 build-essential
 curl
+docker-buildx
 docker-compose
 docker.io
 du-dust
