@@ -30,9 +30,9 @@ function print_with_color() {
 
     if [[ "$2" == "-n" ]]; then
         newline=false
-        text="${@:3}"
+        text="${*:3}"
     else
-        text="${@:2}"
+        text="${*:2}"
     fi
 
     if $newline; then
