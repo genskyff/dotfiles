@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+set -eo pipefail
 
-script_path=$(realpath $(dirname "$0"))
+script_path=$(realpath "$(dirname "$0")")
 . "$script_path/lib/color.sh"
 . "$script_path/lib/pkg_list.sh"
 
@@ -130,9 +130,9 @@ fi
 
 info "\nSetting up the user shell config..."
 if [[ "$current_os" == "darwin" ]]; then
-    default_shell=$(basename $(dscl . -read "/Users/$current_user" UserShell | awk '{print $2}'))
+    default_shell=$(basename "$(dscl . -read "/Users/$current_user" UserShell | awk '{print $2}')")
 else
-    default_shell=$(basename $(getent passwd "$current_user" | cut -d: -f7))
+    default_shell=$(basename "$(getent passwd "$current_user" | cut -d: -f7)")
 fi
 
 fish_path=$(command -v fish)
@@ -154,11 +154,11 @@ if [[ -n "$fish_path" ]] && [[ "$current_os" == "darwin" ]]; then
         info "Writing to .zshrc..."
         echo "$zshrc_content" >>"$zshrc_path"
     fi
-elif [[ -n "$fish_path" ]] && [[ "$default_shell" != "$(basename $fish_path)" ]]; then
+elif [[ -n "$fish_path" ]] && [[ "$default_shell" != "$(basename "$fish_path")" ]]; then
     warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
-    read answer
+    read -r answer
     answer=${answer:-y}
-    fish_path_fix=$(echo $fish_path | sed 's/sbin/bin/')
+    fish_path_fix=${fish_path//sbin/bin}
 
     if [[ "$answer" == [yY] ]] && [[ -n "$fish_path_fix" ]]; then
         if $is_superuser_privilege; then
@@ -170,13 +170,13 @@ elif [[ -n "$fish_path" ]] && [[ "$default_shell" != "$(basename $fish_path)" ]]
 fi
 
 warn -n "Copy config files to overwrite existing configs? (y/N): "
-read answer
+read -r answer
 answer=${answer:-n}
 
 if [[ "$answer" == [yY] ]]; then
     info "Copying config files..."
-    cp -a "$script_path"/common/. $HOME/
-    cp -a "$script_path"/unix/. $HOME/
+    cp -a "$script_path"/common/. "$HOME"/
+    cp -a "$script_path"/unix/. "$HOME"/
 fi
 
 ok "\nAll done"
