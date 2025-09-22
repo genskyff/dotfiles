@@ -6,7 +6,7 @@ function s --description "SSH with fzf"
     set host (string join \n $result | grep -E '^\s*Host\s+\S+' | grep -v "*" | awk '{print $2}' | fzf --preview-window hidden)
     test $status -eq 0; or return 1
 
-    if command -q kitten; and set -q KITTY_PID
+    if command -q kitten; and set -q KITTY_PID; and string match -q "xterm-kitty" "$TERM"
         kitten ssh "$host" $argv
     else
         ssh "$host" $argv
