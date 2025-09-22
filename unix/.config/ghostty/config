@@ -2,12 +2,17 @@ font-family = Maple Mono NF CN
 font-size = 15
 theme = Snazzy
 cursor-style = block_hollow
+mouse-hide-while-typing = true
 background-opacity = 0.8
 maximize = true
 window-padding-x = 10
 window-padding-y = 10
-shell-integration-features = no-cursor
+clipboard-trim-trailing-spaces = true
+shell-integration-features = no-cursor,ssh-env,ssh-terminfo
+macos-window-buttons = hidden
+macos-titlebar-style = hidden
 macos-option-as-alt = true
+macos-icon = paper
 
 # https://github.com/KroneCorylus/ghostty-shader-playground
 custom-shader = shaders/cursor_frozen.glsl
