@@ -49,10 +49,12 @@ fastfetch
 fd
 fish
 fzf
+ghostty-terminfo
 git
 git-delta
 helix
 hyperfine
+kitty-terminfo
 lazygit
 less
 lsd
@@ -98,6 +100,7 @@ git
 git-credential-oauth
 git-delta
 hyperfine
+kitty-terminfo
 lazygit
 less
 lsd
