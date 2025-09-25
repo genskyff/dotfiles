@@ -16,4 +16,4 @@ macos-option-as-alt = true
 macos-icon = paper
 
 # https://github.com/KroneCorylus/ghostty-shader-playground
-custom-shader = shaders/cursor_frozen.glsl
+custom-shader = cursor_frozen.glsl
