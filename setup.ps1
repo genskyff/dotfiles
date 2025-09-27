@@ -6,7 +6,10 @@ bat
 delta
 difftastic
 fastfetch
+fd
+ffmpeg
 fzf
+git
 gsudo
 hyperfine
 lazydocker
@@ -20,6 +23,7 @@ mise
 msys2
 nu
 pandoc
+piclist
 potplayer
 qbittorrent-enhanced
 qq-nt
