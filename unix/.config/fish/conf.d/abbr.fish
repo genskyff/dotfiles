@@ -11,7 +11,7 @@ command -q helix; and abbr -a hx helix
 command -q hyperfine; and abbr -a hf hyperfine
 command -q lazydocker; and abbr -a lad lazydocker
 command -q lazygit; and abbr -a lg lazygit
-command -q yay; and abbr -a ya yay --noconfirm --color always
+command -q paru; and abbr -a pa paru -Syu --noconfirm --color always
 command -q zellij; and abbr -a zj zellij
 
 command -q lsd; and begin
