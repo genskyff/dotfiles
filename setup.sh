@@ -61,27 +61,27 @@ elif [[ "$current_os" == "arch" ]]; then
     else
         sudo pacman -Syyu --needed --noconfirm --color always $pacman_list
 
-        if [[ ! -x "$(command -v yay)" ]]; then
-            info "${light_magenta}yay${info_color} not found. Installing..."
+        if [[ ! -x "$(command -v paru)" ]]; then
+            info "${light_magenta}paru${info_color} not found. Installing..."
 
-            if [[ -d "yay-bin" ]]; then
-                if [[ ! $(ls -A "yay-bin") ]]; then
-                    rm -rf yay-bin
-                    git clone "$yay_url"
+            if [[ -d "paru-bin" ]]; then
+                if [[ ! $(ls -A "paru-bin") ]]; then
+                    rm -rf paru-bin
+                    git clone "$paru_url"
                 fi
             else
-                git clone "$yay_url"
+                git clone "$paru_url"
             fi
 
-            cd yay-bin
+            cd paru-bin
             makepkg -si --noconfirm
             cd ..
-            rm -rf yay-bin
-            ok "${light_magenta}yay${ok_color} has been installed"
+            rm -rf paru-bin
+            ok "${light_magenta}paru${ok_color} has been installed"
         fi
 
         info "\nUpdating and installing packages from AUR..."
-        yay -Syyu --needed --noconfirm --color always $aur_list
+        paru -Syyu --needed --noconfirm --color always $aur_list
     fi
 elif [[ "$current_os" == "debian" ]]; then
     info "Updating and installing packages..."

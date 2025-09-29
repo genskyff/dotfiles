@@ -74,7 +74,7 @@ wget
 zellij
 zoxide
 "
-yay_url=https://aur.archlinux.org/yay-bin.git
+paru_url=https://aur.archlinux.org/paru-bin.git
 aur_list="
 doggo-bin
 git-credential-oauth
