@@ -4,6 +4,7 @@ function _z2h_ascii --description 'Convert full-width ascii characters to half-w
     set cmd (commandline)
     set converted (printf "%s" "$cmd" | perl -CS -Mutf8 -MUnicode::Normalize=NFKC -pe '
         s/……|…/^/g;
+        s/¥|￥/\\$/g;
 
         $_ = NFKC($_);
 
@@ -14,7 +15,7 @@ function _z2h_ascii --description 'Convert full-width ascii characters to half-w
         s/「|『|」|』/\"/g;
         s/——|—/_/g;
         s/ー/-/g;
-        s/、/,/g;
+        s/、/\\\\/g;
         s/‘|’/\'/g;
         s/“|”/\"/g;
         s/《/</g;
