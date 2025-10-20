@@ -1,5 +1,5 @@
 function s --description "SSH with fzf"
-    _cmd_check fzf; or return 1
+    _cmd_check fzf ssh; or return 1
 
     set list (_ssh_config_list)
     set result (test -n "$list"; and cat $list)
