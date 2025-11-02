@@ -1,7 +1,7 @@
 # Local
 .DS_Store
-*.log
-*.env
+*.local
+*.log*
 
 # Dist
 node_modules
