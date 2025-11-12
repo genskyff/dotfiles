@@ -36,6 +36,7 @@ zoxide
 pacman_list="
 base-devel
 bat
+binsider
 bottom
 choose
 curl
@@ -119,6 +120,7 @@ wget
 zoxide
 "
 debian_brew_list="
+binsider
 bottom
 choose-rust
 difftastic
