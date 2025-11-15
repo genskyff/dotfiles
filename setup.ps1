@@ -23,7 +23,6 @@ mise
 msys2
 nu
 pandoc
-piclist
 potplayer
 qbittorrent-enhanced
 qq-nt
