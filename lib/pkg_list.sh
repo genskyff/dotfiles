@@ -2,6 +2,7 @@
 
 # macOS
 brew_list="
+ast-grep
 bat
 bottom
 choose-rust
@@ -34,6 +35,7 @@ zoxide
 
 # Arch
 pacman_list="
+ast-grep
 base-devel
 bat
 binsider
@@ -120,6 +122,7 @@ wget
 zoxide
 "
 debian_brew_list="
+ast-grep
 binsider
 bottom
 choose-rust

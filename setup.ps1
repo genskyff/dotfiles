@@ -2,6 +2,7 @@ $ErrorActionPreference = "Stop"
 
 $scoop_list = "
 7zip
+ast-grep
 bat
 delta
 difftastic
