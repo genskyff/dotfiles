@@ -61,27 +61,27 @@ elif [[ "$current_os" == "arch" ]]; then
     else
         sudo pacman -Syyu --needed --noconfirm --color always $pacman_list
 
-        if [[ ! -x "$(command -v paru)" ]]; then
-            info "${light_magenta}paru${info_color} not found. Installing..."
+        if [[ ! -x "$(command -v $aur_helper)" ]]; then
+            info "${light_magenta}${aur_helper}${info_color} not found. Installing..."
 
-            if [[ -d "paru-bin" ]]; then
-                if [[ ! $(ls -A "paru-bin") ]]; then
-                    rm -rf paru-bin
-                    git clone "$paru_url"
+            if [[ -d "$aur_helper" ]]; then
+                if [[ ! $(ls -A "$aur_helper") ]]; then
+                    rm -rf $aur_helper
+                    git clone $aur_helper_url $aur_helper
                 fi
             else
-                git clone "$paru_url"
+                git clone $aur_helper_url $aur_helper
             fi
 
-            cd paru-bin
+            cd $aur_helper
             makepkg -si --noconfirm
             cd ..
-            rm -rf paru-bin
-            ok "${light_magenta}paru${ok_color} has been installed"
+            rm -rf $aur_helper
+            ok "${light_magenta}${aur_helper}${ok_color} has been installed"
         fi
 
         info "\nUpdating and installing packages from AUR..."
-        paru -Syyu --needed --noconfirm --color always $aur_list
+        $aur_helper -Syyu --needed --noconfirm --color always $aur_list
     fi
 elif [[ "$current_os" == "debian" ]]; then
     info "Updating and installing packages..."

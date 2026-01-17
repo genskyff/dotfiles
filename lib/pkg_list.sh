@@ -77,7 +77,8 @@ wget
 zellij
 zoxide
 "
-paru_url=https://aur.archlinux.org/paru-bin.git
+aur_helper=paru
+aur_helper_url=https://aur.archlinux.org/paru-git.git
 aur_list="
 doggo-bin
 git-credential-oauth
