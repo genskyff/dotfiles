@@ -1,52 +1,10 @@
 $ErrorActionPreference = "Stop"
 
-$scoop_list = "
-7zip
-ast-grep
-bat
-delta
-difftastic
-fastfetch
-fd
-ffmpeg
-fzf
-git
-gsudo
-hyperfine
-lazydocker
-lazygit
-less
-llvm
-localsend
-lsd
-mingw-winlibs-ucrt
-mise
-msys2
-nu
-pandoc
-potplayer
-qbittorrent-enhanced
-qq-nt
-ripgrep
-snipaste
-starship
-tlrc
-tokei
-typora
-wechat
-xmake
-zoxide
-"
-$scoop_list = $scoop_list.Trim() -split "\n"
-
-$scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
-$scoop_lemon_list = "piclist"
-$scoop_lemon_list = $scoop_lemon_list -split " " | ForEach-Object { "lemon/$_" }
+Import-Module ./lib/color.ps1 -Force
+Import-Module ./lib/pkg_list.ps1 -Force
 
 $common_path = Join-Path -Path $PSScriptRoot -ChildPath "common\*"
 $windows_path = Join-Path -Path $PSScriptRoot -ChildPath "windows\*"
-
-Import-Module ./lib/color.ps1 -Force
 
 if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     info "'Scoop' not found. Installing..."
@@ -61,7 +19,9 @@ scoop update
 
 scoop bucket add extras
 scoop bucket add versions
-scoop install $scoop_list
+scoop install $scoop_main_list
+scoop install $scoop_extras_list
+scoop install $scoop_versions_list
 
 scoop bucket add lemon $scoop_lemon_bucket
 scoop install $scoop_lemon_list
