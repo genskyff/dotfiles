@@ -7,6 +7,6 @@ function fe --description "Edit fish configuration"
     set nth (math (string split / $__fish_config_dir | count) + 1)
     string join \n $files \
         | fzf --with-nth "$nth.." -d/ \
-            --bind "start:toggle-preview" \
-            --bind "enter:become($EDITOR {})"
+        --bind "start:toggle-preview" \
+        --bind "enter:become($EDITOR {})"
 end
