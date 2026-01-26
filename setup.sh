@@ -66,17 +66,17 @@ elif [[ "$current_os" == "arch" ]]; then
 
             if [[ -d "$aur_helper" ]]; then
                 if [[ ! $(ls -A "$aur_helper") ]]; then
-                    rm -rf $aur_helper
-                    git clone $aur_helper_url $aur_helper
+                    rm -rf "$aur_helper"
+                    git clone "$aur_helper_url" "$aur_helper"
                 fi
             else
-                git clone $aur_helper_url $aur_helper
+                git clone "$aur_helper_url" "$aur_helper"
             fi
 
-            cd $aur_helper
+            cd "$aur_helper"
             makepkg -si --noconfirm
             cd ..
-            rm -rf $aur_helper
+            rm -rf "$aur_helper"
             ok "${light_magenta}${aur_helper}${ok_color} has been installed"
         fi
 
