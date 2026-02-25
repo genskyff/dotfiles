@@ -2,6 +2,8 @@
 [credential]
 [log]
     date = format:%Y-%m-%d %H:%M:%S %z %a
+[format]
+    pretty = format:%C(auto)%h%d%nAuthor: %an <%ae>%nDate:   %ad (%cd)%n%n%w(0,4,4)%s%n%+b
 [init]
     defaultBranch = main
 [pull]
