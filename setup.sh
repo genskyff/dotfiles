@@ -2,9 +2,9 @@
 
 set -eo pipefail
 
-script_path=$(realpath "$(dirname "$0")")
-. "$script_path/lib/color.sh"
-. "$script_path/lib/pkg_list.sh"
+script_dir=$(realpath "$(dirname "$0")")
+. "$script_dir/lib/color.sh"
+. "$script_dir/lib/pkg_list.sh"
 
 if [[ $(uname) = "Darwin" ]]; then
     current_os="darwin"
@@ -103,7 +103,7 @@ elif [[ "$current_os" == "debian" ]]; then
                     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
                     ok "${light_magenta}Homebrew${ok_color} has been installed"
                 fi
-                eval "$($linux_brew_path shellenv)"
+                $linux_brew_path shellenv | source
             fi
 
             info "Updating and installing packages from Homebrew..."
@@ -137,9 +137,9 @@ fi
 
 fish_path=$(command -v fish)
 if [[ -n "$fish_path" ]] && [[ "$current_os" == "darwin" ]]; then
-    zprofile_path=$HOME/.zprofile
+    zprofile_path="$HOME/.zprofile"
     zprofile_content='[[ -f $HOME/.zshrc ]] && . $HOME/.zshrc'
-    zshrc_path=$HOME/.zshrc
+    zshrc_path="$HOME/.zshrc"
     zshrc_content='command -v fish >/dev/null && {
         export SHELL=$(which fish)
         [[ $- == *i* ]] && exec fish
@@ -158,13 +158,13 @@ elif [[ -n "$fish_path" ]] && [[ "$default_shell" != "$(basename "$fish_path")" 
     warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
     read -r answer
     answer=${answer:-y}
-    fish_path_fix=${fish_path//sbin/bin}
+    fixed_fish_path=${fish_path//sbin/bin}
 
-    if [[ "$answer" == [yY] ]] && [[ -n "$fish_path_fix" ]]; then
+    if [[ "$answer" == [yY] ]] && [[ -n "$fixed_fish_path" ]]; then
         if $is_superuser_privilege; then
-            chsh -s "$fish_path_fix" "$current_user"
+            chsh -s "$fixed_fish_path" "$current_user"
         else
-            sudo chsh -s "$fish_path_fix" "$current_user"
+            sudo chsh -s "$fixed_fish_path" "$current_user"
         fi
     fi
 fi
@@ -175,8 +175,8 @@ answer=${answer:-n}
 
 if [[ "$answer" == [yY] ]]; then
     info "Copying config files..."
-    cp -a "$script_path"/common/. "$HOME"/
-    cp -a "$script_path"/unix/. "$HOME"/
+    cp -a "$script_dir/common/." "$HOME/"
+    cp -a "$script_dir/unix/." "$HOME/"
 fi
 
 ok "\nAll done"

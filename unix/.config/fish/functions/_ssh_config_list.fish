@@ -8,13 +8,13 @@ function _ssh_config_list --description "List ssh configuration files"
         return 1
     end
 
-    set ssh_path $HOME/.ssh
-    set ssh_config_path $ssh_path/config
-    set ssh_confd_path $ssh_path/conf.d
-    test -f $ssh_config_path; and set list $ssh_config_path; or set list
-    test -d $ssh_confd_path; and set -a list ($fd . $ssh_confd_path -tf -L)
+    set ssh_dir $HOME/.ssh
+    set ssh_config_path $ssh_dir/config
+    set ssh_confd_dir $ssh_dir/conf.d
+    test -f "$ssh_config_path"; and set files $ssh_config_path; or set files
+    test -d "$ssh_confd_dir"; and set -a files ($fd . "$ssh_confd_dir" -tf -L)
 
-    for file in $list
+    for file in $files
         echo "$file"
     end
 end
