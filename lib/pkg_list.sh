@@ -18,6 +18,7 @@ fzf
 git-delta
 helix
 hyperfine
+jaq
 lazydocker
 lazygit
 lsd
@@ -28,6 +29,7 @@ sd
 starship
 tlrc
 tokei
+trippy
 wget
 zellij
 zoxide
@@ -57,12 +59,12 @@ git
 git-delta
 helix
 hyperfine
+jaq
 kitty-terminfo
 lazygit
 less
 lsd
 mise
-mtr
 nushell
 openssh
 reflector
@@ -71,6 +73,7 @@ sd
 starship
 sudo
 tokei
+trippy
 unzip
 usage
 wget
@@ -108,7 +111,6 @@ kitty-terminfo
 lazygit
 less
 lsd
-mtr
 nftables
 openssh-client
 openssh-server
@@ -117,6 +119,7 @@ sd
 starship
 sudo
 tokei
+trippy
 unzip
 vim
 wget
@@ -130,6 +133,7 @@ choose-rust
 difftastic
 doggo
 helix
+jaq
 lazydocker
 mise
 tlrc

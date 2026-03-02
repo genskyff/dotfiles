@@ -12,6 +12,7 @@ fzf
 git
 gsudo
 hyperfine
+jaq
 lazydocker
 less
 llvm
@@ -25,6 +26,7 @@ sd
 starship
 tlrc
 tokei
+trippy
 xmake
 zoxide
 "
