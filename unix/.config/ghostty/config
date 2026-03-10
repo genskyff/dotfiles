@@ -1,8 +1,9 @@
 font-family = Maple Mono NF CN
-font-size = 15font-thicken = true
+font-size = 15
+font-thicken = true
 font-thicken-strength = 50
 theme = Snazzy
-cursor-style = block_hollow
+palette = 8=#999999
 mouse-hide-while-typing = true
 background-opacity = 0.8
 maximize = true
@@ -13,7 +14,10 @@ shell-integration-features = no-cursor,sudo,ssh-env,ssh-terminfo
 macos-window-buttons = hidden
 macos-titlebar-style = hidden
 macos-option-as-alt = true
-macos-icon = paper
+macos-icon = custom
+
+# https://github.com/lukejanicke/ghostty-app-icons
+macos-custom-icon = ~/.config/ghostty/ghostty-white.icns
 
 # https://github.com/KroneCorylus/ghostty-shader-playground
-custom-shader = cursor_frozen.glsl
+custom-shader = cursor_smear.glsl
