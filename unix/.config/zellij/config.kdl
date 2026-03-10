@@ -253,7 +253,8 @@ plugins {
 load_plugins {
 }
 web_client {
-    font "monospace"
+    cursor_blink true
+    font "Maple Mono NF CN"
 }
 
 // Use a simplified UI without special fonts (arrow glyphs)
