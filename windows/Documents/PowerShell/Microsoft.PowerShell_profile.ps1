@@ -4,6 +4,7 @@ if (Get-Command mise -ErrorAction SilentlyContinue) {
 
 if (Get-Command starship -ErrorAction SilentlyContinue) {
     starship init powershell | Out-String | Invoke-Expression
+    $env:STARSHIP_LOG = "error"
 }
 
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {

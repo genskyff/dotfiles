@@ -33,6 +33,7 @@ if (which starship | is-not-empty) {
     if not ($starship_config | path exists) {
         starship init nu | save -f $starship_config
     }
+    $env.STARSHIP_LOG = "error"
 } else {
     rm -f $starship_config
 }
