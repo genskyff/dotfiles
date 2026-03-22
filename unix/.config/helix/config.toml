@@ -18,3 +18,4 @@ render = true
 
 [keys.insert]
 j = { k = "normal_mode" }
+k = { j = "normal_mode" }
