@@ -1,3 +1,5 @@
+$env.SHELL = "nu"
+
 if (which fzf | is-not-empty) {
     $env.FZF_DEFAULT_OPTS = $"--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
                             --with-shell 'nu --config ($nu.config-path) -c'
