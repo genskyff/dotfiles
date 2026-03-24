@@ -15,6 +15,7 @@ fastfetch
 fd
 fish
 fzf
+gh
 git-delta
 helix
 hyperfine
@@ -57,6 +58,7 @@ fzf
 ghostty-terminfo
 git
 git-delta
+github-cli
 helix
 hyperfine
 jaq
@@ -103,6 +105,7 @@ fastfetch
 fd-find
 fish
 fzf
+gh
 git
 git-credential-oauth
 git-delta

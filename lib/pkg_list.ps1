@@ -9,6 +9,7 @@ fastfetch
 fd
 ffmpeg
 fzf
+gh
 git
 gsudo
 hyperfine
