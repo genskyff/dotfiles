@@ -28,6 +28,7 @@ tlrc
 tokei
 trippy
 xmake
+zellij
 zoxide
 "
 $scoop_extras_list = "
