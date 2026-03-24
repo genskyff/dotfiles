@@ -3,6 +3,7 @@ alias lad = lazydocker
 alias lg = lazygit
 alias hf = hyperfine
 alias sudo = gsudo
+alias zj = zellij
 
 alias gd = git diff -w
 alias gp = git pull

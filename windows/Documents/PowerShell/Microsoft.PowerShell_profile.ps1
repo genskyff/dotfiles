@@ -1,5 +1,10 @@
+$env:SHELL = "pwsh"
+
 if (Get-Command mise -ErrorAction SilentlyContinue) {
-    mise activate pwsh --shims | Out-String | Invoke-Expression
+    $init = mise activate pwsh --shims | Out-String
+    if ($init) {
+        Invoke-Expression $init
+    }
 }
 
 if (Get-Command starship -ErrorAction SilentlyContinue) {
@@ -176,6 +181,7 @@ Set-Alias -Name hf -Value hyperfine -Force
 Set-Alias -Name lad -Value lazydocker -Force
 Set-Alias -Name lg -Value lazygit -Force
 Set-Alias -Name sudo -Value gsudo -Force
+Set-Alias -Name zj -Value zellij -Force
 
 Set-Alias -Name ls -Value Lsd-Invoke -Force
 Set-Alias -Name ll -Value Ls-Long -Force
