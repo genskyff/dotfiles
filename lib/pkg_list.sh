@@ -49,6 +49,7 @@ difftastic
 docker
 docker-buildx
 docker-compose
+doggo
 duf
 dust
 fastfetch
@@ -63,6 +64,7 @@ helix
 hyperfine
 jaq
 kitty-terminfo
+lazydocker
 lazygit
 less
 lsd
@@ -82,12 +84,10 @@ wget
 zellij
 zoxide
 "
-aur_helper=paru
-aur_helper_url=https://aur.archlinux.org/paru-git.git
+aur_helper=yay
+aur_helper_url=https://aur.archlinux.org/yay-bin.git
 aur_list="
-doggo-bin
 git-credential-oauth
-lazydocker-bin
 tlrc-bin
 "
 
