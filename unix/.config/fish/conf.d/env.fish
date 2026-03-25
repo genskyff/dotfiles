@@ -1,5 +1,5 @@
 # EDITOR
-if command -q code; and _is_gui
+if command -q code; and not command -s code | string match -qr "^/mnt"; and _is_gui
     set -gx EDITOR code
 else if command -q hx
     set -gx EDITOR hx
