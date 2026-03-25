@@ -4,3 +4,9 @@ command_timeout = 200
 
 [aws]
 disabled = true
+
+[custom.wsl]
+shell = ["sh"]
+when = "test -f /etc/wsl-distribution.conf"
+format = "[in \ue70f wsl]($style) "
+style = "bold yellow"
