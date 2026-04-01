@@ -1,6 +1,6 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
-command_timeout = 200
+command_timeout = 300
 
 [aws]
 disabled = true
