@@ -1,3 +1,5 @@
+set termguicolors
+
 set autoread
 set showmatch
 
