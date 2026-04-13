@@ -10,7 +10,6 @@ fd
 ffmpeg
 fzf
 gh
-git
 gsudo
 hyperfine
 jaq
