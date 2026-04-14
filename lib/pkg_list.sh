@@ -17,13 +17,13 @@ fish
 fzf
 gh
 git-delta
-helix
 hyperfine
 jaq
 lazydocker
 lazygit
 lsd
 mise
+neovim
 nushell
 ripgrep
 sd
@@ -58,9 +58,9 @@ fish
 fzf
 ghostty-terminfo
 git
+git-credential-oauth
 git-delta
 github-cli
-helix
 hyperfine
 jaq
 kitty-terminfo
@@ -69,6 +69,7 @@ lazygit
 less
 lsd
 mise
+neovim
 nushell
 openssh
 reflector
@@ -86,10 +87,7 @@ zoxide
 "
 aur_helper=yay
 aur_helper_url=https://aur.archlinux.org/yay-bin.git
-aur_list="
-git-credential-oauth
-tlrc-bin
-"
+aur_list="tlrc-bin"
 
 # Debian
 debian_apt_list="
@@ -135,10 +133,10 @@ bottom
 choose-rust
 difftastic
 doggo
-helix
 jaq
 lazydocker
 mise
+neovim
 tlrc
 zellij
 "

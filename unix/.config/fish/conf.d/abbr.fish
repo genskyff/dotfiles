@@ -7,7 +7,6 @@ command -q btm; and abbr bt btm -b
 command -q choose; and abbr -a cho choose
 command -q fastfetch; and abbr -a ff fastfetch
 command -q fdfind; and abbr -a fd fdfind
-command -q helix; and abbr -a hx helix
 command -q hyperfine; and abbr -a hf hyperfine
 command -q jaq; and abbr -a jq jaq
 command -q lazydocker; and abbr -a lad lazydocker

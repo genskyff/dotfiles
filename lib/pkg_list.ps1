@@ -27,7 +27,6 @@ starship
 tlrc
 tokei
 trippy
-xmake
 zellij
 zoxide
 "
