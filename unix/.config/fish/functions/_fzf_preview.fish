@@ -14,8 +14,8 @@ function _fzf_preview --description "Preview file or directory with fzf"
         end
     else if test -d $argv
         command -q lsd
-        and set -f cmd lsd --color always --tree --depth 1
-        or set -f cmd ls --color=always -1
+        and set -f cmd lsd -A --color always --tree --depth 1
+        or set -f cmd ls -A --color=always -1
         $cmd $argv
     else
         echo -e $argv

@@ -47,13 +47,18 @@ if (Get-Command less -ErrorAction SilentlyContinue) {
 }
 
 if (Get-Command fzf -ErrorAction SilentlyContinue) {
+    $fzf_color = ' --color "bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8"
+                    --color "fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC"
+                    --color "marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8"
+                    --color "selected-bg:#45475A"
+                    --color "border:#6C7086,label:#CDD6F4"'
     $env:FZF_DEFAULT_OPTS = '--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
                             --preview-window "hidden,border-left,60%"
                             --bind "alt-/:change-preview-window(90%|60%)"
                             --bind "alt-,:toggle-wrap"
                             --bind "alt-.:toggle-preview-wrap"
                             --bind "ctrl-/:toggle-preview"
-                            --bind "alt-f:preview-page-down,alt-b:preview-page-up"'
+                            --bind "alt-f:preview-page-down,alt-b:preview-page-up"' + $fzf_color
 }
 
 function Open-Folder {
