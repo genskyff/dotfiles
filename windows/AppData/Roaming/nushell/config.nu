@@ -1,4 +1,5 @@
-$env.config = {
-    buffer_editor: "code",
-    show_banner: false
+$env.config.show_banner = false
+
+if (which code | is-not-empty) {
+    $env.config.buffer_editor = "code"
 }

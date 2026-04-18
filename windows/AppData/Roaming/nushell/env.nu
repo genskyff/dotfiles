@@ -22,6 +22,10 @@ if (which less | is-not-empty) {
     $env.LESS = "-iRF"
 }
 
+if (which bat | is-not-empty) {
+    $env.BAT_THEME = "Catppuccin Mocha"
+}
+
 let vendor_autoload_dir = $nu.data-dir | path join vendor autoload
 if not ($vendor_autoload_dir | path exists) {
     mkdir $vendor_autoload_dir

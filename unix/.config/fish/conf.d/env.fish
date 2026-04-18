@@ -1,4 +1,3 @@
-# EDITOR
 if command -q code; and not command -s code | string match -qr "^/mnt"; and _is_gui
     set -gx EDITOR code
 else if command -q nvim
@@ -7,7 +6,10 @@ else if command -q vim
     set -gx EDITOR vim
 end
 
-# LESS
 if command -q less
     set -gx LESS -iRF
+end
+
+if command -q bat
+    set -gx BAT_THEME "Catppuccin Mocha"
 end
