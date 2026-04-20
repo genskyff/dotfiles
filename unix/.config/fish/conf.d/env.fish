@@ -9,7 +9,3 @@ end
 if command -q less
     set -gx LESS -iRF
 end
-
-if command -q bat
-    set -gx BAT_THEME "Catppuccin Mocha"
-end
