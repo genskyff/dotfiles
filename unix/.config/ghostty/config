@@ -2,8 +2,9 @@ font-family = Maple Mono NF CN
 font-size = 15
 font-thicken = true
 font-thicken-strength = 50
-theme = Catppuccin Mocha
+theme = Snazzy
 palette = 8=#999999
+cursor-text = #282A36
 mouse-hide-while-typing = true
 background-opacity = 0.8
 maximize = true
@@ -12,7 +13,7 @@ window-padding-y = 10
 clipboard-trim-trailing-spaces = true
 shell-integration-features = no-cursor,sudo,ssh-env,ssh-terminfo
 macos-window-buttons = hidden
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 macos-option-as-alt = true
 macos-icon = custom
 
@@ -21,3 +22,13 @@ macos-custom-icon = ~/.config/ghostty/ghostty-white.icns
 
 # https://github.com/KroneCorylus/ghostty-shader-playground
 custom-shader = cursor_smear.glsl
+
+keybind = alt+n=new_split
+keybind = alt+j=goto_split:previous
+keybind = alt+k=goto_split:next
+
+keybind = alt+t>n=new_tab
+keybind = alt+l=next_tab
+keybind = alt+h=previous_tab
+keybind = alt+o=move_tab:1
+keybind = alt+i=move_tab:-1
