@@ -30,6 +30,7 @@ sd
 starship
 tlrc
 tokei
+tree-sitter-cli
 trippy
 wget
 zellij
@@ -78,6 +79,7 @@ sd
 starship
 sudo
 tokei
+tree-sitter-cli
 trippy
 unzip
 usage
@@ -138,5 +140,6 @@ lazydocker
 mise
 neovim
 tlrc
+tree-sitter-cli
 zellij
 "
