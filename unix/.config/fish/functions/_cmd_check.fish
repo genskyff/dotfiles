@@ -16,7 +16,7 @@ function _cmd_check --description "Check command status"
 
     if not set -q _flag_q; and test $has_error -eq 1
         for message in $error_messages
-            echo -e "$message" >&2
+            echo "$message" >&2
         end
     end
 

@@ -4,14 +4,15 @@ function _ssh_config_list --description "List ssh configuration files"
     else if _cmd_check -q fdfind
         set fd fdfind
     else
-        echo -e "$(set_color red)Error$(set_color normal): 'fd' command not found" >&2
+        _cmd_check fd
         return 1
     end
 
     set ssh_dir $HOME/.ssh
     set ssh_config_path $ssh_dir/config
     set ssh_confd_dir $ssh_dir/conf.d
-    test -f "$ssh_config_path"; and set files $ssh_config_path; or set files
+    set files
+    test -f "$ssh_config_path"; and set -a files $ssh_config_path
     test -d "$ssh_confd_dir"; and set -a files ($fd . "$ssh_confd_dir" -tf -L)
 
     for file in $files
