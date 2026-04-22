@@ -9,8 +9,8 @@ module docker-utils {
 
     export def --wrapped container-list [...argv] {
         let all_containers = docker ps --format "{{.ID}} {{.Names}} {{.Status}}" ...$argv | lines | split column " " id name status
-        let exited_containers = $all_containers | where status =~ Exited* | each { $"(ansi red)($in.id) ($in.name) \(Exited)(ansi reset)" }
-        let running_containers = $all_containers | where status =~ Up* | each { $"(ansi green)($in.id) ($in.name)(ansi reset)" }
+        let exited_containers = $all_containers | where status =~ Exited | each { $"(ansi red)($in.id) ($in.name) \(Exited)(ansi reset)" }
+        let running_containers = $all_containers | where status =~ Up | each { $"(ansi green)($in.id) ($in.name)(ansi reset)" }
         $exited_containers ++ $running_containers | str join "\n"
     }
 }
