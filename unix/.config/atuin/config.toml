@@ -1,0 +1,17 @@
+workspaces = true
+filter_mode_shell_up_key_binding = "directory"
+style = "compact"
+inline_height = 20
+invert = true
+show_help = false
+show_tabs = false
+show_numeric_shortcuts = false
+enter_accept = false
+
+[keys]
+scroll_exits = false
+
+[keymap.emacs]
+"tab" = "select-next"
+"shift-tab" = "select-previous"
+"up" = "select-previous"

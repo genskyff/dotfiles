@@ -1,6 +1,5 @@
 command -q fzf; or return 0
-
-status is-interactive; and fzf --fish | source
+status is-interactive; or return 0
 
 command -q fd; and set -l fd fd
 command -q fdfind; and set -l fd fdfind
@@ -22,3 +21,10 @@ set -gx FZF_DEFAULT_OPTS '--cycle --ansi --height 60% --highlight-line --reverse
     --bind "alt-.:toggle-preview-wrap"
     --bind "ctrl-/:toggle-preview"
     --bind "alt-f:preview-page-down,alt-b:preview-page-up"'
+
+if command -q atuin
+    set -l FZF_CTRL_R_COMMAND
+    fzf --fish | string match -ve 'bind *\cr fzf-history-widget' | source
+else
+    fzf --fish | source
+end
