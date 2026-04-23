@@ -97,6 +97,7 @@ aur_list="tlrc-bin"
 debian_apt_list="
 atuin
 bat
+btm
 build-essential
 curl
 docker-buildx
@@ -134,7 +135,6 @@ zoxide
 debian_brew_list="
 ast-grep
 binsider
-bottom
 choose-rust
 difftastic
 doggo
