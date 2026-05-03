@@ -1,5 +1,9 @@
 $env:SHELL = "pwsh"
 
+if (Get-Command code -ErrorAction SilentlyContinue) {
+    $env:EDITOR = "code"
+}
+
 if (Get-Command mise -ErrorAction SilentlyContinue) {
     $init = mise activate pwsh --shims | Out-String
     if ($init) {
