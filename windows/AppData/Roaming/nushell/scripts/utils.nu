@@ -1,10 +1,8 @@
 export def --wrapped edit [...argv] {
     let editor = $env.config.buffer_editor
 
-    if ($editor == "code") {
-        code ...$argv
-    } else if ($editor == "hx") {
-        hx ...$argv
+    if ($editor | is-not-empty) {
+        run-external $editor ...$argv
     } else {
         start $argv.0
     }
