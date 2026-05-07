@@ -3,7 +3,6 @@
 # macOS
 brew_list="
 ast-grep
-atuin
 bat
 bottom
 choose-rust
@@ -41,7 +40,6 @@ zoxide
 # Arch
 pacman_list="
 ast-grep
-atuin
 base-devel
 bat
 binsider
@@ -95,7 +93,6 @@ aur_list="tlrc-bin"
 
 # Debian
 debian_apt_list="
-atuin
 bat
 btm
 build-essential

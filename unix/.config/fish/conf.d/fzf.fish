@@ -22,9 +22,4 @@ set -gx FZF_DEFAULT_OPTS '--cycle --ansi --height 60% --highlight-line --reverse
     --bind "ctrl-/:toggle-preview"
     --bind "alt-f:preview-page-down,alt-b:preview-page-up"'
 
-if command -q atuin
-    set -l FZF_CTRL_R_COMMAND
-    fzf --fish | string match -ve 'bind *\cr fzf-history-widget' | source
-else
-    fzf --fish | source
-end
+fzf --fish | source
