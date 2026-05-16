@@ -32,6 +32,7 @@ tlrc
 tokei
 tree-sitter-cli
 trippy
+watchexec
 wget
 zellij
 zoxide
@@ -83,6 +84,7 @@ tree-sitter-cli
 trippy
 unzip
 usage
+watchexec
 wget
 zellij
 zoxide
@@ -141,5 +143,6 @@ mise
 neovim
 tlrc
 tree-sitter-cli
+watchexec
 zellij
 "

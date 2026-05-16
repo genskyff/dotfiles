@@ -27,6 +27,7 @@ starship
 tlrc
 tokei
 trippy
+watchexec
 zellij
 zoxide
 "
