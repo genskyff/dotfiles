@@ -3,6 +3,7 @@
 # macOS
 brew_list="
 ast-grep
+bacon
 bat
 bottom
 choose-rust
@@ -32,7 +33,6 @@ tlrc
 tokei
 tree-sitter-cli
 trippy
-watchexec
 wget
 zellij
 zoxide
@@ -41,6 +41,7 @@ zoxide
 # Arch
 pacman_list="
 ast-grep
+bacon
 base-devel
 bat
 binsider
@@ -84,7 +85,6 @@ tree-sitter-cli
 trippy
 unzip
 usage
-watchexec
 wget
 zellij
 zoxide
@@ -143,6 +143,5 @@ mise
 neovim
 tlrc
 tree-sitter-cli
-watchexec
 zellij
 "
