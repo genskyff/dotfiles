@@ -44,7 +44,6 @@ ast-grep
 bacon
 base-devel
 bat
-binsider
 bottom
 choose
 curl
@@ -133,7 +132,6 @@ zoxide
 "
 debian_brew_list="
 ast-grep
-binsider
 choose-rust
 difftastic
 doggo
