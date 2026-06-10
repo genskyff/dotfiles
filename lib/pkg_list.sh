@@ -71,6 +71,7 @@ lazygit
 less
 lsd
 mise
+mold
 neovim
 nushell
 openssh
@@ -116,6 +117,7 @@ kitty-terminfo
 lazygit
 less
 lsd
+mold
 nftables
 openssh-client
 openssh-server
