@@ -18,7 +18,6 @@ less
 llvm
 lsd
 mise
-msys2
 nu
 pandoc
 ripgrep
