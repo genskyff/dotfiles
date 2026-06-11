@@ -134,6 +134,7 @@ zoxide
 "
 debian_brew_list="
 ast-grep
+bacon
 choose-rust
 difftastic
 doggo
