@@ -26,18 +26,24 @@ starship
 tlrc
 tokei
 trippy
+uv
+watchexec
 zellij
 zoxide
 "
 $scoop_extras_list = "
+gimp
 lazygit
 listary
 localsend
+obs-studio
+Obsidian
 pot
 potplayer
 qbittorrent-enhanced
 qq-nt
 snipaste
+sublime-merge
 typora
 wechat
 "
