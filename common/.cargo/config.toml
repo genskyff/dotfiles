@@ -1,5 +1,0 @@
-[target.'cfg(any(target_os = "windows", target_os = "linux"))']
-rustflags = ["-Ctarget-feature=+crt-static"]
-
-[target.'cfg(target_os = "linux")']
-rustflags = ["-Clink-arg=-fuse-ld=mold"]
