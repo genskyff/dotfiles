@@ -1,59 +1,36 @@
 [user]
+    signingkey = ~/.ssh/sign.pub
 [credential]
-[log]
-    date = format:%Y-%m-%d %H:%M:%S %z %a
-[format]
-    pretty = format:Commit: %C(auto)%h%d%nAuthor: %an <%ae>%nDate:   %ad (%cd)%n%n%w(0,4,4)%s%n%+b
-[init]
-    defaultBranch = main
-[pull]
-    rebase = true
-[merge]
-    conflictstyle = zdiff3
+[commit]
+    # gpgsign = true
+[diff]
+    colorMoved = default
+    # tool = vscode
 [core]
     autocrlf = input
     quotepath = false
-    pager = delta
+    # editor = $EDITOR
     excludesfile = ~/.gitignore_global
-[interactive]
-    diffFilter = delta --color-only
-[delta]
-    navigate = true
-    side-by-side = true
-    features = my-theme
-[diff]
-    colorMoved = default
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    allowedSignersFile = ~/.ssh/allowed_signers
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[delta "my-theme"]
-    commit-decoration-style = none
-    dark = true
-    file-added-label = [+]
-    file-copied-label = [C]
-    file-decoration-style = none
-    file-modified-label = [M]
-    file-removed-label = [-]
-    file-renamed-label = [R]
-    file-style = 232 bold 184
-    hunk-header-decoration-style = none
-    hunk-header-file-style = "#999999"
-    hunk-header-line-number-style = bold "#03a4ff"
-    hunk-header-style = file line-number syntax
-    line-numbers = true
-    line-numbers-left-style = black
-    line-numbers-minus-style = "#B10036"
-    line-numbers-plus-style = "#03a4ff"
-    line-numbers-right-style = black
-    line-numbers-zero-style = "#999999"
-    minus-emph-style = syntax bold "#780000"
-    minus-style = syntax "#400000"
-    plus-emph-style = syntax bold "#007800"
-    plus-style = syntax "#004000"
-    whitespace-error-style = "#280050" reverse
-    zero-style = syntax
-    syntax-theme = Nord
-    blame-code-style = syntax
-    blame-palette = "#2E3440" "#3B4252" "#434C5E" "#4C566A"
+[format]
+    pretty = format:Commit: %C(auto)%h%d%nAuthor: %an <%ae>%nDate:   %ad (%cd)%n%n%w(0,4,4)%s%n%+b
+[init]
+    defaultBranch = main
+[log]
+    date = format:%Y-%m-%d %H:%M:%S %z %a
+[merge]
+    conflictstyle = zdiff3
+[pull]
+    rebase = true
+[rerere]
+    enabled = true
+[include]
+    path = ~/.delta.gitconfig
