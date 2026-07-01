@@ -8,7 +8,6 @@ command -q choose; and abbr -a cho choose
 command -q fastfetch; and abbr -a ff fastfetch
 command -q fdfind; and abbr -a fd fdfind
 command -q hyperfine; and abbr -a hf hyperfine
-command -q jaq; and abbr -a jq jaq
 command -q lazydocker; and abbr -a lad lazydocker
 command -q lazygit; and abbr -a lg lazygit
 command -q yay; and abbr -a ya yay -Syu --noconfirm --color always

@@ -12,7 +12,7 @@ fzf
 gh
 gsudo
 hyperfine
-jaq
+jq
 lazydocker
 less
 llvm

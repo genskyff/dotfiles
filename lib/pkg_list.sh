@@ -18,7 +18,7 @@ fzf
 gh
 git-delta
 hyperfine
-jaq
+jq
 lazydocker
 lazygit
 lsd
@@ -63,7 +63,7 @@ git-credential-oauth
 git-delta
 github-cli
 hyperfine
-jaq
+jq
 kitty-terminfo
 lazydocker
 lazygit
@@ -113,6 +113,7 @@ git
 git-credential-oauth
 git-delta
 hyperfine
+jq
 kitty-terminfo
 lazygit
 less
@@ -137,7 +138,6 @@ ast-grep
 choose-rust
 difftastic
 doggo
-jaq
 lazydocker
 mise
 neovim
