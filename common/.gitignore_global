@@ -1,6 +1,6 @@
 # Local
 .DS_Store
-*.local
+*.local*
 *.log*
 
 # Dist
