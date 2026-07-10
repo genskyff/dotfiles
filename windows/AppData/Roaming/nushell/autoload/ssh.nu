@@ -10,7 +10,7 @@ module ssh-utils {
         }
 
         if ($ssh_confd_path | path exists) {
-           $files ++= (ls $ssh_confd_path | where type == "file" | get name | each { |conf| $ssh_path | path join $conf })
+           $files ++= (ls $ssh_confd_path | where type == "file" | get name)
         }
 
         $files
