@@ -68,15 +68,12 @@ elif [[ "$os_name" == "arch" ]]; then
         if ! command -v "$aur_helper" >/dev/null 2>&1; then
             info "${light_magenta}${aur_helper}${info_color} not found. Installing..."
 
-            if [[ ! -d "$aur_helper" ]] || [[ -z "$(ls -A "$aur_helper")" ]]; then
-                rm -rf "$aur_helper"
-                git clone "$aur_helper_url" "$aur_helper"
-            fi
-
-            cd "$aur_helper"
+            build_dir=$(mktemp -d)
+            git clone "$aur_helper_url" "$build_dir"
+            cd "$build_dir"
             makepkg -si --noconfirm
-            cd ..
-            rm -rf "$aur_helper"
+            cd - >/dev/null
+            rm -rf "$build_dir"
             ok "${light_magenta}${aur_helper}${ok_color} has been installed"
         fi
 
