@@ -104,7 +104,7 @@ elif [[ "$os_name" == "debian" ]]; then
             fi
 
             info "Updating and installing packages from Homebrew..."
-            brew upgrade
+            brew upgrade -y
             brew install $debian_brew_list
             brew cleanup --prune=all
         else
