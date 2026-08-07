@@ -4,7 +4,6 @@ abbr -a cls clear
 
 command -q batcat; and abbr -a bat batcat
 command -q btm; and abbr bt btm -b
-command -q choose; and abbr -a cho choose
 command -q fastfetch; and abbr -a ff fastfetch
 command -q fdfind; and abbr -a fd fdfind
 command -q hyperfine; and abbr -a hf hyperfine
