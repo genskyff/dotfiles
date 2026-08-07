@@ -27,7 +27,6 @@ tlrc
 tokei
 trippy
 watchexec
-zellij
 zoxide
 "
 $scoop_extras_list = "

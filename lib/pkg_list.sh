@@ -34,7 +34,6 @@ tree-sitter-cli
 trippy
 watchexec
 wget
-zellij
 zoxide
 "
 
@@ -86,7 +85,6 @@ unzip
 usage
 watchexec
 wget
-zellij
 zoxide
 "
 aur_helper=yay
@@ -144,5 +142,4 @@ neovim
 tlrc
 tree-sitter-cli
 watchexec
-zellij
 "
