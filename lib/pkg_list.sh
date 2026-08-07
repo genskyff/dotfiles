@@ -66,6 +66,7 @@ reflector
 ripgrep
 starship
 sudo
+tmux
 tokei
 unzip
 usage
@@ -108,6 +109,7 @@ openssh-server
 ripgrep
 starship
 sudo
+tmux
 tokei
 unzip
 vim
