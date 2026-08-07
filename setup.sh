@@ -97,7 +97,7 @@ elif [[ "$os_name" == "debian" ]]; then
                 linux_brew_path=/home/linuxbrew/.linuxbrew/bin/brew
                 if [[ ! -f "$linux_brew_path" ]]; then
                     info "${light_magenta}Homebrew${info_color} not found. Installing..."
-                    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                    NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
                     ok "${light_magenta}Homebrew${ok_color} has been installed"
                 fi
                 eval "$($linux_brew_path shellenv)"
