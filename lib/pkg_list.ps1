@@ -19,6 +19,7 @@ llvm
 lsd
 mise
 nu
+pwsh
 pandoc
 ripgrep
 starship
