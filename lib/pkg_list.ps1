@@ -25,7 +25,6 @@ ripgrep
 starship
 tlrc
 tokei
-watchexec
 zoxide
 "
 $scoop_extras_list = "

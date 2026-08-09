@@ -26,7 +26,6 @@ ripgrep
 starship
 tlrc
 tokei
-watchexec
 wget
 zoxide
 "
