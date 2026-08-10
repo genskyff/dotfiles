@@ -1,0 +1,19 @@
+onboarding = false
+
+[theme]
+name = "terminal"
+
+[keys]
+prefix = "alt+g"
+
+[ui]
+sidebar_start_collapsed = true
+sidebar_collapsed_mode = "hidden"
+copy_on_select = false
+confirm_close = false
+prompt_new_tab_name = false
+prompt_new_workspace_name = false
+pane_gaps = false
+
+[ui.sound]
+enabled = false
