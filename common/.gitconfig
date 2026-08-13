@@ -20,10 +20,12 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[format]
-    pretty = format:Commit: %C(auto)%h%d%nAuthor: %an <%ae>%nDate:   %ad (%cd)%n%n%w(0,4,4)%s%n%+b
 [init]
     defaultBranch = main
+[alias]
+    pushfl = push --force-with-lease
+[format]
+    pretty = format:Commit: %C(auto)%h%d%nAuthor: %an <%ae>%nDate:   %ad (%cd)%n%n%w(0,4,4)%s%n%+b
 [log]
     date = format:%Y-%m-%d %H:%M:%S %z %a
 [merge]
