@@ -48,13 +48,13 @@ if [[ "$os_name" == "macos" ]]; then
     else
         if ! command -v brew >/dev/null 2>&1; then
             info "${light_magenta}Homebrew${info_color} not found. Installing..."
-            bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            NONINTERACTIVE=1 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             eval "$(/opt/homebrew/bin/brew shellenv)"
             ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
         info "Updating and installing packages from Homebrew..."
-        brew upgrade
+        brew upgrade -y
         brew install $brew_list
         brew cleanup --prune=all
     fi
