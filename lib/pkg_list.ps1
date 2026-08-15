@@ -2,6 +2,7 @@ $scoop_main_list = "
 7zip
 ast-grep
 bat
+bottom
 delta
 difftastic
 dufs

@@ -70,6 +70,11 @@ function Which-Command {
     (Get-Command $Command).Path
 }
 
+function BT {
+    $params = @("-b") + $args
+    btm @params
+}
+
 function Lsd-Invoke {
     $params = @("-N") + $args
     lsd @params

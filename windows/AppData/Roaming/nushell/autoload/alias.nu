@@ -1,3 +1,4 @@
+alias bt = btm -b
 alias ff = fastfetch
 alias lad = lazydocker
 alias lg = lazygit
