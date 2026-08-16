@@ -30,7 +30,6 @@ zoxide
 "
 $scoop_extras_list = "
 dbx
-gimp
 lazygit
 listary
 localsend
