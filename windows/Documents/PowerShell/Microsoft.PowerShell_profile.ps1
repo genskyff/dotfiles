@@ -5,7 +5,7 @@ if (Get-Command code -ErrorAction SilentlyContinue) {
 }
 
 if (Get-Command mise -ErrorAction SilentlyContinue) {
-    $init = mise activate pwsh --shims | Out-String
+    $init = mise activate pwsh | Out-String
     if ($init) {
         Invoke-Expression $init
     }
