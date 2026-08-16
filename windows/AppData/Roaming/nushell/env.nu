@@ -24,7 +24,7 @@ if not ($vendor_autoload_dir | path exists) {
 let mise_config = $nu.data-dir | path join vendor autoload mise.nu
 if (which mise | is-not-empty) {
     if not ($mise_config | path exists) {
-        mise activate nu --shims | save -f $mise_config
+        mise activate nu | save -f $mise_config
     }
 } else {
     rm -f $mise_config
