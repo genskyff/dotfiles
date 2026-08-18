@@ -21,3 +21,12 @@
      ```shell
      ./setup.sh
      ```
+
+## Re-apply
+
+After making changes to the dotfiles, re-apply them using the following commands:
+
+```shell
+mise bootstrap dotfiles apply
+mise bootstrap dotfiles status
+```

@@ -1,0 +1,5 @@
+[settings]
+dotfiles.default_mode = "copy"
+
+[dotfiles]
+"~/**/*" = "platform/common/**/*"

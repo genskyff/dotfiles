@@ -3,9 +3,6 @@ $ErrorActionPreference = "Stop"
 . "$PSScriptRoot/lib/color.ps1"
 . "$PSScriptRoot/lib/pkg_list.ps1"
 
-$common_path = Join-Path -Path $PSScriptRoot -ChildPath "common\*"
-$windows_path = Join-Path -Path $PSScriptRoot -ChildPath "windows\*"
-
 if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     info "'scoop' not found. Installing..."
     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -44,9 +41,15 @@ warn -n "Copy config files to overwrite existing configs? (y/N): "
 $answer = Read-Host
 
 if ($answer -eq "Y" -or $answer -eq "y") {
-    info "Copying config files..."
-    Copy-Item -Path $common_path -Destination $HOME -Recurse -Force
-    Copy-Item -Path $windows_path -Destination $HOME -Recurse -Force
+    if (-Not (Get-Command mise -ErrorAction SilentlyContinue)) {
+        error "'mise' not found. Cannot apply config files."
+        exit 1
+    }
+    info "Applying config files..."
+    mise -C $PSScriptRoot trust -y
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    mise -C $PSScriptRoot bootstrap dotfiles apply -y
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
 ok "All done"

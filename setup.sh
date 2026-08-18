@@ -155,9 +155,13 @@ read -r answer
 answer=${answer:-n}
 
 if [[ "$answer" == [yY] ]]; then
-    info "Copying config files..."
-    cp -a "$script_dir/common/." "$HOME/"
-    cp -a "$script_dir/unix/." "$HOME/"
+    if ! command -v mise >/dev/null 2>&1; then
+        error "Error${reset}: mise is required to apply config files"
+        exit 1
+    fi
+    info "Applying config files..."
+    mise -C "$script_dir" trust -y
+    mise -C "$script_dir" bootstrap dotfiles apply -y
 fi
 
 ok "\nAll done"
