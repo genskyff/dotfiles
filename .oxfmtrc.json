@@ -1,0 +1,4 @@
+{
+  "ignorePatterns": ["platform/common/.config/starship.toml"],
+  "singleQuote": true
+}
