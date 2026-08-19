@@ -3,3 +3,7 @@ dotfiles.default_mode = "copy"
 
 [dotfiles]
 "~/**/*" = "platform/common/**/*"
+"~/.gitconfig" = { source = "platform/common/.gitconfig", mode = "template" }
+"~/.gitignore_global" = { source = "platform/common/.gitignore_global", mode = "template" }
+"~/.delta.gitconfig" = { source = "platform/common/.delta.gitconfig", mode = "template" }
+"~/.config/starship.toml" = { source = "platform/common/.config/starship.toml", mode = "template" }

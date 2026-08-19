@@ -4,8 +4,10 @@
     diffFilter = delta --color-only
 [delta]
     dark = true
+{%- if os() == "macos" %}
     hyperlinks = true
     hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+{%- endif %}
     line-numbers = true
     navigate = true
     side-by-side = true

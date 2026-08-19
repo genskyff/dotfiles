@@ -1,15 +1,25 @@
-[user]
-    signingkey = ~/.ssh/sign.pub
 [credential]
-[commit]
-    # gpgsign = true
+{%- if os() == "windows" %}
+    helper = manager
+{%- elif os() == "macos" %}
+    helper = osxkeychain
+{%- elif os() == "linux" %}
+    helper = cache --timeout 21600
+    helper = oauth -device
+{%- endif %}
 [diff]
     colorMoved = default
-    # tool = vscode
+{%- if os() != "linux" %}
+    tool = vscode
+{%- endif %}
 [core]
     autocrlf = input
     quotepath = false
-    # editor = $EDITOR
+{%- if os() == "linux" %}
+    editor = $EDITOR
+{%- else %}
+    editor = code --wait
+{%- endif %}
     excludesfile = ~/.gitignore_global
 [gpg]
     format = ssh
@@ -36,3 +46,6 @@
     enabled = true
 [include]
     path = ~/.delta.gitconfig
+{%- if vars.git_extra is defined %}
+{{ vars.git_extra | trim }}
+{%- endif %}

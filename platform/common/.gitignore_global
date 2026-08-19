@@ -8,3 +8,7 @@ node_modules
 
 # IDE
 .idea
+{%- if vars.gitignore_extra is defined %}
+
+{{ vars.gitignore_extra | trim }}
+{%- endif %}
