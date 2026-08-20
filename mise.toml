@@ -4,6 +4,7 @@ dotfiles.default_mode = "copy"
 [dotfiles]
 "~" = { source = "platform/common", exclude = [
   ".config/starship.toml",
+  ".ssh",
   ".delta.gitconfig",
   ".gitconfig",
   ".gitignore_global",
