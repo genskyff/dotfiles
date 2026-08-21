@@ -1,4 +1,5 @@
 $ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 . "$PSScriptRoot/lib/color.ps1"
 . "$PSScriptRoot/lib/pkg_list.ps1"
@@ -48,9 +49,7 @@ if ($answer -eq "Y" -or $answer -eq "y") {
     }
     info "Applying config files..."
     mise -C $PSScriptRoot trust -y
-    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     mise -C $PSScriptRoot bootstrap dotfiles apply -y
-    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
 ok "All done"
