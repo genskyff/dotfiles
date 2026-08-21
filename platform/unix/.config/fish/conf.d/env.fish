@@ -1,5 +1,7 @@
 if command -q code; and not command -s code | string match -qr "^/mnt"; and _is_gui
     set -gx EDITOR code
+else if command -q fresh
+    set -gx EDITOR fresh
 else if command -q nvim
     set -gx EDITOR nvim
 else if command -q vim

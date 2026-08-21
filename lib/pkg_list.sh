@@ -12,9 +12,11 @@ dust
 fastfetch
 fd
 fish
+fresh-editor
 fzf
 gh
 git-delta
+herdr
 hyperfine
 jq
 lazydocker
@@ -75,7 +77,7 @@ zoxide
 "
 aur_helper=yay
 aur_helper_url=https://aur.archlinux.org/yay-bin.git
-aur_list="tlrc-bin"
+aur_list="fresh-editor-bin herdr-bin tlrc-bin"
 
 # Debian
 debian_apt_list="
@@ -118,6 +120,8 @@ zoxide
 debian_brew_list="
 ast-grep
 difftastic
+fresh-editor
+herdr
 lazydocker
 mise
 tlrc

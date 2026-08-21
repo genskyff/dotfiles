@@ -6,6 +6,8 @@ command -q batcat; and abbr -a bat batcat
 command -q btm; and abbr bt btm -b
 command -q fastfetch; and abbr -a ff fastfetch
 command -q fdfind; and abbr -a fd fdfind
+command -q fresh; and abbr -a fh fresh
+command -q herdr; and abbr -a hr herdr
 command -q hyperfine; and abbr -a hf hyperfine
 command -q lazydocker; and abbr -a lad lazydocker
 command -q lazygit; and abbr -a lg lazygit
