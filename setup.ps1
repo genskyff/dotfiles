@@ -3,13 +3,6 @@ $ErrorActionPreference = "Stop"
 . "$PSScriptRoot/lib/color.ps1"
 . "$PSScriptRoot/lib/pkg_list.ps1"
 
-if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
-    info "'scoop' not found. Installing..."
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-    ok "'scoop' has been installed"
-}
-
 function Add-ScoopBucket {
     param([string]$Name, [string]$Url = "")
 
@@ -24,14 +17,22 @@ function Add-ScoopBucket {
     }
 }
 
+if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+    info "'scoop' not found. Installing..."
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+    ok "'scoop' has been installed"
+}
+
 info "Installing packages..."
 scoop install git
 scoop update
+scoop install $scoop_main_list
 
 Add-ScoopBucket extras
-Add-ScoopBucket versions
-scoop install $scoop_main_list
 scoop install $scoop_extras_list
+
+Add-ScoopBucket versions
 scoop install $scoop_versions_list
 
 Add-ScoopBucket lemon $scoop_lemon_bucket
