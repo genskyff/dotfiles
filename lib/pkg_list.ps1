@@ -12,7 +12,6 @@ ffmpeg
 fzf
 gh
 gsudo
-herdr
 hyperfine
 jq
 lazydocker
@@ -53,5 +52,5 @@ $scoop_extras_list = $scoop_extras_list.Trim() -split "\n" | ForEach-Object { "e
 $scoop_versions_list = $scoop_versions_list.Trim() -split " " | ForEach-Object { "versions/$_" }
 
 $scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
-$scoop_lemon_list = "clippi fresh-editor piclist"
+$scoop_lemon_list = "clippi piclist"
 $scoop_lemon_list = $scoop_lemon_list -split " " | ForEach-Object { "lemon/$_" }

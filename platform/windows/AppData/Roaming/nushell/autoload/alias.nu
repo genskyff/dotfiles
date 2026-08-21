@@ -1,8 +1,8 @@
 alias bt = btm -b
 alias ff = fastfetch
+alias hf = hyperfine
 alias lad = lazydocker
 alias lg = lazygit
-alias hf = hyperfine
 alias sudo = gsudo
 
 alias gd = git diff -w
