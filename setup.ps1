@@ -39,14 +39,15 @@ scoop install $scoop_versions_list
 Add-ScoopBucket lemon $scoop_lemon_bucket
 scoop install $scoop_lemon_list
 
-warn -n "Copy config files to overwrite existing configs? (y/N): "
+warn -n "Apply config files? (y/N): "
 $answer = Read-Host
 
 if ($answer -eq "Y" -or $answer -eq "y") {
     if (-Not (Get-Command mise -ErrorAction SilentlyContinue)) {
-        error "'mise' not found. Cannot apply config files."
+        error "'mise' not found. Cannot apply config files"
         exit 1
     }
+
     info "Applying config files..."
     mise -C $PSScriptRoot trust -y
     mise -C $PSScriptRoot bootstrap dotfiles apply -y
