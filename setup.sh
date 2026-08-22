@@ -55,9 +55,14 @@ if [[ "$os_name" == "macos" ]]; then
             ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
-        info "Updating and installing packages from Homebrew..."
-        brew upgrade -y
-        brew install $brew_list
+        if [[ -n "$CI" ]]; then
+            info "CI detected. Installing ${light_magenta}mise${info_color} only..."
+            brew install mise
+        else
+            info "Updating and installing packages from Homebrew..."
+            brew upgrade -y
+            brew install $brew_list
+        fi
     fi
 elif [[ "$os_name" == "arch" ]]; then
     info "Updating and installing packages..."
