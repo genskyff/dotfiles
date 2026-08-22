@@ -58,7 +58,6 @@ if [[ "$os_name" == "macos" ]]; then
         info "Updating and installing packages from Homebrew..."
         brew upgrade -y
         brew install $brew_list
-        brew cleanup --prune=all
     fi
 elif [[ "$os_name" == "arch" ]]; then
     info "Updating and installing packages..."
@@ -108,7 +107,6 @@ elif [[ "$os_name" == "debian" ]]; then
             info "Updating and installing packages from Homebrew..."
             brew upgrade -y
             brew install $debian_brew_list
-            brew cleanup --prune=all
         else
             warn "Skipping Homebrew installation on non-x86_64 linux architecture"
         fi
