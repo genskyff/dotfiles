@@ -88,6 +88,7 @@ docker-compose
 docker.io
 du-dust
 duf
+extrepo
 fastfetch
 fd-find
 fish
@@ -120,6 +121,5 @@ difftastic
 fresh-editor
 herdr
 lazydocker
-mise
 tlrc
 "

@@ -87,10 +87,22 @@ elif [[ "$os_name" == "debian" ]]; then
         apt update
         apt upgrade -y
         apt install -y $debian_apt_list
+
+        if ! command -v mise >/dev/null 2>&1; then
+            extrepo enable mise
+            apt update
+            apt install -y mise
+        fi
     else
         sudo apt update
         sudo apt upgrade -y
         sudo apt install -y $debian_apt_list
+
+        if ! command -v mise >/dev/null 2>&1; then
+            sudo extrepo enable mise
+            sudo apt update
+            sudo apt install -y mise
+        fi
 
         if [[ "$os_arch" == "x86_64" ]]; then
             if ! command -v brew >/dev/null 2>&1; then
