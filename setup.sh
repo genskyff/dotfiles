@@ -138,9 +138,15 @@ fish_path=$(command -v fish || true)
 if [[ "$os_kernel" == "Linux" ]] &&
     [[ -n "$fish_path" ]] &&
     [[ "$default_shell" != "$(basename "$fish_path")" ]]; then
-    warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
-    read -r answer
-    answer=${answer:-y}
+    if [[ "$DF_FISH" == "1" ]]; then
+        answer=y
+    elif [[ "$DF_FISH" == "0" ]]; then
+        answer=n
+    else
+        warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
+        read -r answer
+        answer=${answer:-y}
+    fi
     fixed_fish_path=${fish_path//\/sbin\//\/bin\/}
 
     if [[ "$answer" == [yY] ]] && [[ -n "$fixed_fish_path" ]]; then
@@ -148,9 +154,15 @@ if [[ "$os_kernel" == "Linux" ]] &&
     fi
 fi
 
-warn -n "Apply config files? (y/N): "
-read -r answer
-answer=${answer:-n}
+if [[ "$DF_CONFIG" == "1" ]]; then
+    answer=y
+elif [[ "$DF_CONFIG" == "0" ]]; then
+    answer=n
+else
+    warn -n "Apply config files? (y/N): "
+    read -r answer
+    answer=${answer:-n}
+fi
 
 if [[ "$answer" == [yY] ]]; then
     if ! command -v mise >/dev/null 2>&1; then
