@@ -162,7 +162,7 @@ if [[ "$os_kernel" == "Linux" ]] &&
     fi
 fi
 
-warn -n "Copy config files to overwrite existing configs? (y/N): "
+warn -n "Apply config files? (y/N): "
 read -r answer
 answer=${answer:-n}
 
