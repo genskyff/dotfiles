@@ -11,8 +11,7 @@ function Add-ScoopBucket {
     if ($existing -notcontains $Name) {
         if ($Url) {
             scoop bucket add $Name $Url
-        }
-        else {
+        } else {
             scoop bucket add $Name
         }
     }
@@ -41,11 +40,9 @@ scoop install $scoop_lemon_list
 
 if ($env:DF_CONFIG -eq "1") {
     $answer = "y"
-}
-elseif ($env:DF_CONFIG -eq "0") {
+} elseif ($env:DF_CONFIG -eq "0") {
     $answer = "n"
-}
-else {
+} else {
     warn -n "Apply config files? (y/N): "
     $answer = Read-Host
 }
