@@ -1,33 +1,37 @@
 {
-  "theme": "builtin://dark",
   "editor": {
     "completion_popup_auto_show": true,
     "diagnostics_inline_text": true,
-    "indentation_guide": "all",
     "ensure_final_newline_on_save": true,
+    "indentation_guide": "all",
+    "nerd_font_icons": true,
     "rainbow_indentation": true,
-    "trim_trailing_whitespace_on_save": true,
-    "nerd_font_icons": true
-  },
-  "file_explorer": {
-    "show_gitignored": true,
-    "preview_tabs": false,
-    "width": "20%",
-    "show_hidden": true
+    "trim_trailing_whitespace_on_save": true
   },
   "file_browser": {
     "show_hidden": true
   },
+  "file_explorer": {
+    "preview_tabs": false,
+    "show_gitignored": true,
+    "show_hidden": true,
+    "width": "20%"
+  },
+  "locale": "en",
   "plugins": {
     "dashboard": {
+      "enabled": true,
       "settings": {
         "autoOpen": true
       }
     },
     "git_explorer": {
+      "enabled": true,
       "settings": {
         "colorNames": true
       }
     }
-  }
+  },
+  "theme": "builtin://dark",
+  "version": 2
 }
