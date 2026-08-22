@@ -57,7 +57,7 @@ if ($answer -eq "Y" -or $answer -eq "y") {
     }
 
     info "Applying config files..."
-    mise -C $PSScriptRoot trust -y
+    mise -C $PSScriptRoot trust -ay
     mise -C $PSScriptRoot bootstrap dotfiles apply -y
 }
 

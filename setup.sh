@@ -170,7 +170,7 @@ if [[ "$answer" == [yY] ]]; then
         exit 1
     fi
     info "Applying config files..."
-    mise -C "$script_dir" trust -y
+    mise -C "$script_dir" trust -ay
     mise -C "$script_dir" bootstrap dotfiles apply -y
 fi
 
