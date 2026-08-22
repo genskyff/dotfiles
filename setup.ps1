@@ -39,8 +39,16 @@ scoop install $scoop_versions_list
 Add-ScoopBucket lemon $scoop_lemon_bucket
 scoop install $scoop_lemon_list
 
-warn -n "Apply config files? (y/N): "
-$answer = Read-Host
+if ($env:DF_CONFIG -eq "1") {
+    $answer = "y"
+}
+elseif ($env:DF_CONFIG -eq "0") {
+    $answer = "n"
+}
+else {
+    warn -n "Apply config files? (y/N): "
+    $answer = Read-Host
+}
 
 if ($answer -eq "Y" -or $answer -eq "y") {
     if (-Not (Get-Command mise -ErrorAction SilentlyContinue)) {
