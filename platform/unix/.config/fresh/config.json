@@ -1,0 +1,33 @@
+{
+  "theme": "builtin://dark",
+  "editor": {
+    "completion_popup_auto_show": true,
+    "diagnostics_inline_text": true,
+    "indentation_guide": "all",
+    "ensure_final_newline_on_save": true,
+    "rainbow_indentation": true,
+    "trim_trailing_whitespace_on_save": true,
+    "nerd_font_icons": true
+  },
+  "file_explorer": {
+    "show_gitignored": true,
+    "preview_tabs": false,
+    "width": "20%",
+    "show_hidden": true
+  },
+  "file_browser": {
+    "show_hidden": true
+  },
+  "plugins": {
+    "dashboard": {
+      "settings": {
+        "autoOpen": true
+      }
+    },
+    "git_explorer": {
+      "settings": {
+        "colorNames": true
+      }
+    }
+  }
+}
