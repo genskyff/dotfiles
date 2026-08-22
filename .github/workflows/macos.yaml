@@ -1,0 +1,51 @@
+name: macOS
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/macos.yaml
+      - lib/*.sh
+      - platform/common/**
+      - platform/macos/**
+      - platform/unix/**
+      - mise.macos.toml
+      - mise.toml
+      - mise.unix.toml
+      - setup.sh
+  push:
+    branches:
+      - '**'
+    paths:
+      - .github/workflows/macos.yaml
+      - lib/*.sh
+      - platform/common/**
+      - platform/macos/**
+      - platform/unix/**
+      - mise.macos.toml
+      - mise.toml
+      - mise.unix.toml
+      - setup.sh
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: macos-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Run setup.sh
+        env:
+          DF_CONFIG: 1
+        run: ./setup.sh
+
+      - name: Check mise works
+        run: mise --version
+
+      - name: Check dotfiles are in sync
+        run: mise bootstrap dotfiles status --missing

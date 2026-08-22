@@ -1,0 +1,54 @@
+name: Windows
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/windows.yaml
+      - lib/*.ps1
+      - platform/common/**
+      - platform/windows/**
+      - mise.toml
+      - mise.windows.toml
+      - setup.ps1
+  push:
+    branches:
+      - '**'
+    paths:
+      - .github/workflows/windows.yaml
+      - lib/*.ps1
+      - platform/common/**
+      - platform/windows/**
+      - mise.toml
+      - mise.windows.toml
+      - setup.ps1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Run setup.ps1
+        env:
+          DF_CONFIG: 1
+        run: .\setup.ps1
+
+      - name: Put scoop shims on PATH for later steps
+        run: Add-Content $env:GITHUB_PATH "$HOME\scoop\shims"
+
+      - name: Check mise works
+        run: mise --version
+
+      - name: Check dotfiles are in sync
+        run: mise bootstrap dotfiles status --missing
