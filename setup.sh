@@ -31,8 +31,10 @@ fi
 
 if [[ "$(id -u)" -eq 0 ]]; then
     is_superuser_privilege=true
+    sudo_cmd=""
 else
     is_superuser_privilege=false
+    sudo_cmd="sudo"
 fi
 
 if [[ -n "$SUDO_USER" ]]; then
@@ -60,11 +62,9 @@ if [[ "$os_name" == "macos" ]]; then
     fi
 elif [[ "$os_name" == "arch" ]]; then
     info "Updating and installing packages..."
-    if $is_superuser_privilege; then
-        pacman -Syyu --needed --noconfirm --color always $pacman_list
-    else
-        sudo pacman -Syyu --needed --noconfirm --color always $pacman_list
+    $sudo_cmd pacman -Syyu --needed --noconfirm --color always $pacman_list
 
+    if ! $is_superuser_privilege; then
         if ! command -v "$aur_helper" >/dev/null 2>&1; then
             info "${light_magenta}${aur_helper}${info_color} not found. Installing..."
 
@@ -83,27 +83,17 @@ elif [[ "$os_name" == "arch" ]]; then
 elif [[ "$os_name" == "debian" ]]; then
     info "Updating and installing packages..."
 
-    if $is_superuser_privilege; then
-        apt update
-        apt upgrade -y
-        apt install -y $debian_apt_list
+    $sudo_cmd apt update
+    $sudo_cmd apt upgrade -y
+    $sudo_cmd apt install -y $debian_apt_list
 
-        if ! command -v mise >/dev/null 2>&1; then
-            extrepo enable mise
-            apt update
-            apt install -y mise
-        fi
-    else
-        sudo apt update
-        sudo apt upgrade -y
-        sudo apt install -y $debian_apt_list
+    if ! command -v mise >/dev/null 2>&1; then
+        $sudo_cmd extrepo enable mise
+        $sudo_cmd apt update
+        $sudo_cmd apt install -y mise
+    fi
 
-        if ! command -v mise >/dev/null 2>&1; then
-            sudo extrepo enable mise
-            sudo apt update
-            sudo apt install -y mise
-        fi
-
+    if ! $is_superuser_privilege; then
         if [[ "$os_arch" == "x86_64" ]]; then
             if ! command -v brew >/dev/null 2>&1; then
                 linux_brew_path=/home/linuxbrew/.linuxbrew/bin/brew
@@ -127,7 +117,7 @@ fi
 
 if [[ "$os_kernel" == "Linux" ]] && [[ "$os_user" != "root" ]]; then
     if grep -q "^docker:" /etc/group && ! groups "$os_user" 2>/dev/null | grep -q docker; then
-        sudo usermod -aG docker "$os_user"
+        $sudo_cmd usermod -aG docker "$os_user"
         info "Added '$os_user' to docker group (requires logout/login)"
     fi
 fi
@@ -154,11 +144,7 @@ if [[ "$os_kernel" == "Linux" ]] &&
     fixed_fish_path=${fish_path//\/sbin\//\/bin\/}
 
     if [[ "$answer" == [yY] ]] && [[ -n "$fixed_fish_path" ]]; then
-        if $is_superuser_privilege; then
-            chsh -s "$fixed_fish_path" "$os_user"
-        else
-            sudo chsh -s "$fixed_fish_path" "$os_user"
-        fi
+        $sudo_cmd chsh -s "$fixed_fish_path" "$os_user"
     fi
 fi
 
