@@ -57,6 +57,7 @@ if [[ "$os_name" == "macos" ]]; then
 
         if [[ -n "$CI" ]]; then
             info "CI detected. Installing ${light_magenta}mise${info_color} only..."
+            brew update
             brew install mise
         else
             info "Updating and installing packages from Homebrew..."
