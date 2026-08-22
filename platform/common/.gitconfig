@@ -9,9 +9,6 @@
 {%- endif %}
 [diff]
     colorMoved = default
-{%- if os() != "linux" %}
-    tool = vscode
-{%- endif %}
 [core]
     autocrlf = input
     quotepath = false
