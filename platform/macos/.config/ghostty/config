@@ -14,7 +14,7 @@ clipboard-trim-trailing-spaces = true
 shell-integration-features = no-cursor,sudo,ssh-env,ssh-terminfo
 macos-window-buttons = hidden
 macos-titlebar-style = tabs
-macos-option-as-alt = true
+macos-option-as-alt = left
 macos-icon = custom
 
 # https://github.com/lukejanicke/ghostty-app-icons
