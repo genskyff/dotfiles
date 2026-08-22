@@ -20,7 +20,10 @@ if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     zoxide init powershell | Out-String | Invoke-Expression
 }
 
-Import-Module gsudoModule -Force
+if (Get-Command gsudo -ErrorAction SilentlyContinue) {
+    Import-Module gsudoModule -Force
+}
+
 Import-Module PSReadLine -Force
 
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
