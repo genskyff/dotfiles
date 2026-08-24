@@ -1,5 +1,6 @@
 {
   "editor": {
+    "animations": false,
     "completion_popup_auto_show": true,
     "diagnostics_inline_text": true,
     "ensure_final_newline_on_save": true,
