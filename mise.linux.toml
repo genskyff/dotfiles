@@ -1,2 +1,3 @@
 [dotfiles]
-"~/**/*" = "platform/linux/**/*"
+"~/.cargo" = { source = "platform/linux/.cargo" }
+"~/.vimrc" = { source = "platform/linux/.vimrc" }

@@ -1,2 +1,4 @@
 [dotfiles]
-"~/**/*" = "platform/windows/**/*"
+"~/.cargo" = { source = "platform/windows/.cargo" }
+"~/AppData" = { source = "platform/windows/AppData" }
+"~/Documents" = { source = "platform/windows/Documents" }

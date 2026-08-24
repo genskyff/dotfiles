@@ -1,2 +1,3 @@
 [dotfiles]
-"~/**/*" = "platform/macos/**/*"
+"~/.config/ghostty" = { source = "platform/macos/.config/ghostty" }
+"~/.config/kitty" = { source = "platform/macos/.config/kitty" }

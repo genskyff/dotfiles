@@ -1,2 +1,2 @@
 [dotfiles]
-"~/**/*" = "platform/unix/**/*"
+"~/.config" = { source = "platform/unix/.config" }
