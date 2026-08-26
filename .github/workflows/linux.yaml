@@ -34,7 +34,7 @@ jobs:
   setup:
     name: ${{ matrix.container }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 3
     container: ${{ matrix.container }}
 
     strategy:
@@ -66,10 +66,10 @@ jobs:
           DF_FISH: 1
         run: ./setup.sh
 
-      - name: Check mise works
+      - name: Check mise
         run: mise --version
 
-      - name: Check dotfiles are in sync
+      - name: Check dotfiles
         run: mise bootstrap dotfiles status --missing
 
       - name: Check default shell

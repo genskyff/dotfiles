@@ -29,7 +29,7 @@ permissions:
 jobs:
   setup:
     runs-on: windows-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
 
     defaults:
       run:
@@ -47,8 +47,8 @@ jobs:
       - name: Put scoop shims on PATH for later steps
         run: Add-Content $env:GITHUB_PATH "$HOME\scoop\shims"
 
-      - name: Check mise works
+      - name: Check mise
         run: mise --version
 
-      - name: Check dotfiles are in sync
+      - name: Check dotfiles
         run: mise bootstrap dotfiles status --missing

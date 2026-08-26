@@ -33,7 +33,7 @@ permissions:
 jobs:
   setup:
     runs-on: macos-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
 
     steps:
       - name: Checkout code
@@ -45,10 +45,10 @@ jobs:
           DF_FISH: 1
         run: ./setup.sh
 
-      - name: Check mise works
+      - name: Check mise
         run: mise --version
 
-      - name: Check dotfiles are in sync
+      - name: Check dotfiles
         run: mise bootstrap dotfiles status --missing
 
       - name: Check default shell
