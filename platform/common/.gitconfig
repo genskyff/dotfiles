@@ -12,9 +12,7 @@
 [core]
     autocrlf = input
     quotepath = false
-{%- if os() == "linux" %}
-    editor = $EDITOR
-{%- else %}
+{%- if os() != "linux" %}
     editor = code --wait
 {%- endif %}
     excludesfile = ~/.gitignore_global
