@@ -1,0 +1,76 @@
+name: Linux
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/linux.yaml
+      - lib/*.sh
+      - platform/common/**
+      - platform/linux/**
+      - platform/unix/**
+      - mise.toml
+      - mise.linux.toml
+      - mise.unix.toml
+      - setup.sh
+  push:
+    branches:
+      - '**'
+    paths:
+      - .github/workflows/linux.yaml
+      - lib/*.sh
+      - platform/common/**
+      - platform/linux/**
+      - platform/unix/**
+      - mise.toml
+      - mise.linux.toml
+      - mise.unix.toml
+      - setup.sh
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    name: ${{ matrix.container }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container: ${{ matrix.container }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - container: debian:trixie
+            bootstrap: apt-get update && apt-get install -y git ca-certificates
+          - container: archlinux:latest
+            bootstrap: pacman -Syu --needed --noconfirm git
+
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      DEBIAN_FRONTEND: noninteractive
+
+    steps:
+      - name: Container bootstrap
+        run: ${{ matrix.bootstrap }}
+
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Run setup.sh
+        env:
+          DF_CONFIG: 1
+          DF_FISH: 1
+        run: ./setup.sh
+
+      - name: Check mise works
+        run: mise --version
+
+      - name: Check dotfiles are in sync
+        run: mise bootstrap dotfiles status --missing
+
+      - name: Check default shell
+        run: 'test "$(basename "$(getent passwd "$(id -un)" | cut -d: -f7)")" = fish'

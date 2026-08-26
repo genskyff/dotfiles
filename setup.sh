@@ -66,7 +66,12 @@ if [[ "$os_name" == "macos" ]]; then
         fi
     fi
 elif [[ "$os_name" == "arch" ]]; then
-    info "Updating and installing packages..."
+    if [[ "$CI" == "true" ]]; then
+        info "CI detected. Installing ${light_magenta}mise${info_color} and ${light_magenta}fish${info_color} only..."
+        pacman_list="mise fish"
+    else
+        info "Updating and installing packages..."
+    fi
     $sudo_cmd pacman -Syyu --needed --noconfirm --color always $pacman_list
 
     if ! $is_superuser_privilege; then
@@ -86,10 +91,15 @@ elif [[ "$os_name" == "arch" ]]; then
         $aur_helper -Syyu --needed --noconfirm --color always $aur_list
     fi
 elif [[ "$os_name" == "debian" ]]; then
-    info "Updating and installing packages..."
-
     $sudo_cmd apt update
-    $sudo_cmd apt upgrade -y
+
+    if [[ "$CI" == "true" ]]; then
+        info "CI detected. Installing ${light_magenta}mise${info_color} and ${light_magenta}fish${info_color} only..."
+        debian_apt_list="extrepo fish"
+    else
+        info "Updating and installing packages..."
+        $sudo_cmd apt upgrade -y
+    fi
     $sudo_cmd apt install -y $debian_apt_list
 
     if ! command -v mise >/dev/null 2>&1; then
