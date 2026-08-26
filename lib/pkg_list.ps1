@@ -47,8 +47,8 @@ wechat
 "
 $scoop_versions_list = "mingw-winlibs-ucrt"
 
-$scoop_main_list = $scoop_main_list.Trim() -split "\n" | ForEach-Object { "main/$_" }
-$scoop_extras_list = $scoop_extras_list.Trim() -split "\n" | ForEach-Object { "extras/$_" }
+$scoop_main_list = $scoop_main_list.Trim() -split "\r?\n" | ForEach-Object { "main/$_" }
+$scoop_extras_list = $scoop_extras_list.Trim() -split "\r?\n" | ForEach-Object { "extras/$_" }
 $scoop_versions_list = $scoop_versions_list.Trim() -split " " | ForEach-Object { "versions/$_" }
 
 $scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
