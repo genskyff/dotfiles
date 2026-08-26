@@ -24,7 +24,7 @@ if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     ok "'scoop' has been installed"
 }
 
-if ($env:CI) {
+if ($env:CI -eq "true") {
     info "CI detected. Installing 'mise' only..."
     scoop install mise
 } else {
