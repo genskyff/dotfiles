@@ -57,14 +57,16 @@ if [[ "$os_name" == "macos" ]]; then
 
         info "Updating and installing packages from Homebrew..."
         brew update
-        brew upgrade -y
+        if [[ "$CI" != "true" ]]; then
+            brew upgrade -y
+        fi
         brew install $brew_list
     fi
 elif [[ "$os_name" == "arch" ]]; then
     info "Updating and installing packages..."
     $sudo_cmd pacman -Syyu --needed --noconfirm --color always $pacman_list
 
-    if ! $is_superuser_privilege; then
+    if ! $is_superuser_privilege && [[ "$CI" != "true" ]]; then
         if ! command -v "$aur_helper" >/dev/null 2>&1; then
             info "${light_magenta}${aur_helper}${info_color} not found. Installing..."
 
@@ -84,7 +86,9 @@ elif [[ "$os_name" == "debian" ]]; then
     info "Updating and installing packages..."
 
     $sudo_cmd apt update
-    $sudo_cmd apt upgrade -y
+    if [[ "$CI" != "true" ]]; then
+        $sudo_cmd apt upgrade -y
+    fi
     $sudo_cmd apt install -y $debian_apt_list
 
     if ! command -v mise >/dev/null 2>&1; then
@@ -93,7 +97,7 @@ elif [[ "$os_name" == "debian" ]]; then
         $sudo_cmd apt install -y mise
     fi
 
-    if ! $is_superuser_privilege; then
+    if ! $is_superuser_privilege && [[ "$CI" != "true" ]]; then
         if [[ "$os_arch" == "x86_64" ]]; then
             if ! command -v brew >/dev/null 2>&1; then
                 linux_brew_path=/home/linuxbrew/.linuxbrew/bin/brew

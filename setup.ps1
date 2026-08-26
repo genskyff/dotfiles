@@ -29,14 +29,14 @@ scoop install git
 scoop update
 scoop install $scoop_main_list
 
-Add-ScoopBucket extras
-scoop install $scoop_extras_list
-
-Add-ScoopBucket versions
-scoop install $scoop_versions_list
-
-Add-ScoopBucket lemon $scoop_lemon_bucket
-scoop install $scoop_lemon_list
+if ($env:CI -ne "true") {
+    Add-ScoopBucket extras
+    Add-ScoopBucket versions
+    Add-ScoopBucket lemon $scoop_lemon_bucket
+    scoop install $scoop_extras_list
+    scoop install $scoop_versions_list
+    scoop install $scoop_lemon_list
+}
 
 if ($env:DF_CONFIG -eq "1") {
     $answer = "y"
