@@ -1,56 +1,58 @@
-$scoop_main_list = "
-7zip
-ast-grep
-bat
-bottom
-delta
-difftastic
-dufs
-fastfetch
-fd
-ffmpeg
-fzf
-gh
-gsudo
-hyperfine
-jq
-lazydocker
-less
-llvm
-lsd
-mise
-nu
-pwsh
-pandoc
-ripgrep
-starship
-tlrc
-tokei
-uv
-zoxide
-"
-$scoop_extras_list = "
-dbx
-lazygit
-listary
-localsend
-obs-studio
-Obsidian
-pot
-potplayer
-qbittorrent-enhanced
-qq-nt
-snipaste
-sublime-merge
-typora
-wechat
-"
-$scoop_versions_list = "mingw-winlibs-ucrt"
+$scoop_main_list = @(
+    "7zip"
+    "ast-grep"
+    "bat"
+    "bottom"
+    "delta"
+    "difftastic"
+    "dufs"
+    "fastfetch"
+    "fd"
+    "ffmpeg"
+    "fzf"
+    "gh"
+    "gsudo"
+    "hyperfine"
+    "jq"
+    "lazydocker"
+    "less"
+    "llvm"
+    "lsd"
+    "mise"
+    "nu"
+    "pwsh"
+    "pandoc"
+    "ripgrep"
+    "starship"
+    "tlrc"
+    "tokei"
+    "uv"
+    "zoxide"
+) | ForEach-Object { "main/$_" }
 
-$scoop_main_list = $scoop_main_list.Trim() -split "\r?\n" | ForEach-Object { "main/$_" }
-$scoop_extras_list = $scoop_extras_list.Trim() -split "\r?\n" | ForEach-Object { "extras/$_" }
-$scoop_versions_list = $scoop_versions_list.Trim() -split " " | ForEach-Object { "versions/$_" }
+$scoop_extras_list = @(
+    "dbx"
+    "lazygit"
+    "listary"
+    "localsend"
+    "obs-studio"
+    "Obsidian"
+    "pot"
+    "potplayer"
+    "qbittorrent-enhanced"
+    "qq-nt"
+    "snipaste"
+    "sublime-merge"
+    "typora"
+    "wechat"
+) | ForEach-Object { "extras/$_" }
+
+$scoop_versions_list = @(
+    "mingw-winlibs-ucrt"
+) | ForEach-Object { "versions/$_" }
 
 $scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
-$scoop_lemon_list = "clippi piclist"
-$scoop_lemon_list = $scoop_lemon_list -split " " | ForEach-Object { "lemon/$_" }
+$scoop_lemon_list = @(
+    "clippi"
+    "piclist"
+) | ForEach-Object { "lemon/$_" }
