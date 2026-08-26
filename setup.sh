@@ -56,9 +56,9 @@ if [[ "$os_name" == "macos" ]]; then
         fi
 
         if [[ "$CI" == "true" ]]; then
-            info "CI detected. Installing ${light_magenta}mise${info_color} only..."
+            info "CI detected. Installing ${light_magenta}mise${info_color} and ${light_magenta}fish${info_color} only..."
             brew update
-            brew install mise
+            brew install mise fish
         else
             info "Updating and installing packages from Homebrew..."
             brew upgrade -y

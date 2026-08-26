@@ -42,6 +42,7 @@ jobs:
       - name: Run setup.sh
         env:
           DF_CONFIG: 1
+          DF_FISH: 1
         run: ./setup.sh
 
       - name: Check mise works
@@ -49,3 +50,6 @@ jobs:
 
       - name: Check dotfiles are in sync
         run: mise bootstrap dotfiles status --missing
+
+      - name: Check default shell
+        run: test "$(basename "$(dscl . -read "/Users/$USER" UserShell | awk '{print $2}')")" = fish
