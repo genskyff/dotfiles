@@ -25,8 +25,9 @@
 ## Non-interactive
 
 The `setup` script asks before changing the default shell and before applying
-config files. Set the matching variable to `1` or `0` to answer in advance; any
-other value falls back to asking.
+config files. Set the matching variable to `1` or `true` to answer yes; any
+other value, including empty, answers no. Leave it unset to be asked — with
+no terminal to ask on, unset answers no.
 
 - `DF_CONFIG` — apply config files
 - `DF_FISH` — change the default shell to fish (macOS and Linux)

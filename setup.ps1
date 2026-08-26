@@ -38,13 +38,13 @@ if ($env:CI -ne "true") {
     scoop install $scoop_lemon_list
 }
 
-if ($env:DF_CONFIG -eq "1") {
-    $answer = "y"
-} elseif ($env:DF_CONFIG -eq "0") {
-    $answer = "n"
-} else {
+if (-Not (Test-Path Env:DF_CONFIG) -And -Not [Console]::IsInputRedirected) {
     warn -n "Apply config files? (y/N): "
     $answer = Read-Host
+} elseif ($env:DF_CONFIG -eq "1" -or $env:DF_CONFIG -eq "true") {
+    $answer = "y"
+} else {
+    $answer = "n"
 }
 
 if ($answer -eq "Y" -or $answer -eq "y") {

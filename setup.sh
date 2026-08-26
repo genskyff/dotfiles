@@ -140,14 +140,14 @@ fi
 fish_path=$(command -v fish || true)
 if [[ -n "$fish_path" ]] &&
     [[ "$default_shell" != "$(basename "$fish_path")" ]]; then
-    if [[ "$DF_FISH" == "1" ]]; then
-        answer=y
-    elif [[ "$DF_FISH" == "0" ]]; then
-        answer=n
-    else
+    if [[ -z "${DF_FISH+x}" ]] && [[ -t 0 ]]; then
         warn -n "Change the default shell to ${light_magenta}fish${warn_color}? (Y/n): "
         read -r answer
         answer=${answer:-y}
+    elif [[ "$DF_FISH" == "1" || "$DF_FISH" == "true" ]]; then
+        answer=y
+    else
+        answer=n
     fi
 
     if [[ "$answer" == [yY] ]]; then
@@ -159,14 +159,14 @@ if [[ -n "$fish_path" ]] &&
     fi
 fi
 
-if [[ "$DF_CONFIG" == "1" ]]; then
-    answer=y
-elif [[ "$DF_CONFIG" == "0" ]]; then
-    answer=n
-else
+if [[ -z "${DF_CONFIG+x}" ]] && [[ -t 0 ]]; then
     warn -n "Apply config files? (y/N): "
     read -r answer
     answer=${answer:-n}
+elif [[ "$DF_CONFIG" == "1" || "$DF_CONFIG" == "true" ]]; then
+    answer=y
+else
+    answer=n
 fi
 
 if [[ "$answer" == [yY] ]]; then
