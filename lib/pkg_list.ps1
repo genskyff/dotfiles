@@ -56,3 +56,7 @@ $scoop_lemon_list = @(
     "clippi"
     "piclist"
 ) | ForEach-Object { "lemon/$_" }
+
+if ($env:CI -eq "true") {
+    $scoop_main_list = @("main/mise")
+}

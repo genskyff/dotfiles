@@ -55,23 +55,13 @@ if [[ "$os_name" == "macos" ]]; then
             ok "${light_magenta}Homebrew${ok_color} has been installed"
         fi
 
-        if [[ "$CI" == "true" ]]; then
-            info "CI detected. Installing ${light_magenta}mise${info_color} and ${light_magenta}fish${info_color} only..."
-            brew update
-            brew install mise fish
-        else
-            info "Updating and installing packages from Homebrew..."
-            brew upgrade -y
-            brew install $brew_list
-        fi
+        info "Updating and installing packages from Homebrew..."
+        brew update
+        brew upgrade -y
+        brew install $brew_list
     fi
 elif [[ "$os_name" == "arch" ]]; then
-    if [[ "$CI" == "true" ]]; then
-        info "CI detected. Installing ${light_magenta}mise${info_color} and ${light_magenta}fish${info_color} only..."
-        pacman_list="mise fish"
-    else
-        info "Updating and installing packages..."
-    fi
+    info "Updating and installing packages..."
     $sudo_cmd pacman -Syyu --needed --noconfirm --color always $pacman_list
 
     if ! $is_superuser_privilege; then
@@ -91,15 +81,10 @@ elif [[ "$os_name" == "arch" ]]; then
         $aur_helper -Syyu --needed --noconfirm --color always $aur_list
     fi
 elif [[ "$os_name" == "debian" ]]; then
-    $sudo_cmd apt update
+    info "Updating and installing packages..."
 
-    if [[ "$CI" == "true" ]]; then
-        info "CI detected. Installing ${light_magenta}mise${info_color} and ${light_magenta}fish${info_color} only..."
-        debian_apt_list="extrepo fish"
-    else
-        info "Updating and installing packages..."
-        $sudo_cmd apt upgrade -y
-    fi
+    $sudo_cmd apt update
+    $sudo_cmd apt upgrade -y
     $sudo_cmd apt install -y $debian_apt_list
 
     if ! command -v mise >/dev/null 2>&1; then

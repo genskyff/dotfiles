@@ -123,3 +123,9 @@ herdr
 lazydocker
 tlrc
 "
+
+if [[ "$CI" == "true" ]]; then
+    brew_list="mise fish"
+    pacman_list="mise fish"
+    debian_apt_list="extrepo fish"
+fi

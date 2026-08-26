@@ -24,24 +24,19 @@ if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     ok "'scoop' has been installed"
 }
 
-if ($env:CI -eq "true") {
-    info "CI detected. Installing 'mise' only..."
-    scoop install mise
-} else {
-    info "Installing packages..."
-    scoop install git
-    scoop update
-    scoop install $scoop_main_list
+info "Installing packages..."
+scoop install git
+scoop update
+scoop install $scoop_main_list
 
-    Add-ScoopBucket extras
-    scoop install $scoop_extras_list
+Add-ScoopBucket extras
+scoop install $scoop_extras_list
 
-    Add-ScoopBucket versions
-    scoop install $scoop_versions_list
+Add-ScoopBucket versions
+scoop install $scoop_versions_list
 
-    Add-ScoopBucket lemon $scoop_lemon_bucket
-    scoop install $scoop_lemon_list
-}
+Add-ScoopBucket lemon $scoop_lemon_bucket
+scoop install $scoop_lemon_list
 
 if ($env:DF_CONFIG -eq "1") {
     $answer = "y"
