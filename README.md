@@ -29,7 +29,7 @@ config files. Set the matching variable to `1` or `0` to answer in advance; any
 other value falls back to asking.
 
 - `DF_CONFIG` — apply config files
-- `DF_FISH` — change the default shell to fish (Linux only)
+- `DF_FISH` — change the default shell to fish (macOS and Linux)
 
 Windows has no default shell prompt, so it only reads `DF_CONFIG`.
 

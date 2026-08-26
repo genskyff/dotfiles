@@ -139,8 +139,7 @@ else
 fi
 
 fish_path=$(command -v fish || true)
-if [[ "$os_kernel" == "Linux" ]] &&
-    [[ -n "$fish_path" ]] &&
+if [[ -n "$fish_path" ]] &&
     [[ "$default_shell" != "$(basename "$fish_path")" ]]; then
     if [[ "$DF_FISH" == "1" ]]; then
         answer=y
@@ -151,10 +150,13 @@ if [[ "$os_kernel" == "Linux" ]] &&
         read -r answer
         answer=${answer:-y}
     fi
-    fixed_fish_path=${fish_path//\/sbin\//\/bin\/}
 
-    if [[ "$answer" == [yY] ]] && [[ -n "$fixed_fish_path" ]]; then
-        $sudo_cmd chsh -s "$fixed_fish_path" "$os_user"
+    if [[ "$answer" == [yY] ]]; then
+        fish_path=${fish_path//\/sbin\//\/bin\/}
+        if [[ "$os_name" == "macos" ]] && ! grep -qxF "$fish_path" /etc/shells; then
+            echo "$fish_path" | $sudo_cmd tee -a /etc/shells >/dev/null
+        fi
+        $sudo_cmd chsh -s "$fish_path" "$os_user"
     fi
 fi
 
