@@ -12,7 +12,7 @@ on:
       - setup.ps1
   push:
     branches:
-      - '**'
+      - "**"
     paths:
       - .github/workflows/windows.yaml
       - lib/*.ps1
@@ -39,13 +39,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Run setup.ps1
+      - name: Run setup
         env:
           DF_CONFIG: 1
-        run: .\setup.ps1
-
-      - name: Put scoop shims on PATH for later steps
-        run: Add-Content $env:GITHUB_PATH "$HOME\scoop\shims"
+        run: |
+          .\setup.ps1
+          Add-Content $env:GITHUB_PATH "$HOME\scoop\shims"
 
       - name: Check mise
         run: mise --version

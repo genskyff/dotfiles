@@ -24,15 +24,14 @@
 
 ## Non-interactive
 
-The `setup` script asks before changing the default shell and before applying
-config files. Set the matching variable to `1` or `true` to answer yes; any
-other value, including empty, answers no. Leave it unset to be asked — with
-no terminal to ask on, unset answers no.
+The `setup` script asks before changing the default shell and before applying config files. Set the matching variable to `1` or `true` to answer yes; any ther value, including empty, answers no.
+
+Leave it unset to be asked — with no terminal to ask on, unset answers no.
 
 - `DF_CONFIG` — apply config files
-- `DF_FISH` — change the default shell to fish (macOS and Linux)
+- `DF_FISH` — change the default shell to fish (macOS and Linux only)
 
-Windows has no default shell prompt, so it only reads `DF_CONFIG`.
+## Setup
 
 - Windows
 
@@ -51,6 +50,6 @@ Windows has no default shell prompt, so it only reads `DF_CONFIG`.
 After making changes to the dotfiles, re-apply them using the following commands:
 
 ```shell
-mise bootstrap dotfiles apply
 mise bootstrap dotfiles status
+mise bootstrap dotfiles apply
 ```

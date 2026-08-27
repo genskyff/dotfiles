@@ -14,7 +14,7 @@ on:
       - setup.sh
   push:
     branches:
-      - '**'
+      - "**"
     paths:
       - .github/workflows/macos.yaml
       - lib/*.sh
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Run setup.sh
+      - name: Run setup
         env:
           DF_CONFIG: 1
           DF_FISH: 1
