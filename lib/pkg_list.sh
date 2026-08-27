@@ -11,7 +11,6 @@ dust
 fastfetch
 fd
 fish
-fresh-editor
 fzf
 gh
 git-delta
