@@ -32,6 +32,7 @@ $scoop_main_list = @(
 
 $scoop_extras_list = @(
     "dbx"
+    "fluxdown"
     "lazygit"
     "listary"
     "localsend"
@@ -39,7 +40,6 @@ $scoop_extras_list = @(
     "Obsidian"
     "pot"
     "potplayer"
-    "qbittorrent-enhanced"
     "qq-nt"
     "snipaste"
     "sublime-merge"
