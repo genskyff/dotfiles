@@ -60,6 +60,7 @@ less
 lsd
 mise
 mold
+nmap
 openssh
 reflector
 ripgrep

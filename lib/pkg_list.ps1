@@ -19,6 +19,7 @@ $scoop_main_list = @(
     "llvm"
     "lsd"
     "mise"
+    "nmap"
     "nu"
     "pwsh"
     "pandoc"
