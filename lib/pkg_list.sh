@@ -26,7 +26,6 @@ ripgrep
 starship
 tlrc
 tokei
-wget
 zoxide
 "
 
@@ -70,7 +69,6 @@ tokei
 unzip
 usage
 vim
-wget
 zoxide
 "
 aur_helper=yay
@@ -112,7 +110,6 @@ sudo
 tokei
 unzip
 vim
-wget
 zoxide
 "
 debian_brew_list="
