@@ -29,6 +29,7 @@
     defaultBranch = main
 [alias]
     pushfl = push --force-with-lease
+    pusht = push --tags
 [format]
     pretty = format:Commit: %C(auto)%h%d%nAuthor: %an <%ae>%nDate:   %ad (%cd)%n%n%w(0,4,4)%s%n%+b
 [log]
