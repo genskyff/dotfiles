@@ -14,7 +14,7 @@ if [[ "$os_kernel" = "Darwin" ]] && [[ "$os_arch" = "arm64" ]]; then
 elif [[ "$os_kernel" = "Linux" ]]; then
     if grep -qiE "ID=[\"]?arch[\"]?|ID_LIKE=[\"]?arch[\"]?" /etc/os-release; then
         os_name="arch"
-    elif grep -qiE "ID=[\"]?debian[\"]?" /etc/os-release; then
+    elif grep -qiE "ID=[\"]?debian[\"]?|ID_LIKE=[\"]?debian[\"]?" /etc/os-release; then
         os_name="debian"
     else
         error "Error${reset}: only support following Linux distributions:"
