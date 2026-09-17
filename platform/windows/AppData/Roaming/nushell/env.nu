@@ -1,11 +1,11 @@
 $env.SHELL = "nu"
 
 if (which fzf | is-not-empty) {
-    $env.FZF_DEFAULT_OPTS = $"--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
+    $env.FZF_DEFAULT_OPTS = "--cycle --ansi --height 60% --highlight-line --reverse --info inline --border --no-separator
                             --with-shell 'nu -c'
                             --preview 'use utils.nu fzf_preview; fzf_preview {}'
                             --preview-window 'hidden,border-left,60%'
-                            --bind 'alt-/:change-preview-window\(90%|60%)'
+                            --bind 'alt-/:change-preview-window(90%|60%)'
                             --bind 'alt-,:toggle-wrap'
                             --bind 'alt-.:toggle-preview-wrap'
                             --bind 'ctrl-/:toggle-preview'
