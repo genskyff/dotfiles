@@ -7,11 +7,17 @@ module docker-utils {
         }
     }
 
-    export def --wrapped container-list [...argv] {
-        let all_containers = docker ps --format "{{.ID}} {{.Names}} {{.Status}}" ...$argv | lines | split column " " id name status
-        let exited_containers = $all_containers | where status =~ Exited | each { $"(ansi red)($in.id) ($in.name) \(Exited)(ansi reset)" }
-        let running_containers = $all_containers | where status =~ Up | each { $"(ansi green)($in.id) ($in.name)(ansi reset)" }
-        $exited_containers ++ $running_containers | str join "\n"
+    export def --wrapped container-list [--header ...argv] {
+        let all_containers = docker ps --format "{{.ID}} {{.Names}} {{.State}}" ...$argv | lines | split column " " id name state
+        let exited_containers = $all_containers | where state == exited | each { $"(ansi red)($in.id) ($in.name)(ansi reset)" }
+        let running_containers = $all_containers | where state == running | each { $"(ansi green)($in.id) ($in.name)(ansi reset)" }
+        let other_containers = $all_containers | where state not-in [exited running] | each { $"(ansi yellow)($in.id) ($in.name)(ansi reset)" }
+        let header_lines = if $header {
+            [$"(ansi green)Running: ($running_containers | length) (ansi red)Exited: ($exited_containers | length) (ansi yellow)Other: ($other_containers | length)(ansi reset)"]
+        } else {
+            []
+        }
+        $header_lines ++ $exited_containers ++ $other_containers ++ $running_containers | str join "\n"
     }
 }
 
@@ -98,19 +104,15 @@ def dp [] {
     use docker-utils *
     docker-check
 
-    let all_containers = container-list -a
-    let total_count = $all_containers | lines | length
-    let exited_count = $all_containers | lines | find Exited | length
-    let running_count = $total_count - $exited_count
-    let message = $"(ansi blue)Total: ($total_count) (ansi green)Running: ($running_count) (ansi red)Exited: ($exited_count)(ansi reset)"
+    let output = container-list --header -a | lines
     let fzf_args = [
         "--with-nth", "2..",
         "--preview", "use utils.nu docker_fzf_preview; docker_fzf_preview {1}",
-        "--header", $"($message)",
+        "--header", $output.0,
         "--bind", "start:toggle-preview"
     ]
 
-    $all_containers | fzf ...$fzf_args
+    $output | skip 1 | str join "\n" | fzf ...$fzf_args
 }
 
 def dre [] {
