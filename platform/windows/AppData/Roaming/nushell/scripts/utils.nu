@@ -21,14 +21,13 @@ export def fzf_preview [argv] {
 }
 
 export def docker_fzf_preview [argv] {
-    let fields = docker ps -a --filter $"id=($argv)" --format "{{.ID}}|{{.Image}}|{{.Command}}|{{.CreatedAt}}|{{.Status}}|{{.Ports}}|{{.Names}}"
-    | split row "|"
+    let fields = docker ps -a --filter $"id=($argv)" --format json | from json
 
-    print $"(ansi blue)ID      (ansi reset)($fields.0)"
-    print $"(ansi green)Image   (ansi reset)($fields.1)"
-    print $"(ansi yellow)Command (ansi reset)($fields.2)"
-    print $"(ansi cyan)Created (ansi reset)($fields.3)"
-    print $"(ansi yellow)Status  (ansi reset)($fields.4)"
-    print $"(ansi green)Ports   (ansi reset)($fields.5)"
-    print $"(ansi blue)Name    (ansi reset)($fields.6)"
+    print $"(ansi blue)ID      (ansi reset)($fields.ID)"
+    print $"(ansi green)Image   (ansi reset)($fields.Image)"
+    print $"(ansi yellow)Command (ansi reset)($fields.Command)"
+    print $"(ansi cyan)Created (ansi reset)($fields.CreatedAt)"
+    print $"(ansi yellow)Status  (ansi reset)($fields.Status)"
+    print $"(ansi green)Ports   (ansi reset)($fields.Ports)"
+    print $"(ansi blue)Name    (ansi reset)($fields.Names)"
 }
