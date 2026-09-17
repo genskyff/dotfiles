@@ -36,7 +36,7 @@ def da [] {
     docker attach $target
 }
 
-def --wrapped dcp [-H ...rest] {
+def --wrapped dcp [--host (-H) ...rest] {
     use docker-utils *
     docker-check
 
@@ -58,7 +58,7 @@ def --wrapped dcp [-H ...rest] {
     }
 
     mut rest = $rest
-    if $H {
+    if $host {
         if $rest_len == 1 {
             $rest.1 = (docker exec $target sh -c 'echo "$HOME"')
         }
