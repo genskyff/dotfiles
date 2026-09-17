@@ -73,75 +73,23 @@ function Which-Command {
     (Get-Command $Command).Path
 }
 
-function BT {
-    $params = @("-b") + $args
-    btm @params
-}
+function BT { btm -b @args }
 
-function Lsd-Invoke {
-    $params = @("-N") + $args
-    lsd @params
-}
+function Lsd-Invoke { lsd -N @args }
+function Ls-Long { lsd -Nl @args }
+function Ls-All { lsd -NA @args }
+function Ls-Long-All { lsd -NlA @args }
+function Ls-Tree { lsd -N --tree --depth 1 @args }
+function Ls-Pure { lsd -N --classic @args }
+function Ls-Tree-Pure { lsd -N --classic --tree --depth 1 @args }
 
-function Ls-Long {
-    $params = @("-l") + $args
-    Lsd-Invoke @params
-}
-
-function Ls-All {
-    $params = @("-A") + $args
-    Lsd-Invoke @params
-}
-
-function Ls-Long-All {
-    $params = @("-lA") + $args
-    Lsd-Invoke @params
-}
-
-function Ls-Tree {
-    $params = @("--tree", "--depth", "1") + $args
-    Lsd-Invoke @params
-}
-
-function Ls-Pure {
-    $params = @("--classic") + $args
-    Lsd-Invoke @params
-}
-
-function Ls-Tree-Pure {
-    $params = @("--classic") + $args
-    Ls-Tree @params
-}
-
-function Git-Diff {
-    $params = @("diff", "-w") + $args
-    git @params
-}
-
-function Git-Pull {
-    $params = @("pull") + $args
-    git @params
-}
-
-function Git-Status {
-    $params = @("status") + $args
-    git @params
-}
-
-function Git-Switch {
-    $params = @("switch") + $args
-    git @params
-}
-
-function Git-Submodule-Status {
-    $params = @("submodule", "status") + $args
-    git @params
-}
-
-function Git-Submodule-Update {
-    $params = @("submodule", "update") + $args
-    git @params
-}
+function Git-Diff { git diff -w @args }
+function Git-Pull { git pull @args }
+function Git-Status { git status @args }
+function Git-Switch { git switch @args }
+function Git-Submodule-Status { git submodule status @args }
+function Git-Submodule-Update { git submodule update @args }
+function Git-Difft { git -c diff.external=difft diff @args }
 
 function Git-Branch {
     if (!(git rev-parse --is-inside-work-tree)) { return }
@@ -178,11 +126,6 @@ function Git-Reflog {
         --format="%C(auto)%ad %h%d %gs" `
     | fzf --preview "git show --color=always {3}" `
         --bind "enter:become(git checkout {3})"
-}
-
-function Git-Difft {
-    $params = @("-c", "diff.external=difft", "diff") + $args
-    git @params
 }
 
 Set-Alias -Name open -Value Open-Folder -Force
