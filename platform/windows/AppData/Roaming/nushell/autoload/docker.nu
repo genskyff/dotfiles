@@ -36,7 +36,7 @@ def da [] {
     docker attach $target
 }
 
-def dcp [-H ...rest] {
+def --wrapped dcp [-H ...rest] {
     use docker-utils *
     docker-check
 
