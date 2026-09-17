@@ -11,7 +11,7 @@ function dcp --description "Copy files between container and host"
 
     if set -q _flag_H
         if test (count $argv) -eq 1
-            set argv[2] (docker exec "$target" bash -c 'echo $HOME')
+            set argv[2] (docker exec "$target" sh -c 'echo $HOME')
             or return $status
         end
         docker cp --follow-link "$argv[1]" "$target:$argv[2]"

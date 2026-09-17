@@ -60,7 +60,7 @@ def dcp [-H ...rest] {
     mut rest = $rest
     if $H {
         if $rest_len == 1 {
-            $rest.1 = (docker exec $target bash -c 'echo "$HOME"')
+            $rest.1 = (docker exec $target sh -c 'echo "$HOME"')
         }
         docker cp --follow-link $rest.0 $"($target):($rest.1)"
     } else {
