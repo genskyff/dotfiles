@@ -24,7 +24,7 @@
 
 ## Non-interactive
 
-The `setup` script asks before changing the default shell and before applying config files. Set the matching variable to `1` or `true` to answer yes; any ther value, including empty, answers no.
+The `setup` script asks before changing the default shell and before applying config files. Set the matching variable to `1` or `true` to answer yes; any other value, including empty, answers no.
 
 Leave it unset to be asked — with no terminal to ask on, unset answers no.
 
