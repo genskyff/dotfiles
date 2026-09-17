@@ -10,7 +10,7 @@ export def --wrapped edit [...argv] {
 
 export def fzf_preview [argv] {
     let target = $argv | path expand
-    let type = $target | path type
+    let type = $target | path type | default ""
 
     if $type == "file" {
         bat --color always $target
