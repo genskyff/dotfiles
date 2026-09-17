@@ -72,9 +72,7 @@ elif [[ "$os_name" == "arch" ]]; then
 
             build_dir=$(mktemp -d)
             git clone "$aur_helper_url" "$build_dir"
-            cd "$build_dir"
-            makepkg -si --noconfirm
-            cd - >/dev/null
+            (cd "$build_dir" && makepkg -si --noconfirm)
             rm -rf "$build_dir"
             ok "${light_magenta}${aur_helper}${ok_color} has been installed"
         fi
