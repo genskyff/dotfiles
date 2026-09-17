@@ -119,7 +119,7 @@ elif [[ "$os_name" == "debian" ]]; then
 fi
 
 if [[ "$os_kernel" == "Linux" ]] && [[ "$os_user" != "root" ]]; then
-    if grep -q "^docker:" /etc/group && ! groups "$os_user" 2>/dev/null | grep -q docker; then
+    if grep -q "^docker:" /etc/group && ! id -nG "$os_user" 2>/dev/null | tr ' ' '\n' | grep -qx docker; then
         $sudo_cmd usermod -aG docker "$os_user"
         info "Added '$os_user' to docker group (requires logout/login)"
     fi
