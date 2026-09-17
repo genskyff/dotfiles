@@ -33,5 +33,5 @@ def se [] {
     let ssh_path = $nu.home-dir | path join .ssh
     let nth = ($ssh_path | split row '\' | length) + 1
     ssh-config-list | str join "\n" |
-        fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(use utils.nu edit; edit {})"
+        fzf --with-nth $"($nth).." -d\ --preview-window hidden --bind $"enter:become\(source $nu.config-path; use utils.nu edit; edit {})"
 }
