@@ -1,8 +1,8 @@
 function _cmd_check --description "Check command status"
     argparse -N1 q -- $argv
 
-    set has_error 0
-    set error_messages
+    set -l has_error 0
+    set -l error_messages
 
     for cmd in $argv
         if not command -q "$cmd"

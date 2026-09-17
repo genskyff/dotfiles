@@ -2,9 +2,9 @@ function gb --description "git branch with fzf"
     _git_check; or return 1
     _cmd_check fzf; or return 1
 
-    set branches (git branch)
-    set current_ref $(git rev-parse --abbrev-ref HEAD)
-    set header
+    set -l branches (git branch)
+    set -l current_ref $(git rev-parse --abbrev-ref HEAD)
+    set -l header
     if test "$current_ref" = HEAD
         set header --header $branches[1]
         set branches $branches[2..-1]
