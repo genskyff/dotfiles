@@ -7,6 +7,7 @@ on:
       - lib/*.ps1
       - platform/common/**
       - platform/windows/**
+      - .miserc.toml
       - mise.toml
       - mise.windows.toml
       - setup.ps1
@@ -18,6 +19,7 @@ on:
       - lib/*.ps1
       - platform/common/**
       - platform/windows/**
+      - .miserc.toml
       - mise.toml
       - mise.windows.toml
       - setup.ps1

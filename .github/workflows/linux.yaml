@@ -8,6 +8,7 @@ on:
       - platform/common/**
       - platform/linux/**
       - platform/unix/**
+      - .miserc.toml
       - mise.toml
       - mise.linux.toml
       - mise.unix.toml
@@ -21,6 +22,7 @@ on:
       - platform/common/**
       - platform/linux/**
       - platform/unix/**
+      - .miserc.toml
       - mise.toml
       - mise.linux.toml
       - mise.unix.toml
