@@ -1,3 +1,4 @@
 [dotfiles]
 "~/.cargo" = { source = "platform/linux/.cargo" }
+"~/.config/fresh" = { source = "platform/linux/.config/fresh" }
 "~/.vimrc" = { source = "platform/linux/.vimrc" }
