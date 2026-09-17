@@ -2,7 +2,7 @@ module docker-utils {
     export def docker-check [] {
         if (which docker | is-empty) {
             error make -u {msg: "'docker' command not found"}
-        } else if (docker version o+e>| str contains error) {
+        } else if (docker version | complete).exit_code != 0 {
             error make -u {msg: "docker is not running"}
         }
     }

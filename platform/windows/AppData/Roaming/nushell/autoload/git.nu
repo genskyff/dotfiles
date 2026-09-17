@@ -2,7 +2,7 @@ module git-utils {
     export def git-check [] {
         if (which git | is-empty) {
             error make -u {msg: "'git' command not found"}
-        } else if (git rev-parse --is-inside-work-tree o+e>| $in) != "true" {
+        } else if (git rev-parse --is-inside-work-tree | complete).exit_code != 0 {
             error make -u {msg: "Not inside a git repository"}
         }
     }
