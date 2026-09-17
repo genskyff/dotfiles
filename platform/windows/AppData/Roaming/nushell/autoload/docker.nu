@@ -39,28 +39,30 @@ def dcp [-H ...rest] {
         error make -u {msg: $"dcp: expected 1~2 arguments; got ($rest_len)"}
     }
 
-    mut rest = $rest
-    mut args = ""
-    if $H {
-        if ($rest | length) == 1 {
-            $rest.1 = "$\"(docker exec {2} bash -c 'echo $HOME')\""
-        }
-        $args = $"($rest.0) {2}:($rest.1)"
-    } else {
-        if ($rest | length) == 1 {
-            $rest.1 = pwd
-        }
-        $args = $"{2}:($rest.0) ($rest.1)"
-    }
-
     let fzf_args = [
         "--with-nth", "2",
         "--preview", "use utils.nu docker_fzf_preview; docker_fzf_preview {1}",
         "--bind", "start:toggle-preview",
-        "--bind", $"enter:become\(docker cp --follow-link ($args))"
+        "--bind", "enter:become(print {2})"
     ]
 
-    container-list | fzf ...$fzf_args
+    let target = container-list | fzf ...$fzf_args
+    if ($target | is-empty) {
+        return
+    }
+
+    mut rest = $rest
+    if $H {
+        if $rest_len == 1 {
+            $rest.1 = (docker exec $target bash -c 'echo "$HOME"')
+        }
+        docker cp --follow-link $rest.0 $"($target):($rest.1)"
+    } else {
+        if $rest_len == 1 {
+            $rest.1 = pwd
+        }
+        docker cp --follow-link $"($target):($rest.0)" $rest.1
+    }
 }
 
 def de --wrapped [...argv] {
