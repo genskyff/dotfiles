@@ -72,7 +72,7 @@ jobs:
         run: mise --version
 
       - name: Check dotfiles
-        run: mise bootstrap dotfiles status --missing
+        run: mise dot ls --missing
 
       - name: Check default shell
         run: 'test "$(basename "$(getent passwd "$(id -un)" | cut -d: -f7)")" = fish'

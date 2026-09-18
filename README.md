@@ -50,6 +50,6 @@ Leave it unset to be asked — with no terminal to ask on, unset answers no.
 After making changes to the dotfiles, re-apply them using the following commands:
 
 ```shell
-mise bootstrap dotfiles status
-mise bootstrap dotfiles apply
+mise dot ls
+mise dot apply
 ```
