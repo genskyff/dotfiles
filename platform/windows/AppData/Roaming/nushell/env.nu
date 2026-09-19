@@ -21,9 +21,17 @@ if not ($vendor_autoload_dir | path exists) {
     mkdir $vendor_autoload_dir
 }
 
+def need-update [file: path] {
+    if not ($file | path exists) {
+        return true
+    }
+
+    (ls $file | first | get modified) < ((date now) - 7day)
+}
+
 let mise_config = $nu.data-dir | path join vendor autoload mise.nu
 if (which mise | is-not-empty) {
-    if not ($mise_config | path exists) {
+    if (need-update $mise_config) {
         mise activate nu | save -f $mise_config
     }
 } else {
@@ -32,7 +40,7 @@ if (which mise | is-not-empty) {
 
 let starship_config = $nu.data-dir | path join vendor autoload starship.nu
 if (which starship | is-not-empty) {
-    if not ($starship_config | path exists) {
+    if (need-update $starship_config) {
         starship init nu | save -f $starship_config
     }
     $env.STARSHIP_LOG = "error"
@@ -42,7 +50,7 @@ if (which starship | is-not-empty) {
 
 let zoxide_config = $nu.data-dir | path join vendor autoload zoxide.nu
 if (which zoxide | is-not-empty) {
-    if not ($zoxide_config | path exists) {
+    if (need-update $zoxide_config) {
         zoxide init nushell | save -f $zoxide_config
     }
 } else {
