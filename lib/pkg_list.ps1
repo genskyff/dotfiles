@@ -18,6 +18,7 @@ $scoop_main_list = @(
     "less"
     "llvm"
     "lsd"
+    "mingw-winlibs"
     "mise"
     "nmap"
     "nu"
@@ -47,10 +48,6 @@ $scoop_extras_list = @(
     "typora"
     "wechat"
 ) | ForEach-Object { "extras/$_" }
-
-$scoop_versions_list = @(
-    "mingw-winlibs-ucrt"
-) | ForEach-Object { "versions/$_" }
 
 $scoop_lemon_bucket = "https://github.com/hoilc/scoop-lemon"
 $scoop_lemon_list = @(

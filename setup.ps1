@@ -31,10 +31,8 @@ scoop install $scoop_main_list
 
 if ($env:CI -ne "true") {
     Add-ScoopBucket extras
-    Add-ScoopBucket versions
     Add-ScoopBucket lemon $scoop_lemon_bucket
     scoop install $scoop_extras_list
-    scoop install $scoop_versions_list
     scoop install $scoop_lemon_list
 }
 
