@@ -52,6 +52,7 @@ if ($answer -eq "Y" -or $answer -eq "y") {
     }
 
     info "Applying config files..."
+    $env:MISE_AUTO_ENV = "true"
     mise -C $PSScriptRoot trust -ay
     mise -C $PSScriptRoot dot apply -y
 }
