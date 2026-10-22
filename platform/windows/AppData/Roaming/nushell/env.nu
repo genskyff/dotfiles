@@ -26,7 +26,7 @@ def need-update [file: path] {
         return true
     }
 
-    (ls $file | first | get modified) < ((date now) - 7day)
+    (ls $file | first | get modified) < ((date now) - 1day)
 }
 
 let mise_config = $nu.data-dir | path join vendor autoload mise.nu
