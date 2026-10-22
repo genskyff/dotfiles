@@ -39,7 +39,7 @@ $scoop_extras_list = @(
     "listary"
     "localsend"
     "obs-studio"
-    "Obsidian"
+    "obsidian"
     "pot"
     "potplayer"
     "qq-nt"
