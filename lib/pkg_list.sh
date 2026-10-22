@@ -2,6 +2,7 @@
 
 # macOS
 brew_list="
+age
 ast-grep
 bat
 bottom
@@ -31,6 +32,7 @@ zoxide
 
 # Arch
 pacman_list="
+age
 ast-grep
 base-devel
 bat

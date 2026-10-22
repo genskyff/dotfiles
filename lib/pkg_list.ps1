@@ -33,6 +33,7 @@ $scoop_main_list = @(
 ) | ForEach-Object { "main/$_" }
 
 $scoop_extras_list = @(
+    "age"
     "dbx"
     "fluxdown"
     "lazygit"
