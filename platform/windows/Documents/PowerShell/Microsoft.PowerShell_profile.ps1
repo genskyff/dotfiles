@@ -5,19 +5,16 @@ if (Get-Command code -ErrorAction SilentlyContinue) {
 }
 
 if (Get-Command mise -ErrorAction SilentlyContinue) {
-    $init = mise activate pwsh | Out-String
-    if ($init) {
-        Invoke-Expression $init
-    }
+    (& mise activate pwsh) | Out-String | Invoke-Expression
 }
 
 if (Get-Command starship -ErrorAction SilentlyContinue) {
-    starship init powershell | Out-String | Invoke-Expression
+    (& starship init powershell) | Out-String | Invoke-Expression
     $env:STARSHIP_LOG = "error"
 }
 
 if (Get-Command zoxide -ErrorAction SilentlyContinue) {
-    zoxide init powershell | Out-String | Invoke-Expression
+    (& zoxide init powershell) | Out-String | Invoke-Expression
 }
 
 if (Get-Command gsudo -ErrorAction SilentlyContinue) {
