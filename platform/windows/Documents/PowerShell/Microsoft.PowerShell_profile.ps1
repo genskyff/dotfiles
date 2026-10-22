@@ -4,6 +4,10 @@ if (Get-Command code -ErrorAction SilentlyContinue) {
     $env:EDITOR = "code"
 }
 
+if (Get-Command fnox -ErrorAction SilentlyContinue) {
+    (& fnox activate pwsh) | Out-String | Invoke-Expression
+}
+
 if (Get-Command mise -ErrorAction SilentlyContinue) {
     (& mise activate pwsh) | Out-String | Invoke-Expression
 }

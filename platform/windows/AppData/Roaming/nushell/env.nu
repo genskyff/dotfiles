@@ -29,6 +29,15 @@ def need-update [file: path] {
     (ls $file | first | get modified) < ((date now) - 1day)
 }
 
+let fnox_config = $nu.data-dir | path join vendor autoload fnox.nu
+if (which fnox | is-not-empty) {
+    if (need-update $fnox_config) {
+        fnox activate nu | save -f $fnox_config
+    }
+} else {
+    rm -f $fnox_config
+}
+
 let mise_config = $nu.data-dir | path join vendor autoload mise.nu
 if (which mise | is-not-empty) {
     if (need-update $mise_config) {

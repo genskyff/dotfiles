@@ -9,6 +9,7 @@ $scoop_main_list = @(
     "fastfetch"
     "fd"
     "ffmpeg"
+    "fnox"
     "fzf"
     "gh"
     "gsudo"
