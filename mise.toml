@@ -1,15 +1,13 @@
 [settings]
-dotfiles.default_mode = "copy"
+dotfiles.root = "."
 
-[dotfiles]
-"~" = { source = "platform/common", exclude = [
-  ".config/starship.toml",
-  ".ssh",
-  ".delta.gitconfig",
-  ".gitconfig",
-  ".gitignore_global",
-] }
-"~/.config/starship.toml" = { source = "platform/common/.config/starship.toml", mode = "template" }
-"~/.delta.gitconfig" = { source = "platform/common/.delta.gitconfig", mode = "template" }
-"~/.gitconfig" = { source = "platform/common/.gitconfig", mode = "template" }
-"~/.gitignore_global" = { source = "platform/common/.gitignore_global", mode = "template" }
+[dotfile_groups.common]
+root = "platform/common"
+mode = "copy"
+exclude = [".ssh"]
+
+[dotfile_groups.common.entries]
+"~/.config/starship.toml" = { mode = "template" }
+"~/.delta.gitconfig" = { mode = "template" }
+"~/.gitconfig" = { mode = "template" }
+"~/.gitignore_global" = { mode = "template" }

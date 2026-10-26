@@ -50,6 +50,8 @@ Leave it unset to be asked — with no terminal to ask on, unset answers no.
 After making changes to the dotfiles, re-apply them using the following commands:
 
 ```shell
-mise dot ls
-mise dot apply
+mise dot diff
+mise dot apply --prune
 ```
+
+`--prune` also removes deployed files whose sources have been deleted or excluded; files edited after they were deployed are kept.

@@ -1,4 +1,3 @@
-[dotfiles]
-"~/.cargo" = { source = "platform/windows/.cargo" }
-"~/AppData" = { source = "platform/windows/AppData" }
-"~/Documents" = { source = "platform/windows/Documents" }
+[dotfile_groups.windows]
+root = "platform/windows"
+mode = "copy"

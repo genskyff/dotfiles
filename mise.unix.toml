@@ -1,2 +1,3 @@
-[dotfiles]
-"~/.config" = { source = "platform/unix/.config" }
+[dotfile_groups.unix]
+root = "platform/unix"
+mode = "copy"
