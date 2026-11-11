@@ -9,10 +9,6 @@ if (Get-Command starship -ErrorAction SilentlyContinue) {
     $env:STARSHIP_LOG = "error"
 }
 
-if (Get-Command fnox -ErrorAction SilentlyContinue) {
-    (& fnox activate pwsh) | Out-String | Invoke-Expression
-}
-
 if (Get-Command mise -ErrorAction SilentlyContinue) {
     (& mise activate pwsh) | Out-String | Invoke-Expression
 }
