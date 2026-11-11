@@ -2,8 +2,6 @@
 
 # macOS
 brew_list="
-age
-ast-grep
 bat
 bottom
 curl
@@ -32,8 +30,6 @@ zoxide
 
 # Arch
 pacman_list="
-age
-ast-grep
 base-devel
 bat
 bottom
@@ -48,7 +44,6 @@ fastfetch
 fd
 fish
 fzf
-ghostty-terminfo
 git
 git-credential-oauth
 git-delta
@@ -115,7 +110,6 @@ vim
 zoxide
 "
 debian_brew_list="
-ast-grep
 difftastic
 fresh-editor
 herdr
