@@ -21,8 +21,6 @@ if (Get-Command gsudo -ErrorAction SilentlyContinue) {
     Import-Module gsudoModule -Force
 }
 
-Import-Module PSReadLine -Force
-
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
