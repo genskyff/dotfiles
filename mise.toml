@@ -7,6 +7,7 @@ mode = "copy"
 exclude = [".ssh"]
 
 [dotfile_groups.common.entries]
+"~/.cargo/config.toml" = { mode = "template" }
 "~/.config/starship.toml" = { mode = "template" }
 "~/.delta.gitconfig" = { mode = "template" }
 "~/.gitconfig" = { mode = "template" }

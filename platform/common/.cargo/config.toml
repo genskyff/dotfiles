@@ -1,0 +1,12 @@
+[registry]
+global-min-publish-age = "1 days"
+
+{%- if os() == "windows" %}
+
+[target.'cfg(target_os = "windows")']
+rustflags = ["-Ctarget-feature=+crt-static"]
+{%- elif os() == "linux" %}
+
+[target.'cfg(target_os = "linux")']
+rustflags = ["-Clink-arg=-fuse-ld=mold"]
+{%- endif %}
