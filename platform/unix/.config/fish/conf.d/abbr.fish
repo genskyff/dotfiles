@@ -3,7 +3,7 @@ status is-interactive; or return 0
 abbr -a cls clear
 
 command -q batcat; and abbr -a bat batcat
-command -q btm; and abbr bt btm -b
+command -q btm; and abbr -a bt btm -b
 command -q fastfetch; and abbr -a ff fastfetch
 command -q fdfind; and abbr -a fd fdfind
 command -q fresh; and abbr -a fh fresh
