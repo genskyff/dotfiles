@@ -4,7 +4,6 @@ dotfiles.root = "."
 [dotfile_groups.common]
 root = "platform/common"
 mode = "copy"
-exclude = [".ssh"]
 
 [dotfile_groups.common.entries]
 "~/.cargo/config.toml" = { mode = "template" }
