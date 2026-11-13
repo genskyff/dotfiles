@@ -53,9 +53,6 @@ def --wrapped dcp [--host (-H) ...rest] {
     ]
 
     let target = container-list | fzf ...$fzf_args
-    if ($target | is-empty) {
-        return
-    }
 
     mut rest = $rest
     if $host {
