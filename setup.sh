@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
+export HOMEBREW_NO_ASK=1
 
 script_dir=$(realpath "$(dirname "$0")")
 . "$script_dir/lib/color.sh"
@@ -58,7 +59,7 @@ if [[ "$os_name" == "macos" ]]; then
         info "Updating and installing packages from Homebrew..."
         brew update
         if [[ "$CI" != "true" ]]; then
-            brew upgrade -y
+            brew upgrade
         fi
         brew install $brew_list
     fi
@@ -108,7 +109,7 @@ elif [[ "$os_name" == "debian" ]]; then
             fi
 
             info "Updating and installing packages from Homebrew..."
-            brew upgrade -y
+            brew upgrade
             brew install $debian_brew_list
         else
             warn "Skipping Homebrew installation on non-x86_64 linux architecture"
