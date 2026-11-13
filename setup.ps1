@@ -45,7 +45,7 @@ if (-Not (Test-Path Env:DF_CONFIG) -And -Not [Console]::IsInputRedirected) {
     $answer = "n"
 }
 
-if ($answer -eq "Y" -or $answer -eq "y") {
+if ($answer -eq "y") {
     if (-Not (Get-Command mise -ErrorAction SilentlyContinue)) {
         error "'mise' not found. Cannot apply config files"
         exit 1
