@@ -4,7 +4,6 @@
 brew_list="
 bat
 bottom
-curl
 difftastic
 dust
 fastfetch
