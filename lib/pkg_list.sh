@@ -2,6 +2,7 @@
 
 # macOS
 brew_list="
+age
 bat
 bottom
 difftastic
@@ -9,6 +10,7 @@ dust
 fastfetch
 fd
 fish
+fnox
 fzf
 gh
 git-delta
@@ -29,6 +31,7 @@ zoxide
 
 # Arch
 pacman_list="
+age
 base-devel
 bat
 bottom
@@ -69,7 +72,7 @@ zoxide
 "
 aur_helper=yay
 aur_helper_url=https://aur.archlinux.org/yay-bin.git
-aur_list="fresh-editor-bin herdr-bin tlrc-bin"
+aur_list="fnox-bin fresh-editor-bin herdr-bin tlrc-bin"
 
 # Debian
 debian_apt_list="

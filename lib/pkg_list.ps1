@@ -8,6 +8,7 @@ $scoop_main_list = @(
     "fastfetch"
     "fd"
     "ffmpeg"
+    "fnox"
     "fzf"
     "gh"
     "gsudo"
@@ -32,6 +33,7 @@ $scoop_main_list = @(
 ) | ForEach-Object { "main/$_" }
 
 $scoop_extras_list = @(
+    "age"
     "dbx"
     "fluxdown"
     "lazygit"
