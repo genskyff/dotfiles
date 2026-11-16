@@ -51,7 +51,5 @@ After making changes to the dotfiles, re-apply them using the following commands
 
 ```shell
 mise dot diff
-mise dot apply --prune
+mise dot apply -y
 ```
-
-`--prune` also removes deployed files whose sources have been deleted or excluded; files edited after they were deployed are kept.
