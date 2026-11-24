@@ -1,3 +1,4 @@
+test (uname -s) = Linux; or return 0
 command -q mise; or return 0
 
 if status is-interactive
