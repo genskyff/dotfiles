@@ -1,6 +1,4 @@
 function _cmd_check --description "Check command status"
-    argparse -N1 q -- $argv; or return 1
-
     set -l has_error 0
     set -l error_messages
 
@@ -14,7 +12,7 @@ function _cmd_check --description "Check command status"
         set has_error 1
     end
 
-    if not set -q _flag_q; and test $has_error -eq 1
+    if test $has_error -eq 1
         for message in $error_messages
             echo "$message" >&2
         end
