@@ -1,5 +1,5 @@
 export def --wrapped edit [...argv] {
-    let editor = $env.config.buffer_editor
+    let editor = $env.EDITOR?
 
     if ($editor | is-not-empty) {
         run-external $editor ...$argv
