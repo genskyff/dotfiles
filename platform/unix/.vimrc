@@ -27,8 +27,11 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
-autocmd BufWritePre * keeppatterns :%s/\r$//e
-autocmd BufWritePre * setlocal fileformat=unix
+augroup vimrc
+    autocmd!
+    autocmd BufWritePre * keeppatterns :%s/\r$//e
+    autocmd BufWritePre * setlocal fileformat=unix
+augroup END
 
 set breakindent
 set listchars=tab:»·,trail:·,nbsp:␣
