@@ -21,7 +21,6 @@ lazydocker
 lazygit
 lsd
 mise
-nushell
 ripgrep
 starship
 tlrc
