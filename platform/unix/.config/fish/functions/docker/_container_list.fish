@@ -1,5 +1,4 @@
 function _container_list --description "List containers"
-    _docker_check; or return 1
     argparse -i header -- $argv; or return 1
 
     set -l exited_containers
