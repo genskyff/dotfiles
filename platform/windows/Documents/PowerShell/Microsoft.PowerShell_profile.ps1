@@ -92,7 +92,7 @@ function Git-Difft { git -c diff.external=difft diff @args }
 
 function Git-Branch {
     if (!(git rev-parse --is-inside-work-tree)) { return }
-    $branches = git branch
+    $branches = @(git branch)
     $current_ref = git rev-parse --abbrev-ref HEAD
     $fzf_args = @(
         "--preview", 'git log {-1} --oneline --graph --color=always --date="format:%y/%m/%d" --format="%C(auto)%ad %h%d <%<(6,trunc)%an> %s"',
@@ -102,7 +102,7 @@ function Git-Branch {
 
     if ($current_ref -eq "HEAD") {
         $fzf_args += @("--header", $branches[0])
-        $branches = $branches[1..($branches.Length - 1)]
+        $branches = @($branches | Select-Object -Skip 1)
     }
 
     $branches | fzf @fzf_args
