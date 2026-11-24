@@ -1,6 +1,6 @@
 function _fzf_preview --description "Preview file or directory with fzf"
     if test -f $argv
-        if file -b $argv | grep -qiE "(script|text|empty)"
+        if test (file -b --mime-encoding $argv) != binary
             if _cmd_check -q bat
                 set -f cmd bat --color always
             else if _cmd_check -q batcat
